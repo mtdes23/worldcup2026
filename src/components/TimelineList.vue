@@ -208,7 +208,10 @@
               <!-- FW -->
               <div class="flex justify-around px-2">
                 <div v-for="player in getPlayersByPos(lineupModal.players, 'FW')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-fuchsia-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-fuchsia-500/30 transition-all shadow-lg text-white font-bold">FW</div>
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-fuchsia-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-fuchsia-500/30 transition-all shadow-[0_0_15px_rgba(217,70,239,0.5)] text-white font-bold overflow-hidden">
+                    <img v-if="getPlayerAvatar(player.name)" :src="getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
+                    <span v-else>FW</span>
+                  </div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
                   <div class="text-fuchsia-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
                 </div>
@@ -217,7 +220,10 @@
               <!-- MID -->
               <div class="flex justify-around px-6 sm:px-16">
                 <div v-for="player in getPlayersByPos(lineupModal.players, 'MID')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-cyan-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-cyan-500/30 transition-all shadow-lg text-white font-bold">MD</div>
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-cyan-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-cyan-500/30 transition-all shadow-[0_0_15px_rgba(6,182,212,0.5)] text-white font-bold overflow-hidden">
+                    <img v-if="getPlayerAvatar(player.name)" :src="getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
+                    <span v-else>MD</span>
+                  </div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
                   <div class="text-cyan-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
                 </div>
@@ -226,7 +232,10 @@
               <!-- DEF -->
               <div class="flex justify-between px-0 sm:px-4">
                 <div v-for="player in getPlayersByPos(lineupModal.players, 'DEF')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-yellow-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-yellow-400/30 transition-all shadow-lg text-white font-bold">DF</div>
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-yellow-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-yellow-400/30 transition-all shadow-[0_0_15px_rgba(250,204,21,0.5)] text-white font-bold overflow-hidden">
+                    <img v-if="getPlayerAvatar(player.name)" :src="getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
+                    <span v-else>DF</span>
+                  </div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
                   <div class="text-yellow-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
                 </div>
@@ -235,7 +244,10 @@
               <!-- GK -->
               <div class="flex justify-center mt-2">
                 <div v-for="player in getPlayersByPos(lineupModal.players, 'GK')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
-                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-white/60 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-white/30 transition-all shadow-lg text-white font-bold">GK</div>
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-white/60 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-white/30 transition-all shadow-[0_0_15px_rgba(255,255,255,0.4)] text-white font-bold overflow-hidden">
+                    <img v-if="getPlayerAvatar(player.name)" :src="getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
+                    <span v-else>GK</span>
+                  </div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
                   <div class="text-gray-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
                 </div>
@@ -262,6 +274,11 @@ const props = defineProps({
 
 const itemRefs = ref([])
 let observer = null
+
+const getPlayerAvatar = (playerName) => {
+  const legendMatch = legendsData.find(l => l.name === playerName || l.name.includes(playerName) || playerName.includes(l.name))
+  return legendMatch && legendMatch.imageUrl ? legendMatch.imageUrl : null
+}
 
 // Modal Logic for Specific Items
 const detailModal = ref(null)
