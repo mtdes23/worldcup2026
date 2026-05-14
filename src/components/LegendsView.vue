@@ -4,15 +4,35 @@ import legendsData from '../data/legends.json'
 
 const legends = ref(legendsData)
 const searchQuery = ref('')
+const activeFilter = ref('ALL') // ALL, FW, MID, DEF, GK
+
+const positionMap = {
+  'ST': 'FW', 'CF': 'FW', 'LW': 'FW', 'RW': 'FW',
+  'CAM': 'MID', 'CM': 'MID', 'CDM': 'MID', 'LM': 'MID', 'RM': 'MID',
+  'CB': 'DEF', 'RB': 'DEF', 'LB': 'DEF',
+  'GK': 'GK'
+}
 
 const filteredLegends = computed(() => {
-  if (!searchQuery.value) return legends.value
-  const lowerCaseQuery = searchQuery.value.toLowerCase()
-  return legends.value.filter(player => 
-    player.name.toLowerCase().includes(lowerCaseQuery) || 
-    player.nation.toLowerCase().includes(lowerCaseQuery) ||
-    player.position.toLowerCase().includes(lowerCaseQuery)
-  )
+  let result = legends.value
+
+  // Position Filter
+  if (activeFilter.value !== 'ALL') {
+    result = result.filter(player => positionMap[player.position] === activeFilter.value)
+  }
+
+  // Search Filter
+  if (searchQuery.value) {
+    const lowerCaseQuery = searchQuery.value.toLowerCase()
+    result = result.filter(player => 
+      player.name.toLowerCase().includes(lowerCaseQuery) || 
+      player.nation.toLowerCase().includes(lowerCaseQuery) ||
+      player.position.toLowerCase().includes(lowerCaseQuery)
+    )
+  }
+
+  // Sort by rating desc
+  return result.sort((a, b) => b.rating - a.rating)
 })
 
 const getRatingColor = (rating) => {
@@ -65,8 +85,9 @@ const showPlayerDetail = async (player) => {
     </div>
 
     <!-- Search/Filter -->
-    <div class="flex justify-center mb-12">
-      <div class="bg-[#24124a] border border-white/10 rounded-full flex items-center px-6 py-4 w-full max-w-xl shadow-xl transition-all focus-within:border-cyan-500 focus-within:shadow-cyan-500/20">
+    <div class="flex flex-col items-center mb-12">
+      <!-- Search Bar -->
+      <div class="bg-[#24124a] border border-white/10 rounded-full flex items-center px-6 py-4 w-full max-w-xl shadow-xl transition-all focus-within:border-cyan-500 focus-within:shadow-cyan-500/20 mb-6">
         <span class="text-2xl mr-3">🔍</span>
         <input 
           v-model="searchQuery" 
@@ -74,6 +95,50 @@ const showPlayerDetail = async (player) => {
           placeholder="Tìm huyền thoại, quốc gia, hoặc vị trí (vd: Brazil, CF...)" 
           class="bg-transparent border-none outline-none text-white w-full placeholder-white/40 font-medium"
         >
+      </div>
+
+      <!-- Advanced Filters (Position) -->
+      <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
+        <button 
+          @click="activeFilter = 'ALL'"
+          :class="activeFilter === 'ALL' ? 'bg-white text-black border-white' : 'bg-transparent text-white border-white/20 hover:border-white/50'"
+          class="px-4 py-1.5 rounded-full border text-sm font-bold transition-all"
+        >
+          Tất cả
+        </button>
+        <button 
+          @click="activeFilter = 'FW'"
+          :class="activeFilter === 'FW' ? 'bg-fuchsia-500 text-white border-fuchsia-500 shadow-lg shadow-fuchsia-500/30' : 'bg-transparent text-white border-white/20 hover:border-fuchsia-500 hover:text-fuchsia-400'"
+          class="px-4 py-1.5 rounded-full border text-sm font-bold transition-all"
+        >
+          Tiền Đạo
+        </button>
+        <button 
+          @click="activeFilter = 'MID'"
+          :class="activeFilter === 'MID' ? 'bg-cyan-500 text-black border-cyan-500 shadow-lg shadow-cyan-500/30' : 'bg-transparent text-white border-white/20 hover:border-cyan-500 hover:text-cyan-400'"
+          class="px-4 py-1.5 rounded-full border text-sm font-bold transition-all"
+        >
+          Tiền Vệ
+        </button>
+        <button 
+          @click="activeFilter = 'DEF'"
+          :class="activeFilter === 'DEF' ? 'bg-yellow-400 text-black border-yellow-400 shadow-lg shadow-yellow-400/30' : 'bg-transparent text-white border-white/20 hover:border-yellow-400 hover:text-yellow-400'"
+          class="px-4 py-1.5 rounded-full border text-sm font-bold transition-all"
+        >
+          Hậu Vệ
+        </button>
+        <button 
+          @click="activeFilter = 'GK'"
+          :class="activeFilter === 'GK' ? 'bg-gray-200 text-black border-gray-200 shadow-lg shadow-gray-200/30' : 'bg-transparent text-white border-white/20 hover:border-gray-300 hover:text-gray-300'"
+          class="px-4 py-1.5 rounded-full border text-sm font-bold transition-all"
+        >
+          Thủ Môn
+        </button>
+      </div>
+      
+      <!-- Stats Summary -->
+      <div class="mt-6 text-sm text-white/50 font-medium">
+        Đang hiển thị <span class="text-white font-bold">{{ filteredLegends.length }}</span> huyền thoại
       </div>
     </div>
 
