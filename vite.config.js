@@ -11,8 +11,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'World Cup Encyclopedia',
-        short_name: 'WCCup',
+        name: 'Worldcup History',
+        short_name: 'WCHistory',
         description: 'Kho báu lịch sử bóng đá thế giới',
         theme_color: '#13072e',
         background_color: '#13072e',
