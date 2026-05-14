@@ -20,6 +20,38 @@ const getRatingColor = (rating) => {
   if (rating >= 95) return 'bg-fuchsia-500 text-white'
   return 'bg-cyan-500 text-[#13072e]'
 }
+
+const detailModal = ref(null)
+const fullWikiUrl = ref(null)
+
+const showPlayerDetail = async (player) => {
+  detailModal.value = {
+    title: 'Huyền Thoại Bóng Đá',
+    icon: player.icon,
+    name: player.name,
+    content: `Danh thủ ${player.name} là một huyền thoại mang quốc tịch ${player.nation}, nổi tiếng khi thi đấu ở vị trí ${player.position}.`,
+    wikiLoading: true,
+    wikiBio: ''
+  }
+
+  try {
+    const searchTerm = encodeURIComponent(`${player.name} bóng đá`)
+    const res = await fetch(`https://vi.wikipedia.org/w/api.php?action=query&list=search&srsearch=${searchTerm}&utf8=&format=json&origin=*`)
+    const data = await res.json()
+    
+    if (data.query && data.query.search && data.query.search.length > 0) {
+      let snippet = data.query.search[0].snippet.replace(/<\/?[^>]+(>|$)/g, "")
+      detailModal.value.wikiBio = snippet + '...'
+      detailModal.value.wikiTitle = data.query.search[0].title
+    } else {
+      detailModal.value.wikiBio = 'Chưa tìm thấy thông tin lịch sử chi tiết trên Wikipedia cho cầu thủ này.'
+    }
+  } catch (error) {
+    detailModal.value.wikiBio = 'Không thể tải lịch sử cầu thủ lúc này.'
+  } finally {
+    if (detailModal.value) detailModal.value.wikiLoading = false
+  }
+}
 </script>
 
 <template>
@@ -54,7 +86,7 @@ const getRatingColor = (rating) => {
 
     <!-- Grid -->
     <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <div v-for="player in filteredLegends" :key="player.id" class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/5 relative flex flex-col">
+      <div v-for="player in filteredLegends" :key="player.id" @click="showPlayerDetail(player)" class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/5 relative flex flex-col">
         <!-- Player Rating Badge -->
         <div :class="getRatingColor(player.rating)" class="absolute top-4 left-4 font-black text-lg px-2.5 py-0.5 rounded-full z-20 shadow-md">
           {{ player.rating }}
@@ -85,8 +117,71 @@ const getRatingColor = (rating) => {
         </div>
       </div>
     </div>
+
+    <!-- Specific Detail Modal -->
+    <div v-if="detailModal" class="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-[#13072e]/90 backdrop-blur-md" @click.self="detailModal = null">
+      <div class="bg-[#24124a] rounded-[2rem] w-full max-w-md overflow-hidden flex flex-col shadow-2xl border border-white/20 animate-slide-up relative">
+        <button @click="detailModal = null" class="absolute top-4 right-4 w-8 h-8 bg-white/10 hover:bg-fuchsia-500 rounded-full flex items-center justify-center text-white z-20 transition-colors">
+          ✕
+        </button>
+        
+        <div class="p-8 text-center">
+          <div class="inline-block px-3 py-1 rounded-full bg-white/10 text-[10px] font-bold text-cyan-300 mb-4 uppercase tracking-widest border border-white/10">
+            Hồ Sơ Cầu Thủ
+          </div>
+          
+          <div class="text-4xl mb-4">{{ detailModal.icon || '⚽' }}</div>
+          
+          <h2 class="text-2xl font-black text-white mb-2">{{ detailModal.name }}</h2>
+          <div class="text-fuchsia-400 text-xs uppercase font-bold mb-6 tracking-widest">{{ detailModal.title }}</div>
+          
+          <p class="text-gray-300 leading-relaxed bg-black/20 p-5 rounded-2xl text-sm font-medium border border-white/5 mb-4">
+            {{ detailModal.content }}
+          </p>
+
+          <!-- Wiki History Box -->
+          <div v-if="detailModal.wikiLoading !== undefined" class="bg-black/30 border border-fuchsia-500/20 rounded-2xl p-5 text-left relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-fuchsia-500 to-cyan-500"></div>
+            <h4 class="text-fuchsia-400 font-bold text-xs uppercase mb-2 flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              Tóm tắt sự nghiệp (Wikipedia)
+            </h4>
+            
+            <div v-if="detailModal.wikiLoading" class="flex flex-col items-center justify-center py-4 space-y-3">
+              <div class="w-5 h-5 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+              <span class="text-cyan-300/50 text-xs animate-pulse">Đang trích xuất kho lưu trữ...</span>
+            </div>
+            
+            <div v-else class="text-gray-300 text-[13px] leading-relaxed">
+              {{ detailModal.wikiBio }}
+              <button v-if="detailModal.wikiTitle" 
+                 @click="fullWikiUrl = `https://vi.m.wikipedia.org/wiki/${encodeURIComponent(detailModal.wikiTitle)}`"
+                 class="text-cyan-400 hover:text-cyan-300 font-bold block mt-3 text-xs w-full text-center border border-cyan-500/30 rounded py-2 bg-cyan-500/10 hover:bg-cyan-500/20 transition-all">
+                📖 Đọc Toàn Bộ Tiểu Sử Ngay Tại Đây
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Wiki Iframe Modal -->
+    <div v-if="fullWikiUrl" class="fixed inset-0 z-[120] flex items-center justify-center p-0 sm:p-4 bg-black/95 backdrop-blur-xl" @click.self="fullWikiUrl = null">
+      <div class="bg-white rounded-none sm:rounded-2xl w-full h-full sm:h-[95vh] max-w-5xl overflow-hidden flex flex-col relative animate-slide-up">
+        <div class="bg-gray-100 p-3 flex justify-between items-center border-b">
+          <div class="text-sm font-bold text-gray-800 flex items-center gap-2">
+            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-4h2v2h-2zm1-12C9.79 4 8 5.79 8 8h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+            Wikipedia Tiếng Việt (In-App)
+          </div>
+          <button @click="fullWikiUrl = null" class="w-8 h-8 bg-gray-300 hover:bg-red-500 hover:text-white rounded-full flex items-center justify-center font-bold transition-colors">✕</button>
+        </div>
+        <div class="flex-1 relative w-full h-full bg-white">
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="w-8 h-8 border-4 border-gray-300 border-t-cyan-500 rounded-full animate-spin"></div>
+          </div>
+          <iframe :src="fullWikiUrl" class="absolute inset-0 w-full h-full border-none z-10 bg-white" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
-
-<script setup>
-</script>
