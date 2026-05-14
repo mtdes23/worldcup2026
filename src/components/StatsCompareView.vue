@@ -5,7 +5,7 @@
         Phòng Phân Tích Chiến Thuật
       </h2>
       <p class="text-gray-400 font-medium max-w-2xl mx-auto">
-        Trung tâm phân tích dữ liệu chuyên sâu (Lấy cảm hứng từ StatsBomb & Opta). So sánh trực quan bộ chỉ số của các huyền thoại bóng đá thế giới.
+        Trung tâm phân tích dữ liệu chuyên sâu (Lấy cảm hứng từ StatsBomb & Opta). So sánh trực quan bộ chỉ số thực tế của hàng nghìn cầu thủ toàn cầu.
       </p>
     </div>
 
@@ -15,15 +15,20 @@
       <!-- Player 1 Select -->
       <div class="bg-[#24124a] rounded-[2rem] p-6 shadow-xl border border-fuchsia-500/30 relative">
         <div class="absolute -top-3 -left-3 w-8 h-8 bg-fuchsia-500 rounded-full flex items-center justify-center font-black text-white shadow-lg z-10">1</div>
-        <label class="block text-fuchsia-400 text-xs font-bold uppercase tracking-widest mb-2">Chọn Huyền Thoại A</label>
-        <select v-model="player1Id" class="w-full bg-black/50 border border-fuchsia-500/50 rounded-xl px-4 py-3 text-white font-medium focus:outline-none focus:border-fuchsia-400 mb-6">
-          <option v-for="p in sortedLegends" :key="p.id" :value="p.id">{{ p.name }} ({{ p.rating }})</option>
-        </select>
+        <label class="block text-fuchsia-400 text-xs font-bold uppercase tracking-widest mb-2">Chọn Cầu Thủ A</label>
+        
+        <button 
+          @click="openModal(1)"
+          class="w-full bg-black/50 border border-fuchsia-500/50 rounded-xl px-4 py-3 text-white font-medium hover:border-fuchsia-400 transition-all text-left mb-6 flex justify-between items-center"
+        >
+          <span>{{ player1 ? player1.name : 'Chọn cầu thủ...' }}</span>
+          <span class="text-xs opacity-50">Thay đổi ↻</span>
+        </button>
 
         <div v-if="player1" class="text-center flex flex-col items-center">
-          <div class="w-32 h-32 rounded-full border-4 border-fuchsia-500 overflow-hidden shadow-[0_0_20px_rgba(217,70,239,0.4)] mb-4">
+          <div class="w-32 h-32 rounded-full border-4 border-fuchsia-500 overflow-hidden shadow-[0_0_20px_rgba(217,70,239,0.4)] mb-4 bg-black/40">
             <img v-if="player1.imageUrl" :src="player1.imageUrl" class="w-full h-full object-cover object-top" />
-            <div v-else class="w-full h-full bg-black/60 flex items-center justify-center text-5xl">⚽</div>
+            <div v-else class="w-full h-full flex items-center justify-center text-5xl">⚽</div>
           </div>
           <h3 class="font-black text-xl text-white">{{ player1.name }}</h3>
           <div class="flex gap-2 mt-2">
@@ -43,15 +48,20 @@
       <!-- Player 2 Select -->
       <div class="bg-[#24124a] rounded-[2rem] p-6 shadow-xl border border-cyan-500/30 relative">
         <div class="absolute -top-3 -right-3 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center font-black text-[#13072e] shadow-lg z-10">2</div>
-        <label class="block text-cyan-400 text-xs font-bold uppercase tracking-widest mb-2">Chọn Huyền Thoại B</label>
-        <select v-model="player2Id" class="w-full bg-black/50 border border-cyan-500/50 rounded-xl px-4 py-3 text-white font-medium focus:outline-none focus:border-cyan-400 mb-6">
-          <option v-for="p in sortedLegends" :key="p.id" :value="p.id">{{ p.name }} ({{ p.rating }})</option>
-        </select>
+        <label class="block text-cyan-400 text-xs font-bold uppercase tracking-widest mb-2">Chọn Cầu Thủ B</label>
+        
+        <button 
+          @click="openModal(2)"
+          class="w-full bg-black/50 border border-cyan-500/50 rounded-xl px-4 py-3 text-white font-medium hover:border-cyan-400 transition-all text-left mb-6 flex justify-between items-center"
+        >
+          <span>{{ player2 ? player2.name : 'Chọn cầu thủ...' }}</span>
+          <span class="text-xs opacity-50">Thay đổi ↻</span>
+        </button>
 
         <div v-if="player2" class="text-center flex flex-col items-center">
-          <div class="w-32 h-32 rounded-full border-4 border-cyan-500 overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.4)] mb-4">
+          <div class="w-32 h-32 rounded-full border-4 border-cyan-500 overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.4)] mb-4 bg-black/40">
             <img v-if="player2.imageUrl" :src="player2.imageUrl" class="w-full h-full object-cover object-top" />
-            <div v-else class="w-full h-full bg-black/60 flex items-center justify-center text-5xl">⚽</div>
+            <div v-else class="w-full h-full flex items-center justify-center text-5xl">⚽</div>
           </div>
           <h3 class="font-black text-xl text-white">{{ player2.name }}</h3>
           <div class="flex gap-2 mt-2">
@@ -62,6 +72,15 @@
       </div>
 
     </div>
+
+    <!-- Modal Selection -->
+    <PlayerSelectionModal 
+      :is-open="modalState.isOpen"
+      :slot-id="modalState.activeSlot.toString()"
+      slot-label="Chọn cầu thủ để so sánh"
+      @close="modalState.isOpen = false"
+      @select="handlePlayerSelect"
+    />
 
     <!-- Chart Container -->
     <div class="bg-[#1e0e3d] rounded-[2rem] p-4 sm:p-10 shadow-2xl border border-white/5 relative overflow-hidden">
@@ -85,52 +104,90 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, reactive, onMounted } from 'vue'
 import { Radar } from 'vue-chartjs'
 import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from 'chart.js'
 import legendsData from '../data/legends.json'
+import PlayerSelectionModal from './PlayerSelectionModal.vue'
 
 // Register ChartJS plugins
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend)
 
-// Sort legends by rating so best are at top
-const sortedLegends = [...legendsData].sort((a, b) => b.rating - a.rating)
+const allPlayers = ref([])
+const player1 = ref(null)
+const player2 = ref(null)
 
-// Find default players (Messi and Ronaldo if possible, or just index 0 and 1)
-const defaultP1 = sortedLegends.find(p => p.name.includes('Messi')) || sortedLegends[0]
-const defaultP2 = sortedLegends.find(p => p.name.includes('Ronaldo') || p.name.includes('Mbapp')) || sortedLegends[1]
+onMounted(async () => {
+  try {
+    const res = await fetch('/players_full.json')
+    const playersFull = await res.json()
 
-const player1Id = ref(defaultP1.id)
-const player2Id = ref(defaultP2.id)
+    // Map huge database to our format
+    const databasePlayers = playersFull.map(p => ({
+      id: `db-${p.ID}`,
+      name: p.Name,
+      fullName: p.FullName,
+      rating: parseInt(p.Overall),
+      nation: p.Nationality,
+      position: p.BestPosition,
+      imageUrl: p.PhotoUrl,
+      club: p.Club,
+      stats: [
+        parseInt(p.PaceTotal),
+        parseInt(p.ShootingTotal),
+        parseInt(p.PassingTotal),
+        parseInt(p.DribblingTotal),
+        parseInt(p.DefendingTotal),
+        parseInt(p.PhysicalityTotal)
+      ]
+    }))
 
-const player1 = computed(() => legendsData.find(p => p.id === player1Id.value))
-const player2 = computed(() => legendsData.find(p => p.id === player2Id.value))
+    const legendsWithStats = legendsData.map(l => {
+      if (l.stats) return l;
+      return {
+        ...l,
+        stats: [l.rating - 5, l.rating - 2, l.rating - 1, l.rating, l.rating - 30, l.rating - 10]
+      }
+    })
 
-// Helper to generate realistic stats based on position and rating
-const getStats = (player) => {
-  if (!player) return [0,0,0,0,0,0];
-  const base = player.rating;
-  const p = player.position.toUpperCase();
-  
-  // Base modifiers to make the radar chart look like a real FIFA card
-  let pac = base, sho = base, pas = base, dri = base, def = base, phy = base;
-  
-  if (p.includes('ST') || p.includes('CF') || p.includes('LW') || p.includes('RW')) {
-    pac += 4; sho += 6; pas -= 4; dri += 3; def -= 40; phy -= 2;
-  } else if (p.includes('CM') || p.includes('CAM') || p.includes('CDM')) {
-    pac -= 3; sho -= 2; pas += 6; dri += 4; def -= 5; phy += 2;
-    if (p === 'CDM') { def += 25; sho -= 10; phy += 5; }
-  } else if (p.includes('CB') || p.includes('RB') || p.includes('LB')) {
-    pac -= 8; sho -= 35; pas -= 8; dri -= 15; def += 10; phy += 8;
-    if (p.includes('B') && p !== 'CB') { pac += 15; def -= 5; } // Fullbacks are faster
-  } else if (p === 'GK') {
-    // For GK, the labels would technically be diving, handling, etc. but we map to standard
-    pac -= 40; sho -= 50; pas -= 10; dri -= 40; def += 10; phy += 5;
+    allPlayers.value = [...legendsWithStats, ...databasePlayers]
+    
+    // Set defaults after data is loaded
+    player1.value = allPlayers.value.find(p => p.name.includes('Messi')) || allPlayers.value[0]
+    player2.value = allPlayers.value.find(p => p.name.includes('Mbapp')) || allPlayers.value[1]
+  } catch (e) {
+    console.error('Failed to load comparison data:', e)
   }
+})
+
+const modalState = reactive({
+  isOpen: false,
+  activeSlot: 1
+})
+
+const openModal = (slot) => {
+  modalState.activeSlot = slot
+  modalState.isOpen = true
+}
+
+const handlePlayerSelect = ({ player }) => {
+  if (modalState.activeSlot === 1) {
+    player1.value = player
+  } else {
+    player2.value = player
+  }
+}
+
+const player1Id = computed(() => player1.value?.id)
+const player2Id = computed(() => player2.value?.id)
+
+// Helper to generate realistic stats
+const getStats = (player) => {
+  if (!player) return [0, 0, 0, 0, 0, 0];
+  if (player.stats) return player.stats;
   
-  // Ensure values stay between 1 and 99
-  const clamp = (val) => Math.max(1, Math.min(99, val));
-  return [clamp(pac), clamp(sho), clamp(pas), clamp(dri), clamp(def), clamp(phy)];
+  // Default values if stats are missing
+  return [player.rating || 50, player.rating || 50, player.rating || 50, player.rating || 50, (player.rating || 50) / 2, player.rating || 50];
 }
 
 const chartData = computed(() => {

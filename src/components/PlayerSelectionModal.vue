@@ -1,6 +1,34 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import legendsData from '../data/legends.json'
+
+const allPlayers = ref([...legendsData])
+const isLoading = ref(true)
+
+onMounted(async () => {
+  try {
+    const res = await fetch('/players_full.json')
+    const playersFull = await res.json()
+    
+    // Map huge database to our format
+    const databasePlayers = playersFull.map(p => ({
+      id: `db-${p.ID}`,
+      name: p.Name,
+      fullName: p.FullName,
+      rating: parseInt(p.Overall),
+      nation: p.Nationality,
+      position: p.BestPosition,
+      imageUrl: p.PhotoUrl,
+      club: p.Club
+    }))
+
+    allPlayers.value = [...legendsData, ...databasePlayers]
+  } catch (e) {
+    console.error('Failed to load players for selection:', e)
+  } finally {
+    isLoading.value = false
+  }
+})
 
 const props = defineProps({
   isOpen: Boolean,
@@ -13,31 +41,29 @@ const emit = defineEmits(['close', 'select'])
 const searchQuery = ref('')
 const selectedNation = ref('Tất cả')
 
-// Map positions to simpler groups for filtering
-const posGroupMap = {
-  'GK': 'GK',
-  'CB': 'DEF', 'RB': 'DEF', 'LB': 'DEF', 'LWB': 'DEF', 'RWB': 'DEF',
-  'CM': 'MID', 'CDM': 'MID', 'CAM': 'MID', 'LM': 'MID', 'RM': 'MID',
-  'ST': 'FW', 'CF': 'FW', 'LW': 'FW', 'RW': 'FW'
-}
-
 const uniqueNations = computed(() => {
-  const nations = legendsData.map(l => l.nation)
-  return ['Tất cả', ...new Set(nations)].sort()
+  // Use a smaller set for unique nations filter to avoid UI bloat
+  const topNations = ['Argentina', 'Brazil', 'France', 'England', 'Germany', 'Spain', 'Italy', 'Netherlands', 'Portugal', 'Vietnam']
+  return ['Tất cả', ...topNations]
 })
 
 const filteredPlayers = computed(() => {
-  return legendsData.filter(player => {
-    const matchSearch = player.name.toLowerCase().includes(searchQuery.value.toLowerCase()) || 
-                        player.nation.toLowerCase().includes(searchQuery.value.toLowerCase())
-    const matchNation = selectedNation.value === 'Tất cả' || player.nation === selectedNation.value
-    
-    // Optional: filter by position group based on slotLabel
-    // e.g., if slotLabel is 'CB', show 'DEF'
-    // For now we allow any player anywhere, but we could restrict it.
-    
-    return matchSearch && matchNation
-  }).sort((a, b) => b.rating - a.rating).slice(0, 50) // Limit to 50 for performance
+  let filtered = allPlayers.value
+
+  if (searchQuery.value) {
+    const query = searchQuery.value.toLowerCase()
+    filtered = filtered.filter(player => 
+      player.name.toLowerCase().includes(query) || 
+      player.nation.toLowerCase().includes(query) ||
+      (player.club && player.club.toLowerCase().includes(query))
+    )
+  }
+
+  if (selectedNation.value !== 'Tất cả') {
+    filtered = filtered.filter(player => player.nation === selectedNation.value)
+  }
+
+  return filtered.sort((a, b) => b.rating - a.rating).slice(0, 100)
 })
 
 const getRatingColor = (rating) => {
@@ -91,7 +117,11 @@ const selectPlayer = (player) => {
 
       <!-- List -->
       <div class="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar">
-        <div v-if="filteredPlayers.length === 0" class="text-center text-gray-400 py-10">
+        <div v-if="isLoading" class="flex flex-col items-center justify-center py-20 space-y-4">
+          <div class="w-10 h-10 border-4 border-fuchsia-500 border-t-transparent rounded-full animate-spin"></div>
+          <p class="text-fuchsia-400 font-bold animate-pulse">Đang tải kho dữ liệu...</p>
+        </div>
+        <div v-else-if="filteredPlayers.length === 0" class="text-center text-gray-400 py-10">
           Không tìm thấy cầu thủ nào phù hợp.
         </div>
         

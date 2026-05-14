@@ -1,13 +1,43 @@
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useScrollLock } from '@vueuse/core'
 import legendsData from '../data/legends.json'
 
 const isLocked = useScrollLock(document.body)
 
-const legends = ref(legendsData)
+const legends = ref([...legendsData])
 const searchQuery = ref('')
 const activeFilter = ref('ALL') // ALL, FW, MID, DEF, GK
+
+onMounted(async () => {
+  try {
+    const res = await fetch('/players_full.json')
+    const playersFull = await res.json()
+    
+    // Merge legends with top database players
+    const databaseLegends = playersFull
+      .filter(p => parseInt(p.Overall) >= 90)
+      .map(p => ({
+        id: `db-${p.ID}`,
+        name: p.Name,
+        fullName: p.FullName,
+        rating: parseInt(p.Overall),
+        nation: p.Nationality,
+        position: p.BestPosition,
+        imageUrl: p.PhotoUrl,
+        club: p.Club,
+        icon: '⚽'
+      }))
+
+    // Avoid duplicates
+    const existingNames = new Set(legendsData.map(l => l.name))
+    const uniqueDatabaseLegends = databaseLegends.filter(l => !existingNames.has(l.name))
+
+    legends.value = [...legendsData, ...uniqueDatabaseLegends]
+  } catch (e) {
+    console.error('Failed to load database legends:', e)
+  }
+})
 
 const positionMap = {
   'ST': 'FW', 'CF': 'FW', 'LW': 'FW', 'RW': 'FW',
@@ -199,7 +229,7 @@ const showPlayerDetail = async (player) => {
     </div>
 
     <!-- Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 perspective-[1000px]">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 perspective-[1000px]">
       <div 
         v-for="(player, index) in filteredLegends" 
         :key="player.id" 
@@ -207,7 +237,7 @@ const showPlayerDetail = async (player) => {
         @mousemove="(e) => handleMouseMove(e, index)"
         @mouseleave="handleMouseLeave(index)"
         :style="cardStyles[index]"
-        class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg transition-transform duration-200 ease-out group cursor-pointer border border-white/10 relative flex flex-col will-change-transform transform-gpu" 
+        class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-2xl md:rounded-3xl overflow-hidden shadow-lg transition-transform duration-200 ease-out group cursor-pointer border border-white/10 relative flex flex-col will-change-transform transform-gpu" 
         style="content-visibility: auto; contain-intrinsic-size: 250px; transform-style: preserve-3d;"
       >
         <!-- Hologram Glare -->

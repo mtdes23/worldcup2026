@@ -140,15 +140,15 @@ const resetDraw = () => {
           <h3 class="text-xl font-bold text-white mb-6 z-10">Đang Bốc Thăm: Nhóm {{ currentPotIndex }}</h3>
           
           <!-- Crystal Ball / Draw Bowl -->
-          <div class="relative w-48 h-48 mb-8 z-10 perspective-[1000px]">
+          <div class="relative w-40 h-40 md:w-48 md:h-48 mb-8 z-10 perspective-[1000px]">
             <div 
               class="w-full h-full rounded-full border-4 border-white/20 bg-white/5 backdrop-blur-sm flex items-center justify-center shadow-[inset_0_0_50px_rgba(255,255,255,0.2)] transition-all duration-1000 transform-gpu"
               :class="showCrystalBall ? 'animate-spin-slow bg-fuchsia-500/20 border-fuchsia-500 shadow-[0_0_50px_rgba(217,70,239,0.5)] scale-110' : ''"
               style="transform-style: preserve-3d;"
             >
-              <span v-if="!drawingTeam" class="text-6xl" :class="showCrystalBall ? 'animate-pulse' : ''">⚽</span>
+              <span v-if="!drawingTeam" class="text-5xl md:text-6xl" :class="showCrystalBall ? 'animate-pulse' : ''">⚽</span>
               <div v-else class="text-center animate-pop-in">
-                <div class="text-3xl font-black text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">{{ drawingTeam }}</div>
+                <div class="text-xl md:text-3xl font-black text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">{{ drawingTeam }}</div>
               </div>
             </div>
             <!-- Glow under bowl -->

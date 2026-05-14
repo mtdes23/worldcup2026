@@ -10,6 +10,7 @@ import DrawSimulatorView from './components/DrawSimulatorView.vue'
 import BracketView from './components/BracketView.vue'
 import TacticalBoardView from './components/TacticalBoardView.vue'
 import LiveScoreWidget from './components/LiveScoreWidget.vue'
+import PlayerDatabaseView from './components/PlayerDatabaseView.vue'
 
 import { useMouse } from '@vueuse/core'
 
@@ -71,26 +72,27 @@ const toggleAudio = () => {
     </div>
 
     <!-- Top Navigation -->
-    <nav class="sticky top-4 z-50 mx-4 sm:mx-auto max-w-[1200px] bg-[#1c0b43]/80 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full">
-      <div class="px-4 sm:px-6">
-        <div class="flex items-center justify-between h-16">
+    <nav class="sticky top-2 md:top-4 z-50 mx-2 sm:mx-auto max-w-[1200px] bg-[#1c0b43]/90 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full">
+      <div class="px-2 md:px-6">
+        <div class="flex items-center justify-between h-12 md:h-16 gap-1 md:gap-4">
           <!-- Logo -->
-          <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group" @click="currentTab = 'timeline'">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-500 to-cyan-500 flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform text-lg">
+          <div class="flex-shrink-0 flex items-center cursor-pointer group pl-1 md:pl-0" @click="currentTab = 'timeline'">
+            <div class="w-7 h-7 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-fuchsia-500 to-cyan-500 flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform text-xs md:text-lg">
               ⚽
             </div>
           </div>
           
           <!-- Tabs -->
-          <div class="flex space-x-2 overflow-x-auto no-scrollbar w-full sm:w-auto justify-end">
-            <button @click="currentTab = 'timeline'" :class="currentTab === 'timeline' ? 'bg-white text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Lịch sử</button>
-            <button @click="currentTab = 'articles'" :class="currentTab === 'articles' ? 'bg-fuchsia-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Bài báo</button>
-            <button @click="currentTab = 'legends'" :class="currentTab === 'legends' ? 'bg-cyan-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Cầu thủ</button>
-            <button @click="currentTab = 'bracket'" :class="currentTab === 'bracket' ? 'bg-indigo-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Sơ đồ đấu</button>
-            <button @click="currentTab = 'tactics'" :class="currentTab === 'tactics' ? 'bg-orange-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Sa bàn</button>
-            <button @click="currentTab = 'stats'" :class="currentTab === 'stats' ? 'bg-purple-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Phân tích</button>
-            <button @click="currentTab = 'wc2026'" :class="currentTab === 'wc2026' ? 'bg-yellow-400 text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">WC 2026</button>
-            <button @click="currentTab = 'draw'" :class="currentTab === 'draw' ? 'bg-emerald-400 text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300 flex items-center gap-1">🎲 Bốc Thăm</button>
+          <div class="flex space-x-1.5 md:space-x-2 overflow-x-auto no-scrollbar w-full justify-start md:justify-end items-center pr-1 md:pr-0">
+            <button @click="currentTab = 'timeline'" :class="currentTab === 'timeline' ? 'bg-white text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Lịch sử</button>
+            <button @click="currentTab = 'articles'" :class="currentTab === 'articles' ? 'bg-fuchsia-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Bài báo</button>
+            <button @click="currentTab = 'legends'" :class="currentTab === 'legends' ? 'bg-cyan-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Cầu thủ</button>
+            <button @click="currentTab = 'bracket'" :class="currentTab === 'bracket' ? 'bg-indigo-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Sơ đồ đấu</button>
+            <button @click="currentTab = 'tactics'" :class="currentTab === 'tactics' ? 'bg-orange-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Sa bàn</button>
+            <button @click="currentTab = 'database'" :class="currentTab === 'database' ? 'bg-rose-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300 flex items-center gap-1">📊 Kho Data</button>
+            <button @click="currentTab = 'stats'" :class="currentTab === 'stats' ? 'bg-purple-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Phân tích</button>
+            <button @click="currentTab = 'wc2026'" :class="currentTab === 'wc2026' ? 'bg-yellow-400 text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">WC 2026</button>
+            <button @click="currentTab = 'draw'" :class="currentTab === 'draw' ? 'bg-emerald-400 text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300 flex items-center gap-1">🎲 Bốc Thăm</button>
           </div>
         </div>
       </div>
@@ -138,6 +140,11 @@ const toggleAudio = () => {
       <!-- TACTICAL BOARD TAB -->
       <div v-if="currentTab === 'tactics'">
         <TacticalBoardView />
+      </div>
+
+      <!-- PLAYER DATABASE TAB -->
+      <div v-if="currentTab === 'database'">
+        <PlayerDatabaseView />
       </div>
 
       <!-- STATS/TACTICS TAB -->

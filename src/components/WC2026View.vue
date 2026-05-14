@@ -48,22 +48,22 @@ onUnmounted(() => {
       <p class="text-fuchsia-400 font-bold text-xl tracking-[0.2em] uppercase mb-8">USA - Canada - Mexico</p>
       
       <!-- Real Countdown Widget -->
-      <div class="flex justify-center gap-3 sm:gap-6 text-center">
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-3xl p-4 sm:p-5 w-20 sm:w-28 shadow-xl">
-          <div class="text-2xl sm:text-4xl font-black">{{ days }}</div>
-          <div class="text-[10px] sm:text-xs font-bold text-cyan-300 uppercase mt-1">Ngày</div>
+      <div class="flex justify-center gap-2 sm:gap-6 text-center w-full max-w-sm mx-auto sm:max-w-none">
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl sm:rounded-3xl p-2 sm:p-5 flex-1 sm:flex-none sm:w-28 shadow-xl">
+          <div class="text-xl sm:text-4xl font-black">{{ days }}</div>
+          <div class="text-[9px] sm:text-xs font-bold text-cyan-300 uppercase mt-1">Ngày</div>
         </div>
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-3xl p-4 sm:p-5 w-20 sm:w-28 shadow-xl">
-          <div class="text-2xl sm:text-4xl font-black">{{ hours }}</div>
-          <div class="text-[10px] sm:text-xs font-bold text-cyan-300 uppercase mt-1">Giờ</div>
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl sm:rounded-3xl p-2 sm:p-5 flex-1 sm:flex-none sm:w-28 shadow-xl">
+          <div class="text-xl sm:text-4xl font-black">{{ hours }}</div>
+          <div class="text-[9px] sm:text-xs font-bold text-cyan-300 uppercase mt-1">Giờ</div>
         </div>
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-3xl p-4 sm:p-5 w-20 sm:w-28 shadow-xl hidden sm:block">
-          <div class="text-2xl sm:text-4xl font-black">{{ minutes }}</div>
-          <div class="text-[10px] sm:text-xs font-bold text-cyan-300 uppercase mt-1">Phút</div>
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl sm:rounded-3xl p-2 sm:p-5 flex-1 sm:flex-none sm:w-28 shadow-xl">
+          <div class="text-xl sm:text-4xl font-black">{{ minutes }}</div>
+          <div class="text-[9px] sm:text-xs font-bold text-cyan-300 uppercase mt-1">Phút</div>
         </div>
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-3xl p-4 sm:p-5 w-20 sm:w-28 shadow-xl hidden sm:block">
-          <div class="text-2xl sm:text-4xl font-black">{{ seconds }}</div>
-          <div class="text-[10px] sm:text-xs font-bold text-fuchsia-400 uppercase mt-1">Giây</div>
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl sm:rounded-3xl p-2 sm:p-5 flex-1 sm:flex-none sm:w-28 shadow-xl">
+          <div class="text-xl sm:text-4xl font-black">{{ seconds }}</div>
+          <div class="text-[9px] sm:text-xs font-bold text-fuchsia-400 uppercase mt-1">Giây</div>
         </div>
       </div>
     </div>

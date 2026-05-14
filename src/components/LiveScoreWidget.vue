@@ -8,9 +8,15 @@ const matches = ref([
 ])
 
 const isVisible = ref(true)
+const isExpanded = ref(true) // Collapsible state
 let wsInterval = null
 
 onMounted(() => {
+  // Collapse on mobile by default
+  if (window.innerWidth < 768) {
+    isExpanded.value = false
+  }
+
   // Simulate WebSocket receiving live updates every 5 seconds
   wsInterval = setInterval(() => {
     // Randomly update minute
@@ -32,7 +38,9 @@ onMounted(() => {
         match.events.push(`⚽ Goal (${match.minute}')`)
       }
       
-      // Trigger a highlight effect (by re-assigning to trigger reactivity if needed)
+      // Auto expand if there is a goal
+      if (!isExpanded.value) isExpanded.value = true
+      
       matches.value = [...matches.value]
     }
   }, 5000)
@@ -44,42 +52,49 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-if="isVisible" class="fixed bottom-24 right-6 z-[90] flex flex-col gap-3">
-    <!-- Close button -->
-    <button @click="isVisible = false" class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 hover:bg-red-400 text-white rounded-full flex items-center justify-center text-xs font-bold z-10 shadow-lg">✕</button>
+  <div v-if="isVisible" class="fixed bottom-24 right-4 md:right-6 z-[90] flex flex-col items-end gap-3 pointer-events-none">
     
-    <div class="text-xs font-black text-red-500 uppercase tracking-widest bg-black/60 backdrop-blur-md px-3 py-1 rounded-full w-max flex items-center gap-2 border border-red-500/30 shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+    <!-- Header / Toggle Button -->
+    <div 
+      @click="isExpanded = !isExpanded"
+      class="text-[10px] md:text-xs font-black text-red-500 uppercase tracking-widest bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-full w-max flex items-center gap-2 border border-red-500/30 shadow-[0_0_10px_rgba(239,68,68,0.5)] cursor-pointer pointer-events-auto hover:bg-black transition-colors"
+    >
       <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-      Trực Tiếp (WC 2026 Qualifiers)
+      Live (WC 2026)
+      <span class="text-white/50 ml-1">{{ isExpanded ? '▼' : '▲' }}</span>
+      <button @click.stop="isVisible = false" class="ml-2 w-4 h-4 rounded-full bg-red-500/20 hover:bg-red-500 flex items-center justify-center text-white transition-colors">✕</button>
     </div>
 
-    <div 
-      v-for="match in matches" 
-      :key="match.id"
-      class="bg-[#1c0b43]/90 backdrop-blur-md border border-white/10 rounded-xl p-3 w-64 shadow-2xl transition-all transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(217,70,239,0.3)]"
-    >
-      <div class="flex justify-between items-center mb-2">
-        <span class="text-xs font-bold text-fuchsia-400 animate-pulse">{{ match.minute }}'</span>
-      </div>
-      
-      <div class="flex justify-between items-center mb-1">
-        <div class="flex items-center gap-2">
-          <span>{{ match.homeFlag }}</span>
-          <span class="font-bold text-white">{{ match.home }}</span>
+    <!-- Expanded Matches -->
+    <div v-show="isExpanded" class="flex flex-col gap-2 pointer-events-auto origin-bottom-right transition-all">
+      <div 
+        v-for="match in matches" 
+        :key="match.id"
+        class="bg-[#1c0b43]/90 backdrop-blur-md border border-white/10 rounded-xl p-2.5 md:p-3 w-56 md:w-64 shadow-2xl transition-transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(217,70,239,0.3)]"
+      >
+        <div class="flex justify-between items-center mb-1 md:mb-2">
+          <span class="text-[10px] md:text-xs font-bold text-fuchsia-400 animate-pulse">{{ match.minute }}'</span>
         </div>
-        <span class="font-black text-lg text-white">{{ match.homeScore }}</span>
-      </div>
-      
-      <div class="flex justify-between items-center">
-        <div class="flex items-center gap-2">
-          <span>{{ match.awayFlag }}</span>
-          <span class="font-bold text-white">{{ match.away }}</span>
+        
+        <div class="flex justify-between items-center mb-1">
+          <div class="flex items-center gap-1.5 md:gap-2">
+            <span class="text-sm md:text-base">{{ match.homeFlag }}</span>
+            <span class="font-bold text-white text-sm md:text-base">{{ match.home }}</span>
+          </div>
+          <span class="font-black text-base md:text-lg text-white">{{ match.homeScore }}</span>
         </div>
-        <span class="font-black text-lg text-white">{{ match.awayScore }}</span>
-      </div>
+        
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-1.5 md:gap-2">
+            <span class="text-sm md:text-base">{{ match.awayFlag }}</span>
+            <span class="font-bold text-white text-sm md:text-base">{{ match.away }}</span>
+          </div>
+          <span class="font-black text-base md:text-lg text-white">{{ match.awayScore }}</span>
+        </div>
 
-      <div v-if="match.events.length" class="mt-2 pt-2 border-t border-white/10 text-[10px] text-gray-400 font-medium truncate">
-        {{ match.events[match.events.length - 1] }}
+        <div v-if="match.events.length" class="mt-1.5 md:mt-2 pt-1.5 md:pt-2 border-t border-white/10 text-[9px] md:text-[10px] text-gray-400 font-medium truncate">
+          {{ match.events[match.events.length - 1] }}
+        </div>
       </div>
     </div>
   </div>
