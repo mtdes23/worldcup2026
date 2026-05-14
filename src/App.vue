@@ -11,48 +11,53 @@ const currentTab = ref('timeline')
 </script>
 
 <template>
-  <div class="min-h-screen pitch-bg text-white font-sans selection:bg-emerald-500/30 overflow-x-hidden flex flex-col">
+  <div class="min-h-screen bg-[#13072e] text-white font-sans selection:bg-fuchsia-500/30 overflow-x-hidden flex flex-col relative">
     
+    <!-- Abstract Festive Background Blobs -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+      <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-fuchsia-600/20 blur-[120px]"></div>
+      <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cyan-600/20 blur-[150px]"></div>
+      <div class="absolute top-[40%] left-[60%] w-[400px] h-[400px] rounded-full bg-yellow-500/10 blur-[100px]"></div>
+    </div>
+
     <!-- Top Navigation -->
-    <nav class="sticky top-0 z-50 bg-[#020b06]/95 backdrop-blur-lg border-b border-white/10 shadow-2xl">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <nav class="sticky top-4 z-50 mx-4 sm:mx-auto max-w-4xl bg-[#1c0b43]/80 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full">
+      <div class="px-4 sm:px-6">
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
           <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group" @click="currentTab = 'timeline'">
-            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.5)] group-hover:scale-110 transition-transform">
-              <svg class="w-5 h-5 text-[#020b06]" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 5a1 1 0 112 0v4.586l2.707 2.707a1 1 0 01-1.414 1.414l-3-3A1 1 0 019 10V5z" /></svg>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-500 to-cyan-500 flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" /></svg>
             </div>
-            <span class="font-black text-white tracking-widest uppercase italic hidden sm:block">WC Heritage</span>
           </div>
           
           <!-- Tabs -->
-          <div class="flex space-x-1 sm:space-x-2 overflow-x-auto no-scrollbar w-full sm:w-auto justify-center sm:justify-end">
-            <button @click="currentTab = 'timeline'" :class="currentTab === 'timeline' ? 'text-emerald-400 border-b-2 border-emerald-400' : 'text-gray-500 hover:text-gray-300'" class="px-3 sm:px-4 py-5 text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap transition-colors">Dòng thời gian</button>
-            <button @click="currentTab = 'articles'" :class="currentTab === 'articles' ? 'text-emerald-400 border-b-2 border-emerald-400' : 'text-gray-500 hover:text-gray-300'" class="px-3 sm:px-4 py-5 text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap transition-colors">Góc Nhìn</button>
-            <button @click="currentTab = 'legends'" :class="currentTab === 'legends' ? 'text-yellow-500 border-b-2 border-yellow-500' : 'text-gray-500 hover:text-gray-300'" class="px-3 sm:px-4 py-5 text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap transition-colors">Huyền Thoại</button>
-            <button @click="currentTab = 'wc2026'" :class="currentTab === 'wc2026' ? 'text-emerald-400 border-b-2 border-emerald-400' : 'text-gray-500 hover:text-gray-300'" class="px-3 sm:px-4 py-5 text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap transition-colors">WC 2026</button>
+          <div class="flex space-x-2 overflow-x-auto no-scrollbar w-full sm:w-auto justify-end">
+            <button @click="currentTab = 'timeline'" :class="currentTab === 'timeline' ? 'bg-white text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Lịch sử</button>
+            <button @click="currentTab = 'articles'" :class="currentTab === 'articles' ? 'bg-fuchsia-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Bài báo</button>
+            <button @click="currentTab = 'legends'" :class="currentTab === 'legends' ? 'bg-cyan-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Cầu thủ</button>
+            <button @click="currentTab = 'wc2026'" :class="currentTab === 'wc2026' ? 'bg-yellow-400 text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">WC 2026</button>
           </div>
         </div>
       </div>
     </nav>
 
     <!-- Content -->
-    <main class="w-full flex-grow">
+    <main class="w-full flex-grow relative z-10 mt-6">
       
       <!-- TIMELINE TAB -->
       <div v-show="currentTab === 'timeline'">
         <!-- Hero Header -->
-        <header class="py-24 px-4 text-center border-b border-white/5 bg-[#020b06]/60 relative overflow-hidden">
-          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border-[4px] border-white/5 rounded-full pointer-events-none"></div>
-          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl h-full bg-gradient-to-b from-emerald-500/10 to-transparent blur-[100px] pointer-events-none"></div>
-          
+        <header class="py-16 px-4 text-center relative overflow-hidden">
           <div class="relative z-10 flex flex-col items-center">
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-500 tracking-tighter uppercase drop-shadow-2xl mb-4 italic">
-              World Cup History
+            <div class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-cyan-300 mb-6 uppercase tracking-widest backdrop-blur-sm">
+              Hành trình vĩ đại
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-cyan-400 to-yellow-400 tracking-tight drop-shadow-lg mb-6 leading-tight">
+              WORLD CUP
             </h1>
-            <div class="h-1.5 w-32 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full mb-6"></div>
-            <p class="text-emerald-400 font-bold text-lg md:text-xl tracking-[0.3em] uppercase">
-              1930 &mdash; 2022
+            <p class="text-white/80 font-medium text-lg md:text-xl max-w-xl leading-relaxed">
+              Khám phá những khoảnh khắc lễ hội bóng đá cuồng nhiệt nhất hành tinh từ năm 1930 đến 2022.
             </p>
           </div>
         </header>
@@ -78,32 +83,22 @@ const currentTab = ref('timeline')
     </main>
 
     <!-- Footer -->
-    <footer class="py-10 text-center text-emerald-600/50 text-xs font-black uppercase tracking-widest border-t border-white/10 bg-[#020b06]/90 backdrop-blur-md mt-auto">
-      Designed by <a href="https://www.mtdes23.id.vn" target="_blank" class="text-emerald-500 hover:text-yellow-400 transition-colors">mtdes23</a>
+    <footer class="py-8 text-center text-white/50 text-xs font-medium relative z-10">
+      Thiết kế tràn đầy năng lượng bởi <a href="https://www.mtdes23.id.vn" target="_blank" class="text-cyan-400 font-bold hover:text-fuchsia-400 transition-colors">mtdes23</a>
     </footer>
   </div>
 </template>
 
 <style>
 body {
-  background-color: #04120a;
-}
-.pitch-bg {
-  background-color: #04120a;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent,
-    transparent 100px,
-    rgba(255, 255, 255, 0.015) 100px,
-    rgba(255, 255, 255, 0.015) 200px
-  );
+  background-color: #13072e;
 }
 /* Hide scrollbar for nav */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 </style>

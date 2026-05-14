@@ -1,32 +1,34 @@
 <template>
-  <div class="py-16 px-4 max-w-6xl mx-auto">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 uppercase italic tracking-tighter mb-4 drop-shadow-md">Đền Thờ Huyền Thoại</h2>
-      <div class="h-1 w-16 bg-yellow-500 mx-auto rounded-full mb-6"></div>
-      <p class="text-gray-400 max-w-2xl mx-auto">Cơ sở dữ liệu chi tiết về những cầu thủ vĩ đại nhất từng sải bước trên thảm cỏ World Cup.</p>
+  <div class="py-12 px-4 max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold text-cyan-300 mb-4 uppercase tracking-widest">
+        Dữ Liệu
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 drop-shadow-md">Cầu Thủ Huyền Thoại</h2>
+      <p class="text-white/70 max-w-2xl mx-auto font-medium">Tìm kiếm và khám phá những siêu sao vĩ đại nhất từng sải bước trên thảm cỏ World Cup.</p>
     </div>
 
-    <!-- Search/Filter Placeholder -->
+    <!-- Search/Filter -->
     <div class="flex justify-center mb-12">
-      <div class="bg-[#020b06] border border-white/10 rounded-full flex items-center px-6 py-3 w-full max-w-xl">
-        <svg class="w-5 h-5 text-gray-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-        <input type="text" placeholder="Tìm kiếm huyền thoại (vd: Pelé, Maradona...)" class="bg-transparent border-none outline-none text-white w-full placeholder-gray-600 font-medium">
+      <div class="bg-[#24124a] border border-white/10 rounded-full flex items-center px-6 py-4 w-full max-w-xl shadow-xl">
+        <span class="text-2xl mr-3">🔍</span>
+        <input type="text" placeholder="Tìm kiếm huyền thoại (vd: Pelé, Maradona...)" class="bg-transparent border-none outline-none text-white w-full placeholder-white/40 font-medium">
       </div>
     </div>
 
-    <!-- Placeholder Grid -->
+    <!-- Grid -->
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <div v-for="i in 8" :key="i" class="bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] border border-yellow-500/20 rounded-xl overflow-hidden hover:border-yellow-500/50 transition-colors relative group cursor-pointer">
+      <div v-for="i in 8" :key="i" class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/5 relative">
         <!-- Player Rating Badge -->
-        <div class="absolute top-3 left-3 bg-black/80 text-yellow-500 font-black text-lg px-2 py-0.5 rounded border border-yellow-500/30 z-10">99</div>
+        <div class="absolute top-4 left-4 bg-yellow-400 text-[#13072e] font-black text-lg px-2.5 py-0.5 rounded-full z-10 shadow-md">99</div>
         
-        <div class="h-40 bg-[#0f0f0f] flex items-center justify-center pt-8">
-           <svg class="w-20 h-20 text-gray-800 group-hover:text-gray-700 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <div class="h-44 bg-white/5 flex items-center justify-center pt-6 group-hover:bg-white/10 transition-colors">
+           <span class="text-7xl">👤</span>
         </div>
         
-        <div class="p-4 text-center border-t border-white/5 relative z-10 bg-black/50 backdrop-blur-sm">
-          <h3 class="font-black text-white text-lg uppercase tracking-tight">Cầu Thủ {{ i }}</h3>
-          <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mt-1">Brazil</p>
+        <div class="p-5 text-center bg-[#24124a]">
+          <h3 class="font-bold text-white text-lg">Cầu Thủ {{ i }}</h3>
+          <p class="text-cyan-400 text-sm font-medium mt-1">Brazil</p>
         </div>
       </div>
     </div>
