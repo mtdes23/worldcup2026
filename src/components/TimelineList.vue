@@ -116,12 +116,18 @@
           ✕
         </button>
         
-        <div class="p-8 text-center">
-          <div class="inline-block px-3 py-1 rounded-full bg-white/10 text-[10px] font-bold text-cyan-300 mb-4 uppercase tracking-widest border border-white/10">
+        <div class="p-8 text-center pt-10">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-fuchsia-500 to-cyan-500 rounded-b-full"></div>
+          
+          <div v-if="detailModal.imageUrl" class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white/10 shadow-[0_0_20px_rgba(217,70,239,0.3)] relative group">
+            <img :src="detailModal.imageUrl" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          </div>
+          <div v-else class="text-6xl mb-4 drop-shadow-lg">{{ detailModal.icon || '⚽' }}</div>
+          
+          <div class="inline-block px-3 py-1 rounded-full bg-white/10 text-[10px] font-bold text-cyan-300 mb-2 uppercase tracking-widest border border-white/10">
             Chi tiết World Cup {{ detailModal.year }}
           </div>
-          
-          <div class="text-4xl mb-4">{{ detailModal.icon }}</div>
           
           <h2 class="text-2xl font-black text-white mb-2">{{ detailModal.name }}</h2>
           <div class="text-fuchsia-400 text-xs uppercase font-bold mb-6 tracking-widest">{{ detailModal.title }}</div>
@@ -245,6 +251,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import legendsData from '../data/legends.json'
 
 const props = defineProps({
   history: {
@@ -314,10 +321,15 @@ const showPlayerDetail = async (player, year) => {
   else if (player.pos === 'DEF') posText = 'Hậu vệ'
   else if (player.pos === 'GK') posText = 'Thủ môn'
 
+  // Try to find avatar from our massive legends database!
+  const legendMatch = legendsData.find(l => l.name === player.name || l.name.includes(player.name) || player.name.includes(l.name))
+  const avatarUrl = legendMatch && legendMatch.imageUrl ? legendMatch.imageUrl : ''
+
   // Set initial modal with loading state for history
   detailModal.value = {
     title: 'Ngôi Sao Đội Hình Tiêu Biểu',
     icon: '⭐',
+    imageUrl: avatarUrl,
     name: player.name,
     content: `Cầu thủ ${player.name} mang quốc tịch ${player.team} thi đấu ở vị trí ${posText} đã lọt vào đội hình tiêu biểu xuất sắc nhất của kỳ World Cup ${year}.`,
     year: year,

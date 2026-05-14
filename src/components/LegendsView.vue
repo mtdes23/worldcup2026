@@ -48,6 +48,7 @@ const showPlayerDetail = async (player) => {
   detailModal.value = {
     title: 'Huyền Thoại Bóng Đá',
     icon: player.icon,
+    imageUrl: player.imageUrl,
     name: player.name,
     content: `Danh thủ ${player.name} là một huyền thoại mang quốc tịch ${player.nation}, nổi tiếng khi thi đấu ở vị trí ${player.position}.`,
     wikiLoading: true,
@@ -190,14 +191,20 @@ const showPlayerDetail = async (player) => {
           ✕
         </button>
         
-        <div class="p-8 text-center">
-          <div class="inline-block px-3 py-1 rounded-full bg-white/10 text-[10px] font-bold text-cyan-300 mb-4 uppercase tracking-widest border border-white/10">
+        <div class="p-8 text-center pt-10">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-fuchsia-500 to-cyan-500 rounded-b-full"></div>
+          
+          <div v-if="detailModal.imageUrl" class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white/10 shadow-[0_0_20px_rgba(217,70,239,0.3)] relative group">
+            <img :src="detailModal.imageUrl" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          </div>
+          <div v-else class="text-6xl mb-4 drop-shadow-lg">{{ detailModal.icon || '⚽' }}</div>
+          
+          <div class="inline-block px-3 py-1 rounded-full bg-white/10 text-[10px] font-bold text-cyan-300 mb-2 uppercase tracking-widest border border-white/10">
             Hồ Sơ Cầu Thủ
           </div>
           
-          <div class="text-4xl mb-4">{{ detailModal.icon || '⚽' }}</div>
-          
-          <h2 class="text-2xl font-black text-white mb-2">{{ detailModal.name }}</h2>
+          <h2 class="text-2xl font-black text-white mb-1">{{ detailModal.name }}</h2>
           <div class="text-fuchsia-400 text-xs uppercase font-bold mb-6 tracking-widest">{{ detailModal.title }}</div>
           
           <p class="text-gray-300 leading-relaxed bg-black/20 p-5 rounded-2xl text-sm font-medium border border-white/5 mb-4">
