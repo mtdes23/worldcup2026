@@ -220,9 +220,9 @@ const showPlayerDetail = async (player) => {
               Tóm tắt sự nghiệp (Wikipedia)
             </h4>
             
-            <div v-if="detailModal.wikiLoading" class="flex flex-col items-center justify-center py-4 space-y-3">
-              <div class="w-5 h-5 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-              <span class="text-cyan-300/50 text-xs animate-pulse">Đang trích xuất kho lưu trữ...</span>
+            <div v-if="detailModal.wikiLoading" class="flex flex-col items-center justify-center py-6 space-y-3">
+              <div class="text-3xl animate-[spin_1.5s_linear_infinite]">⚽</div>
+              <span class="text-fuchsia-300/70 text-xs animate-pulse font-medium">Đang lật mở trang sách lịch sử...</span>
             </div>
             
             <div v-else class="text-gray-300 text-[13px] leading-relaxed">
