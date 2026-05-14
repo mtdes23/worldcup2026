@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import PitchDiagram from './PitchDiagram.vue'
 
 const days = ref(0)
 const hours = ref(0)
@@ -73,79 +74,7 @@ onUnmounted(() => {
         Đội Hình Dự Kiến (Dream Team 2026)
       </div>
       
-      <div class="bg-[#13072e] border-2 border-white/10 rounded-[3rem] p-6 sm:p-10 relative overflow-hidden shadow-2xl">
-        <!-- Pitch Background -->
-        <div class="absolute inset-0 bg-gradient-to-b from-[#113a1a] to-[#0a2310] opacity-80"></div>
-        <!-- Pitch Lines -->
-        <div class="absolute inset-4 sm:inset-8 border-2 border-white/20 rounded-xl pointer-events-none"></div>
-        <div class="absolute top-1/2 left-4 sm:left-8 right-4 sm:right-8 h-0 border-t-2 border-white/20 pointer-events-none"></div>
-        <div class="absolute top-1/2 left-1/2 w-24 h-24 sm:w-32 sm:h-32 border-2 border-white/20 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-        <div class="absolute top-4 sm:top-8 left-1/2 w-40 sm:w-64 h-16 sm:h-24 border-2 border-t-0 border-white/20 -translate-x-1/2 pointer-events-none"></div>
-        <div class="absolute bottom-4 sm:bottom-8 left-1/2 w-40 sm:w-64 h-16 sm:h-24 border-2 border-b-0 border-white/20 -translate-x-1/2 pointer-events-none"></div>
-
-        <!-- Players -->
-        <div class="relative z-10 w-full max-w-2xl mx-auto h-[600px] flex flex-col justify-between py-6">
-          <!-- FW -->
-          <div class="flex justify-around px-2 sm:px-12">
-            <div class="text-center group cursor-pointer w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-fuchsia-400 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-fuchsia-500/20 transition-all shadow-[0_0_15px_rgba(217,70,239,0.4)] backdrop-blur-sm">🇧🇷</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">Vinicius Jr</div>
-            </div>
-            <div class="text-center group cursor-pointer mt-6 w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-fuchsia-400 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-fuchsia-500/20 transition-all shadow-[0_0_15px_rgba(217,70,239,0.4)] backdrop-blur-sm">🇳🇴</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">Haaland</div>
-            </div>
-            <div class="text-center group cursor-pointer w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-fuchsia-400 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-fuchsia-500/20 transition-all shadow-[0_0_15px_rgba(217,70,239,0.4)] backdrop-blur-sm">🇫🇷</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">Mbappé</div>
-            </div>
-          </div>
-          
-          <!-- MID -->
-          <div class="flex justify-around px-8 sm:px-24">
-            <div class="text-center group cursor-pointer w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-cyan-400 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all shadow-[0_0_15px_rgba(34,211,238,0.4)] backdrop-blur-sm">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">Bellingham</div>
-            </div>
-            <div class="text-center group cursor-pointer mt-8 w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-cyan-400 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all shadow-[0_0_15px_rgba(34,211,238,0.4)] backdrop-blur-sm">🇪🇸</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">Rodri</div>
-            </div>
-            <div class="text-center group cursor-pointer w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-cyan-400 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all shadow-[0_0_15px_rgba(34,211,238,0.4)] backdrop-blur-sm">🇩🇪</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">Musiala</div>
-            </div>
-          </div>
-          
-          <!-- DEF -->
-          <div class="flex justify-between px-0 sm:px-6">
-            <div class="text-center group cursor-pointer w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-yellow-400 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-yellow-400/20 transition-all shadow-[0_0_15px_rgba(250,204,21,0.4)] backdrop-blur-sm">🇨🇦</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">Davies</div>
-            </div>
-            <div class="text-center group cursor-pointer mt-6 w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-yellow-400 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-yellow-400/20 transition-all shadow-[0_0_15px_rgba(250,204,21,0.4)] backdrop-blur-sm">🇵🇹</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">Dias</div>
-            </div>
-            <div class="text-center group cursor-pointer mt-6 w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-yellow-400 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-yellow-400/20 transition-all shadow-[0_0_15px_rgba(250,204,21,0.4)] backdrop-blur-sm">🇫🇷</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">Saliba</div>
-            </div>
-            <div class="text-center group cursor-pointer w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-yellow-400 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-yellow-400/20 transition-all shadow-[0_0_15px_rgba(250,204,21,0.4)] backdrop-blur-sm">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">T.A.A</div>
-            </div>
-          </div>
-          
-          <!-- GK -->
-          <div class="flex justify-center mt-2">
-            <div class="text-center group cursor-pointer w-20">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 border-2 border-gray-300 rounded-full flex items-center justify-center text-xl mx-auto mb-2 group-hover:scale-110 group-hover:bg-gray-300/20 transition-all shadow-[0_0_15px_rgba(209,213,219,0.4)] backdrop-blur-sm">🇧🇷</div>
-              <div class="bg-black/60 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded truncate">Alisson</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PitchDiagram />
     </div>
 
     <!-- Groups Placeholder -->
