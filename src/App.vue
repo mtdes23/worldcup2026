@@ -134,7 +134,7 @@ const toggleAudio = () => {
 
     <!-- Footer -->
     <footer class="py-8 text-center text-white/50 text-xs font-medium relative z-10">
-      Thiết kế tràn đầy năng lượng bởi <a href="https://www.mtdes23.id.vn" target="_blank" class="text-cyan-400 font-bold hover:text-fuchsia-400 transition-colors">mtdes23</a>
+      Designed by <a href="https://www.mtdes23.id.vn" target="_blank" class="text-cyan-400 font-bold hover:text-fuchsia-400 transition-colors">mtdes23</a>
     </footer>
 
     <!-- Floating Audio Toggle Button -->
