@@ -8,7 +8,7 @@ Expand the single-page application into a multi-tab "Editorial Magazine" portal,
 - [x] Task 2: Tạo các Component Placeholder cho `ArticlesView.vue` (Góc Nhìn), `LegendsView.vue` (Huyền Thoại), và `WC2026View.vue`.
 - [x] Task 3: Xây dựng dữ liệu thật và hoàn thiện giao diện cho Tab **Góc Nhìn** (Articles) bằng cách kéo live RSS từ VNExpress.
 - [x] Task 4: Xây dựng dữ liệu thật và hoàn thiện giao diện cho Tab **Huyền Thoại** (Legends) - Bao gồm ô tìm kiếm và lưới thẻ bài với JSON.
-- [ ] Task 5: Hoàn thiện giao diện cho Tab **WC 2026** (Lịch thi đấu, Vòng bảng, Countdown).
+- [x] Task 5: Hoàn thiện giao diện cho Tab **WC 2026** (Lịch thi đấu, Vòng bảng, Countdown và Logo chính thức).
 
 ## Done When
 - Người dùng có thể chuyển đổi mượt mà giữa 4 Tab.

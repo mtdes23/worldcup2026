@@ -54,22 +54,32 @@ const getRatingColor = (rating) => {
 
     <!-- Grid -->
     <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <div v-for="player in filteredLegends" :key="player.id" class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/5 relative">
+      <div v-for="player in filteredLegends" :key="player.id" class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/5 relative flex flex-col">
         <!-- Player Rating Badge -->
-        <div :class="getRatingColor(player.rating)" class="absolute top-4 left-4 font-black text-lg px-2.5 py-0.5 rounded-full z-10 shadow-md">
+        <div :class="getRatingColor(player.rating)" class="absolute top-4 left-4 font-black text-lg px-2.5 py-0.5 rounded-full z-20 shadow-md">
           {{ player.rating }}
         </div>
 
         <!-- Position Badge -->
-        <div class="absolute top-4 right-4 bg-black/40 text-white font-bold text-xs px-2 py-1 rounded-md z-10">
+        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white font-bold text-xs px-2 py-1 rounded-md z-20">
           {{ player.position }}
         </div>
         
-        <div class="h-44 bg-white/5 flex items-center justify-center pt-6 group-hover:bg-white/10 transition-colors">
-           <span class="text-7xl">{{ player.icon }}</span>
+        <!-- Player Image -->
+        <div class="h-48 bg-white/5 flex items-center justify-center relative overflow-hidden flex-shrink-0 group-hover:bg-white/10 transition-colors">
+           <img 
+             v-if="player.imageUrl" 
+             :src="player.imageUrl" 
+             :alt="player.name" 
+             class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
+             @error="(e) => e.target.style.display = 'none'"
+           >
+           <span v-if="!player.imageUrl" class="text-7xl absolute">{{ player.icon }}</span>
+           <!-- Gradient overlay to blend image with card body -->
+           <div class="absolute inset-0 bg-gradient-to-t from-[#2d1859] via-transparent to-transparent z-10"></div>
         </div>
         
-        <div class="p-5 text-center bg-[#24124a]">
+        <div class="p-5 text-center bg-[#24124a] relative z-20 flex-grow flex flex-col justify-end">
           <h3 class="font-bold text-white text-lg leading-tight mb-1">{{ player.name }}</h3>
           <p class="text-cyan-400 text-sm font-medium">{{ player.nation }}</p>
         </div>

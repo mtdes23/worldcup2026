@@ -5,7 +5,8 @@
     "nation": "Brazil",
     "rating": 99,
     "position": "CF",
-    "icon": "👑"
+    "icon": "👑",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/Pel%C3%A9_1966.jpg"
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "nation": "Argentina",
     "rating": 98,
     "position": "CAM",
-    "icon": "🔟"
+    "icon": "🔟",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Maradona_-_Szene1.jpg"
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "nation": "Argentina",
     "rating": 99,
     "position": "RW",
-    "icon": "🐐"
+    "icon": "🐐",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "nation": "Portugal",
     "rating": 98,
     "position": "ST",
-    "icon": "🚀"
+    "icon": "🚀",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg"
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "nation": "France",
     "rating": 96,
     "position": "CAM",
-    "icon": "✨"
+    "icon": "✨",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Zinedine_Zidane_by_Tasnim_03.jpg"
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@
     "nation": "Brazil",
     "rating": 97,
     "position": "ST",
-    "icon": "👽"
+    "icon": "👽",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Ronaldo_-_2002_FIFA_World_Cup_%28cropped%29.jpg"
   },
   {
     "id": 7,
@@ -53,7 +59,8 @@
     "nation": "Germany",
     "rating": 96,
     "position": "CB",
-    "icon": "🛡️"
+    "icon": "🛡️",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Franz_Beckenbauer_1973.jpg"
   },
   {
     "id": 8,
@@ -61,7 +68,8 @@
     "nation": "Netherlands",
     "rating": 97,
     "position": "CF",
-    "icon": "🎨"
+    "icon": "🎨",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Johan_Cruyff_1974c.jpg"
   },
   {
     "id": 9,
@@ -69,7 +77,8 @@
     "nation": "Brazil",
     "rating": 95,
     "position": "LW",
-    "icon": "🤙"
+    "icon": "🤙",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Ronaldinho_in_2019.jpg"
   },
   {
     "id": 10,
@@ -77,7 +86,8 @@
     "nation": "Italy",
     "rating": 96,
     "position": "CB",
-    "icon": "🧱"
+    "icon": "🧱",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Paolo_Maldini_Milan.jpg"
   },
   {
     "id": 11,
@@ -85,7 +95,8 @@
     "nation": "Spain",
     "rating": 94,
     "position": "CM",
-    "icon": "🪄"
+    "icon": "🪄",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/67/Andr%C3%A9s_Iniesta_2018.jpg"
   },
   {
     "id": 12,
@@ -93,7 +104,8 @@
     "nation": "Spain",
     "rating": 94,
     "position": "CM",
-    "icon": "🧠"
+    "icon": "🧠",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Xavi_Hernandez_2021.jpg"
   },
   {
     "id": 13,
@@ -101,7 +113,8 @@
     "nation": "Germany",
     "rating": 95,
     "position": "CDM",
-    "icon": "🦾"
+    "icon": "🦾",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Lothar_Matth%C3%A4us_%281993%29.jpg"
   },
   {
     "id": 14,
@@ -109,7 +122,8 @@
     "nation": "Brazil",
     "rating": 93,
     "position": "RB",
-    "icon": "🚂"
+    "icon": "🚂",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Cafu_2015.jpg"
   },
   {
     "id": 15,
@@ -117,7 +131,8 @@
     "nation": "Brazil",
     "rating": 93,
     "position": "LB",
-    "icon": "☄️"
+    "icon": "☄️",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Roberto_Carlos_2011.jpg"
   },
   {
     "id": 16,
@@ -125,6 +140,7 @@
     "nation": "Italy",
     "rating": 95,
     "position": "GK",
-    "icon": "🧤"
+    "icon": "🧤",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Gianluigi_Buffon_-_2018_%28cropped%29.jpg"
   }
 ]
