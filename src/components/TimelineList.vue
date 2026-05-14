@@ -145,14 +145,32 @@
             
             <div v-else class="text-gray-300 text-[13px] leading-relaxed">
               {{ detailModal.wikiBio }}
-              <a v-if="detailModal.wikiBio && !detailModal.wikiBio.includes('Chưa tìm thấy')" 
-                 :href="'https://vi.wikipedia.org/wiki/Special:Search?search=' + encodeURIComponent(detailModal.name)" 
-                 target="_blank" 
-                 class="text-cyan-400 hover:text-cyan-300 font-bold block mt-2 text-xs">
-                Xem toàn bộ trên Wikipedia ↗
-              </a>
+              <button v-if="detailModal.wikiTitle" 
+                 @click="fullWikiUrl = `https://vi.m.wikipedia.org/wiki/${encodeURIComponent(detailModal.wikiTitle)}`"
+                 class="text-cyan-400 hover:text-cyan-300 font-bold block mt-3 text-xs w-full text-center border border-cyan-500/30 rounded py-2 bg-cyan-500/10 hover:bg-cyan-500/20 transition-all">
+                📖 Đọc Toàn Bộ Tiểu Sử Ngay Tại Đây
+              </button>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Wiki Iframe Modal -->
+    <div v-if="fullWikiUrl" class="fixed inset-0 z-[120] flex items-center justify-center p-0 sm:p-4 bg-black/95 backdrop-blur-xl" @click.self="fullWikiUrl = null">
+      <div class="bg-white rounded-none sm:rounded-2xl w-full h-full sm:h-[95vh] max-w-5xl overflow-hidden flex flex-col relative animate-slide-up">
+        <div class="bg-gray-100 p-3 flex justify-between items-center border-b">
+          <div class="text-sm font-bold text-gray-800 flex items-center gap-2">
+            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-4h2v2h-2zm1-12C9.79 4 8 5.79 8 8h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+            Wikipedia Tiếng Việt (In-App)
+          </div>
+          <button @click="fullWikiUrl = null" class="w-8 h-8 bg-gray-300 hover:bg-red-500 hover:text-white rounded-full flex items-center justify-center font-bold transition-colors">✕</button>
+        </div>
+        <div class="flex-1 relative w-full h-full bg-white">
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="w-8 h-8 border-4 border-gray-300 border-t-cyan-500 rounded-full animate-spin"></div>
+          </div>
+          <iframe :src="fullWikiUrl" class="absolute inset-0 w-full h-full border-none z-10 bg-white" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
         </div>
       </div>
     </div>
@@ -317,6 +335,7 @@ const showPlayerDetail = async (player, year) => {
       // Get the snippet and remove HTML tags
       let snippet = data.query.search[0].snippet.replace(/<\/?[^>]+(>|$)/g, "")
       detailModal.value.wikiBio = snippet + '...'
+      detailModal.value.wikiTitle = data.query.search[0].title
     } else {
       detailModal.value.wikiBio = 'Chưa tìm thấy thông tin lịch sử chi tiết trên Wikipedia cho cầu thủ này.'
     }
@@ -329,6 +348,7 @@ const showPlayerDetail = async (player, year) => {
 
 // Lineup Modal Logic
 const lineupModal = ref(null)
+const fullWikiUrl = ref(null)
 
 const knownLineups = {
   2022: [
