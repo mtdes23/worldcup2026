@@ -5,6 +5,7 @@ import TimelineList from './components/TimelineList.vue'
 import ArticlesView from './components/ArticlesView.vue'
 import LegendsView from './components/LegendsView.vue'
 import WC2026View from './components/WC2026View.vue'
+import StatsCompareView from './components/StatsCompareView.vue'
 
 const history = ref(historyData)
 const currentTab = ref('timeline')
@@ -36,6 +37,7 @@ const currentTab = ref('timeline')
             <button @click="currentTab = 'timeline'" :class="currentTab === 'timeline' ? 'bg-white text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Lịch sử</button>
             <button @click="currentTab = 'articles'" :class="currentTab === 'articles' ? 'bg-fuchsia-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Bài báo</button>
             <button @click="currentTab = 'legends'" :class="currentTab === 'legends' ? 'bg-cyan-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Cầu thủ</button>
+            <button @click="currentTab = 'stats'" :class="currentTab === 'stats' ? 'bg-purple-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Phân tích</button>
             <button @click="currentTab = 'wc2026'" :class="currentTab === 'wc2026' ? 'bg-yellow-400 text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">WC 2026</button>
           </div>
         </div>
@@ -57,26 +59,32 @@ const currentTab = ref('timeline')
               WORLD CUP
             </h1>
             <p class="text-white/80 font-medium text-lg md:text-xl max-w-xl leading-relaxed">
-              Khám phá những khoảnh khắc lễ hội bóng đá cuồng nhiệt nhất hành tinh từ năm 1930 đến 2022.
+              Khám phá những khoảnh khắc vàng, những ngôi sao sáng nhất và những nhà vô địch đã làm nên lịch sử giải bóng đá hấp dẫn nhất hành tinh.
             </p>
           </div>
         </header>
 
+        <!-- Timeline Component -->
         <TimelineList :history="history" />
       </div>
 
       <!-- ARTICLES TAB -->
-      <div v-if="currentTab === 'articles'">
+      <div v-show="currentTab === 'articles'">
         <ArticlesView />
       </div>
 
       <!-- LEGENDS TAB -->
-      <div v-if="currentTab === 'legends'">
+      <div v-show="currentTab === 'legends'">
         <LegendsView />
       </div>
 
+      <!-- STATS/TACTICS TAB -->
+      <div v-if="currentTab === 'stats'">
+        <StatsCompareView />
+      </div>
+
       <!-- WC 2026 TAB -->
-      <div v-if="currentTab === 'wc2026'">
+      <div v-show="currentTab === 'wc2026'">
         <WC2026View />
       </div>
 
