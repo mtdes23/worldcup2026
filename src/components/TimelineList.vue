@@ -209,7 +209,7 @@
               <div class="flex justify-around px-2">
                 <div v-for="player in getPlayersByPos(lineupModal.players, 'FW')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-fuchsia-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-fuchsia-500/30 transition-all shadow-[0_0_15px_rgba(217,70,239,0.5)] text-white font-bold overflow-hidden">
-                    <img v-if="getPlayerAvatar(player.name)" :src="getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
+                    <img v-if="player.dynamicAvatarUrl || getPlayerAvatar(player.name)" :src="player.dynamicAvatarUrl || getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
                     <span v-else>FW</span>
                   </div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
@@ -221,7 +221,7 @@
               <div class="flex justify-around px-6 sm:px-16">
                 <div v-for="player in getPlayersByPos(lineupModal.players, 'MID')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-cyan-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-cyan-500/30 transition-all shadow-[0_0_15px_rgba(6,182,212,0.5)] text-white font-bold overflow-hidden">
-                    <img v-if="getPlayerAvatar(player.name)" :src="getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
+                    <img v-if="player.dynamicAvatarUrl || getPlayerAvatar(player.name)" :src="player.dynamicAvatarUrl || getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
                     <span v-else>MD</span>
                   </div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
@@ -233,7 +233,7 @@
               <div class="flex justify-between px-0 sm:px-4">
                 <div v-for="player in getPlayersByPos(lineupModal.players, 'DEF')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-yellow-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-yellow-400/30 transition-all shadow-[0_0_15px_rgba(250,204,21,0.5)] text-white font-bold overflow-hidden">
-                    <img v-if="getPlayerAvatar(player.name)" :src="getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
+                    <img v-if="player.dynamicAvatarUrl || getPlayerAvatar(player.name)" :src="player.dynamicAvatarUrl || getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
                     <span v-else>DF</span>
                   </div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
@@ -245,7 +245,7 @@
               <div class="flex justify-center mt-2">
                 <div v-for="player in getPlayersByPos(lineupModal.players, 'GK')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-white/60 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-white/30 transition-all shadow-[0_0_15px_rgba(255,255,255,0.4)] text-white font-bold overflow-hidden">
-                    <img v-if="getPlayerAvatar(player.name)" :src="getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
+                    <img v-if="player.dynamicAvatarUrl || getPlayerAvatar(player.name)" :src="player.dynamicAvatarUrl || getPlayerAvatar(player.name)" class="w-full h-full object-cover object-top" />
                     <span v-else>GK</span>
                   </div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
@@ -279,28 +279,58 @@ const props = defineProps({
 const itemRefs = ref([])
 let observer = null
 
+const removeAccents = (str) => {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 const getPlayerAvatar = (playerName) => {
   if (!playerName) return null;
+  const normalizedSearch = removeAccents(playerName.toLowerCase());
+  
   // 1. Exact match
-  let match = legendsData.find(l => l.name.toLowerCase() === playerName.toLowerCase());
+  let match = legendsData.find(l => removeAccents(l.name.toLowerCase()) === normalizedSearch);
   if (match && match.imageUrl) return match.imageUrl;
   
   // 2. Last name and initial match
-  const cleanName = playerName.replace(/\./g, ' ').replace(/\s+/g, ' ').trim().toLowerCase();
+  const cleanName = normalizedSearch.replace(/\./g, ' ').replace(/\s+/g, ' ').trim();
   const parts = cleanName.split(' ');
   const lastName = parts[parts.length - 1];
   
-  const potentialMatches = legendsData.filter(l => l.name.toLowerCase().includes(lastName));
+  const potentialMatches = legendsData.filter(l => removeAccents(l.name.toLowerCase()).includes(lastName));
   
   if (potentialMatches.length > 0) {
     if (parts.length > 1) {
         const initial = parts[0][0];
-        match = potentialMatches.find(l => l.name.toLowerCase().startsWith(initial));
+        match = potentialMatches.find(l => removeAccents(l.name.toLowerCase()).startsWith(initial));
         if (match && match.imageUrl) return match.imageUrl;
     }
     if (potentialMatches[0].imageUrl) return potentialMatches[0].imageUrl;
   }
   
+  return null;
+}
+
+const fetchWikiImage = async (playerName) => {
+  try {
+    const cleanName = playerName.replace(/^[A-Z]\.\s*/, ''); // Remove "L. " from "L. Messi"
+    const searchTerm = encodeURIComponent(`${cleanName} bóng đá`)
+    const res = await fetch(`https://vi.wikipedia.org/w/api.php?action=query&list=search&srsearch=${searchTerm}&utf8=&format=json&origin=*`)
+    const data = await res.json()
+    
+    if (data.query?.search?.length > 0) {
+      const title = data.query.search[0].title
+      // Now fetch image for this title
+      const imgRes = await fetch(`https://vi.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(title)}&prop=pageimages&format=json&pithumbsize=500&origin=*`)
+      const imgData = await imgRes.json()
+      const pages = imgData.query.pages
+      const pageId = Object.keys(pages)[0]
+      if (pages[pageId].thumbnail) {
+        return pages[pageId].thumbnail.source
+      }
+    }
+  } catch (error) {
+    console.error("Failed to fetch wiki image:", error)
+  }
   return null;
 }
 
@@ -408,9 +438,19 @@ const showPlayerDetail = async (player, year) => {
     wikiBio: ''
   }
 
+  // Dynamic Image Fetching Fallback
+  if (!avatarUrl) {
+    fetchWikiImage(player.name).then(url => {
+      if (url && detailModal.value && detailModal.value.name === player.name) {
+        detailModal.value.imageUrl = url;
+      }
+    });
+  }
+
   try {
     // Search Wikipedia VI for the player
-    const searchTerm = encodeURIComponent(`${player.name} ${player.team} bóng đá`)
+    const cleanName = player.name.replace(/^[A-Z]\.\s*/, '');
+    const searchTerm = encodeURIComponent(`${cleanName} ${player.team} bóng đá`)
     const res = await fetch(`https://vi.wikipedia.org/w/api.php?action=query&list=search&srsearch=${searchTerm}&utf8=&format=json&origin=*`)
     const data = await res.json()
     
@@ -744,16 +784,25 @@ const generateGenericLineup = (champ, runnerUp) => {
 
 const showLineup = (wc) => {
   const players = knownLineups[wc.year] || generateGenericLineup(wc.champion, wc.runnerUp)
+  
   lineupModal.value = {
     year: wc.year,
-    players: players
+    players: players.map(p => ({...p, dynamicAvatarUrl: null}))
   }
-  document.body.style.overflow = 'hidden'
+  
+  // Proactively fetch images for players missing them
+  lineupModal.value.players.forEach(async (p, idx) => {
+     if (!getPlayerAvatar(p.name)) {
+        const url = await fetchWikiImage(p.name);
+        if (url && lineupModal.value && lineupModal.value.year === wc.year) {
+           lineupModal.value.players[idx].dynamicAvatarUrl = url;
+        }
+     }
+  })
 }
 
 const closeLineupModal = () => {
   lineupModal.value = null
-  document.body.style.overflow = ''
 }
 
 const getPlayersByPos = (players, pos) => {
