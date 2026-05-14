@@ -1,0 +1,130 @@
+[
+  {
+    "id": 1,
+    "name": "Pelé",
+    "nation": "Brazil",
+    "rating": 99,
+    "position": "CF",
+    "icon": "👑"
+  },
+  {
+    "id": 2,
+    "name": "Diego Maradona",
+    "nation": "Argentina",
+    "rating": 98,
+    "position": "CAM",
+    "icon": "🔟"
+  },
+  {
+    "id": 3,
+    "name": "Lionel Messi",
+    "nation": "Argentina",
+    "rating": 99,
+    "position": "RW",
+    "icon": "🐐"
+  },
+  {
+    "id": 4,
+    "name": "Cristiano Ronaldo",
+    "nation": "Portugal",
+    "rating": 98,
+    "position": "ST",
+    "icon": "🚀"
+  },
+  {
+    "id": 5,
+    "name": "Zinedine Zidane",
+    "nation": "France",
+    "rating": 96,
+    "position": "CAM",
+    "icon": "✨"
+  },
+  {
+    "id": 6,
+    "name": "Ronaldo Nazário",
+    "nation": "Brazil",
+    "rating": 97,
+    "position": "ST",
+    "icon": "👽"
+  },
+  {
+    "id": 7,
+    "name": "Franz Beckenbauer",
+    "nation": "Germany",
+    "rating": 96,
+    "position": "CB",
+    "icon": "🛡️"
+  },
+  {
+    "id": 8,
+    "name": "Johan Cruyff",
+    "nation": "Netherlands",
+    "rating": 97,
+    "position": "CF",
+    "icon": "🎨"
+  },
+  {
+    "id": 9,
+    "name": "Ronaldinho",
+    "nation": "Brazil",
+    "rating": 95,
+    "position": "LW",
+    "icon": "🤙"
+  },
+  {
+    "id": 10,
+    "name": "Paolo Maldini",
+    "nation": "Italy",
+    "rating": 96,
+    "position": "CB",
+    "icon": "🧱"
+  },
+  {
+    "id": 11,
+    "name": "Andrés Iniesta",
+    "nation": "Spain",
+    "rating": 94,
+    "position": "CM",
+    "icon": "🪄"
+  },
+  {
+    "id": 12,
+    "name": "Xavi",
+    "nation": "Spain",
+    "rating": 94,
+    "position": "CM",
+    "icon": "🧠"
+  },
+  {
+    "id": 13,
+    "name": "Lothar Matthäus",
+    "nation": "Germany",
+    "rating": 95,
+    "position": "CDM",
+    "icon": "🦾"
+  },
+  {
+    "id": 14,
+    "name": "Cafu",
+    "nation": "Brazil",
+    "rating": 93,
+    "position": "RB",
+    "icon": "🚂"
+  },
+  {
+    "id": 15,
+    "name": "Roberto Carlos",
+    "nation": "Brazil",
+    "rating": 93,
+    "position": "LB",
+    "icon": "☄️"
+  },
+  {
+    "id": 16,
+    "name": "Gianluigi Buffon",
+    "nation": "Italy",
+    "rating": 95,
+    "position": "GK",
+    "icon": "🧤"
+  }
+]

@@ -1,3 +1,27 @@
+<script setup>
+import { ref, computed } from 'vue'
+import legendsData from '../data/legends.json'
+
+const legends = ref(legendsData)
+const searchQuery = ref('')
+
+const filteredLegends = computed(() => {
+  if (!searchQuery.value) return legends.value
+  const lowerCaseQuery = searchQuery.value.toLowerCase()
+  return legends.value.filter(player => 
+    player.name.toLowerCase().includes(lowerCaseQuery) || 
+    player.nation.toLowerCase().includes(lowerCaseQuery) ||
+    player.position.toLowerCase().includes(lowerCaseQuery)
+  )
+})
+
+const getRatingColor = (rating) => {
+  if (rating >= 98) return 'bg-yellow-400 text-[#13072e]'
+  if (rating >= 95) return 'bg-fuchsia-500 text-white'
+  return 'bg-cyan-500 text-[#13072e]'
+}
+</script>
+
 <template>
   <div class="py-12 px-4 max-w-6xl mx-auto">
     <div class="text-center mb-12">
@@ -10,25 +34,44 @@
 
     <!-- Search/Filter -->
     <div class="flex justify-center mb-12">
-      <div class="bg-[#24124a] border border-white/10 rounded-full flex items-center px-6 py-4 w-full max-w-xl shadow-xl">
+      <div class="bg-[#24124a] border border-white/10 rounded-full flex items-center px-6 py-4 w-full max-w-xl shadow-xl transition-all focus-within:border-cyan-500 focus-within:shadow-cyan-500/20">
         <span class="text-2xl mr-3">🔍</span>
-        <input type="text" placeholder="Tìm kiếm huyền thoại (vd: Pelé, Maradona...)" class="bg-transparent border-none outline-none text-white w-full placeholder-white/40 font-medium">
+        <input 
+          v-model="searchQuery" 
+          type="text" 
+          placeholder="Tìm huyền thoại, quốc gia, hoặc vị trí (vd: Brazil, CF...)" 
+          class="bg-transparent border-none outline-none text-white w-full placeholder-white/40 font-medium"
+        >
       </div>
     </div>
 
+    <!-- Empty State -->
+    <div v-if="filteredLegends.length === 0" class="text-center py-20">
+      <div class="text-6xl mb-4">🤷‍♂️</div>
+      <h3 class="text-xl font-bold text-white mb-2">Không tìm thấy cầu thủ nào</h3>
+      <p class="text-gray-400">Vui lòng thử lại với từ khóa khác.</p>
+    </div>
+
     <!-- Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <div v-for="i in 8" :key="i" class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/5 relative">
+    <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div v-for="player in filteredLegends" :key="player.id" class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/5 relative">
         <!-- Player Rating Badge -->
-        <div class="absolute top-4 left-4 bg-yellow-400 text-[#13072e] font-black text-lg px-2.5 py-0.5 rounded-full z-10 shadow-md">99</div>
+        <div :class="getRatingColor(player.rating)" class="absolute top-4 left-4 font-black text-lg px-2.5 py-0.5 rounded-full z-10 shadow-md">
+          {{ player.rating }}
+        </div>
+
+        <!-- Position Badge -->
+        <div class="absolute top-4 right-4 bg-black/40 text-white font-bold text-xs px-2 py-1 rounded-md z-10">
+          {{ player.position }}
+        </div>
         
         <div class="h-44 bg-white/5 flex items-center justify-center pt-6 group-hover:bg-white/10 transition-colors">
-           <span class="text-7xl">👤</span>
+           <span class="text-7xl">{{ player.icon }}</span>
         </div>
         
         <div class="p-5 text-center bg-[#24124a]">
-          <h3 class="font-bold text-white text-lg">Cầu Thủ {{ i }}</h3>
-          <p class="text-cyan-400 text-sm font-medium mt-1">Brazil</p>
+          <h3 class="font-bold text-white text-lg leading-tight mb-1">{{ player.name }}</h3>
+          <p class="text-cyan-400 text-sm font-medium">{{ player.nation }}</p>
         </div>
       </div>
     </div>
