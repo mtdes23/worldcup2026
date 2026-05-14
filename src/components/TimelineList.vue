@@ -264,6 +264,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import legendsData from '../data/legends.json'
+import confetti from 'canvas-confetti'
 
 const props = defineProps({
   history: {
@@ -282,7 +283,6 @@ const getPlayerAvatar = (playerName) => {
   if (match && match.imageUrl) return match.imageUrl;
   
   // 2. Last name and initial match
-  // "L. Messi" -> parts: ["L", "Messi"] -> lastName = "messi", initial = "l"
   const cleanName = playerName.replace(/\./g, ' ').replace(/\s+/g, ' ').trim().toLowerCase();
   const parts = cleanName.split(' ');
   const lastName = parts[parts.length - 1];
@@ -295,7 +295,6 @@ const getPlayerAvatar = (playerName) => {
         match = potentialMatches.find(l => l.name.toLowerCase().startsWith(initial));
         if (match && match.imageUrl) return match.imageUrl;
     }
-    // Fallback to first potential match
     if (potentialMatches[0].imageUrl) return potentialMatches[0].imageUrl;
   }
   
@@ -314,6 +313,32 @@ const showDetail = (type, value, wc) => {
     icon = '🏆'
     title = 'Nhà Vô Địch'
     content = `Đội tuyển ${value} đã xuất sắc vượt qua mọi đối thủ để lên ngôi vô địch tại kỳ World Cup ${wc.year}. Đây là một chiến thắng đi vào lịch sử bóng đá nước nhà.`
+    
+    // GitHub-inspired Wow Effect: Fire Confetti!
+    const duration = 3 * 1000;
+    const end = Date.now() + duration;
+    
+    (function frame() {
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: ['#FFD700', '#FFFFFF', '#00FFFF']
+      });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: ['#FFD700', '#FFFFFF', '#00FFFF']
+      });
+    
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    }());
+    
   } else if (type === 'Top Scorer') {
     icon = '👟'
     title = 'Vua Phá Lưới'

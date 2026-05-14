@@ -152,7 +152,7 @@ const showPlayerDetail = async (player) => {
 
     <!-- Grid -->
     <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <div v-for="player in filteredLegends" :key="player.id" @click="showPlayerDetail(player)" class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/5 relative flex flex-col">
+      <div v-for="player in filteredLegends" :key="player.id" @click="showPlayerDetail(player)" class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/5 relative flex flex-col will-change-transform" style="content-visibility: auto; contain-intrinsic-size: 250px;">
         <!-- Player Rating Badge -->
         <div :class="getRatingColor(player.rating)" class="absolute top-4 left-4 font-black text-lg px-2.5 py-0.5 rounded-full z-20 shadow-md">
           {{ player.rating }}
@@ -169,6 +169,7 @@ const showPlayerDetail = async (player) => {
              v-if="player.imageUrl" 
              :src="player.imageUrl" 
              :alt="player.name" 
+             loading="lazy"
              class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
              @error="(e) => e.target.style.display = 'none'"
            >
@@ -177,7 +178,7 @@ const showPlayerDetail = async (player) => {
            <div class="absolute inset-0 bg-gradient-to-t from-[#2d1859] via-transparent to-transparent z-10"></div>
         </div>
         
-        <div class="p-5 text-center bg-[#24124a] relative z-20 flex-grow flex flex-col justify-end">
+        <div class="p-5 text-center bg-[#24124a] relative z-20 flex-grow flex flex-col justify-end group-hover:bg-[#341b6d] transition-colors">
           <h3 class="font-bold text-white text-lg leading-tight mb-1">{{ player.name }}</h3>
           <p class="text-cyan-400 text-sm font-medium">{{ player.nation }}</p>
         </div>
