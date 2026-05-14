@@ -6,6 +6,7 @@ import ArticlesView from './components/ArticlesView.vue'
 import LegendsView from './components/LegendsView.vue'
 import WC2026View from './components/WC2026View.vue'
 import StatsCompareView from './components/StatsCompareView.vue'
+import DrawSimulatorView from './components/DrawSimulatorView.vue'
 
 import { useMouse } from '@vueuse/core'
 
@@ -81,6 +82,7 @@ const toggleAudio = () => {
             <button @click="currentTab = 'legends'" :class="currentTab === 'legends' ? 'bg-cyan-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Cầu thủ</button>
             <button @click="currentTab = 'stats'" :class="currentTab === 'stats' ? 'bg-purple-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Phân tích</button>
             <button @click="currentTab = 'wc2026'" :class="currentTab === 'wc2026' ? 'bg-yellow-400 text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">WC 2026</button>
+            <button @click="currentTab = 'draw'" :class="currentTab === 'draw' ? 'bg-emerald-400 text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300 flex items-center gap-1">🎲 Bốc Thăm</button>
           </div>
         </div>
       </div>
@@ -128,6 +130,11 @@ const toggleAudio = () => {
       <!-- WC 2026 TAB -->
       <div v-show="currentTab === 'wc2026'">
         <WC2026View />
+      </div>
+      
+      <!-- DRAW SIMULATOR TAB -->
+      <div v-show="currentTab === 'draw'">
+        <DrawSimulatorView />
       </div>
 
     </main>

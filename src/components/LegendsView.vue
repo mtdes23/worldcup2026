@@ -47,6 +47,47 @@ const getRatingColor = (rating) => {
 const detailModal = ref(null)
 const fullWikiUrl = ref(null)
 
+// 3D Hologram Effect Logic
+const cardStyles = ref({})
+const glareStyles = ref({})
+const holoStyles = ref({})
+
+const handleMouseMove = (e, index) => {
+  const card = e.currentTarget
+  const rect = card.getBoundingClientRect()
+  const x = e.clientX - rect.left // x position within the element
+  const y = e.clientY - rect.top  // y position within the element
+
+  const centerX = rect.width / 2
+  const centerY = rect.height / 2
+  
+  // Calculate rotation (max 15 degrees)
+  const rotateX = ((y - centerY) / centerY) * -15
+  const rotateY = ((x - centerX) / centerX) * 15
+
+  cardStyles.value[index] = {
+    transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`
+  }
+
+  // Calculate glare position based on mouse
+  glareStyles.value[index] = {
+    background: `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 60%)`
+  }
+
+  // Calculate holographic foil effect
+  holoStyles.value[index] = {
+    background: `linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%)`,
+    backgroundSize: '200% 200%',
+    backgroundPosition: `${x/rect.width * 100}% ${y/rect.height * 100}%`
+  }
+}
+
+const handleMouseLeave = (index) => {
+  cardStyles.value[index] = { transform: 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)' }
+  glareStyles.value[index] = { opacity: 0 }
+  holoStyles.value[index] = { opacity: 0 }
+}
+
 watch(() => detailModal.value || fullWikiUrl.value, (newVal) => {
   isLocked.value = !!newVal;
 })
@@ -158,36 +199,50 @@ const showPlayerDetail = async (player) => {
     </div>
 
     <!-- Grid -->
-    <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <div v-for="player in filteredLegends" :key="player.id" @click="showPlayerDetail(player)" class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/5 relative flex flex-col will-change-transform" style="content-visibility: auto; contain-intrinsic-size: 250px;">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 perspective-[1000px]">
+      <div 
+        v-for="(player, index) in filteredLegends" 
+        :key="player.id" 
+        @click="showPlayerDetail(player)" 
+        @mousemove="(e) => handleMouseMove(e, index)"
+        @mouseleave="handleMouseLeave(index)"
+        :style="cardStyles[index]"
+        class="bg-gradient-to-b from-[#2d1859] to-[#1e0e3d] rounded-3xl overflow-hidden shadow-lg transition-transform duration-200 ease-out group cursor-pointer border border-white/10 relative flex flex-col will-change-transform transform-gpu" 
+        style="content-visibility: auto; contain-intrinsic-size: 250px; transform-style: preserve-3d;"
+      >
+        <!-- Hologram Glare -->
+        <div class="absolute inset-0 z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl mix-blend-overlay" :style="glareStyles[index]"></div>
+        <div class="absolute inset-0 z-40 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl mix-blend-color-dodge" :style="holoStyles[index]"></div>
+
         <!-- Player Rating Badge -->
-        <div :class="getRatingColor(player.rating)" class="absolute top-4 left-4 font-black text-lg px-2.5 py-0.5 rounded-full z-20 shadow-md">
+        <div :class="getRatingColor(player.rating)" class="absolute top-4 left-4 font-black text-lg px-2.5 py-0.5 rounded-full z-20 shadow-md transform-gpu" style="transform: translateZ(30px);">
           {{ player.rating }}
         </div>
 
         <!-- Position Badge -->
-        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white font-bold text-xs px-2 py-1 rounded-md z-20">
+        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white font-bold text-xs px-2 py-1 rounded-md z-20 transform-gpu" style="transform: translateZ(20px);">
           {{ player.position }}
         </div>
         
         <!-- Player Image -->
-        <div class="h-48 bg-white/5 flex items-center justify-center relative overflow-hidden flex-shrink-0 group-hover:bg-white/10 transition-colors">
+        <div class="h-48 bg-white/5 flex items-center justify-center relative overflow-hidden flex-shrink-0 group-hover:bg-white/10 transition-colors transform-gpu" style="transform: translateZ(40px);">
            <img 
              v-if="player.imageUrl" 
              :src="player.imageUrl" 
              :alt="player.name" 
              loading="lazy"
-             class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
+             class="w-full h-full object-cover object-top drop-shadow-2xl"
              @error="(e) => e.target.style.display = 'none'"
            >
            <span v-if="!player.imageUrl" class="text-7xl absolute">{{ player.icon }}</span>
-           <!-- Gradient overlay to blend image with card body -->
-           <div class="absolute inset-0 bg-gradient-to-t from-[#2d1859] via-transparent to-transparent z-10"></div>
         </div>
         
-        <div class="p-5 text-center bg-[#24124a] relative z-20 flex-grow flex flex-col justify-end group-hover:bg-[#341b6d] transition-colors">
-          <h3 class="font-bold text-white text-lg leading-tight mb-1">{{ player.name }}</h3>
-          <p class="text-cyan-400 text-sm font-medium">{{ player.nation }}</p>
+        <!-- Gradient overlay -->
+        <div class="absolute inset-x-0 top-24 bottom-0 bg-gradient-to-t from-[#2d1859] via-[#2d1859]/80 to-transparent z-10 pointer-events-none"></div>
+
+        <div class="p-5 text-center bg-transparent relative z-20 flex-grow flex flex-col justify-end transform-gpu" style="transform: translateZ(25px);">
+          <h3 class="font-bold text-white text-lg leading-tight mb-1 drop-shadow-md">{{ player.name }}</h3>
+          <p class="text-cyan-400 text-sm font-medium drop-shadow-sm">{{ player.nation }}</p>
         </div>
       </div>
     </div>
