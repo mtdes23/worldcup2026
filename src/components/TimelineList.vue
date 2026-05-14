@@ -276,8 +276,30 @@ const itemRefs = ref([])
 let observer = null
 
 const getPlayerAvatar = (playerName) => {
-  const legendMatch = legendsData.find(l => l.name === playerName || l.name.includes(playerName) || playerName.includes(l.name))
-  return legendMatch && legendMatch.imageUrl ? legendMatch.imageUrl : null
+  if (!playerName) return null;
+  // 1. Exact match
+  let match = legendsData.find(l => l.name.toLowerCase() === playerName.toLowerCase());
+  if (match && match.imageUrl) return match.imageUrl;
+  
+  // 2. Last name and initial match
+  // "L. Messi" -> parts: ["L", "Messi"] -> lastName = "messi", initial = "l"
+  const cleanName = playerName.replace(/\./g, ' ').replace(/\s+/g, ' ').trim().toLowerCase();
+  const parts = cleanName.split(' ');
+  const lastName = parts[parts.length - 1];
+  
+  const potentialMatches = legendsData.filter(l => l.name.toLowerCase().includes(lastName));
+  
+  if (potentialMatches.length > 0) {
+    if (parts.length > 1) {
+        const initial = parts[0][0];
+        match = potentialMatches.find(l => l.name.toLowerCase().startsWith(initial));
+        if (match && match.imageUrl) return match.imageUrl;
+    }
+    // Fallback to first potential match
+    if (potentialMatches[0].imageUrl) return potentialMatches[0].imageUrl;
+  }
+  
+  return null;
 }
 
 // Modal Logic for Specific Items
@@ -338,9 +360,8 @@ const showPlayerDetail = async (player, year) => {
   else if (player.pos === 'DEF') posText = 'Hậu vệ'
   else if (player.pos === 'GK') posText = 'Thủ môn'
 
-  // Try to find avatar from our massive legends database!
-  const legendMatch = legendsData.find(l => l.name === player.name || l.name.includes(player.name) || player.name.includes(l.name))
-  const avatarUrl = legendMatch && legendMatch.imageUrl ? legendMatch.imageUrl : ''
+  // Try to find avatar using our smart matcher
+  const avatarUrl = getPlayerAvatar(player.name) || ''
 
   // Set initial modal with loading state for history
   detailModal.value = {
