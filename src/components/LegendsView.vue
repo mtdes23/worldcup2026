@@ -1,6 +1,9 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
+import { useScrollLock } from '@vueuse/core'
 import legendsData from '../data/legends.json'
+
+const isLocked = useScrollLock(document.body)
 
 const legends = ref(legendsData)
 const searchQuery = ref('')
@@ -43,6 +46,10 @@ const getRatingColor = (rating) => {
 
 const detailModal = ref(null)
 const fullWikiUrl = ref(null)
+
+watch(() => detailModal.value || fullWikiUrl.value, (newVal) => {
+  isLocked.value = !!newVal;
+})
 
 const showPlayerDetail = async (player) => {
   detailModal.value = {

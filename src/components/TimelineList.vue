@@ -262,9 +262,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { useScrollLock } from '@vueuse/core'
 import legendsData from '../data/legends.json'
 import confetti from 'canvas-confetti'
+
+const isLocked = useScrollLock(document.body)
 
 const props = defineProps({
   history: {
@@ -429,6 +432,10 @@ const showPlayerDetail = async (player, year) => {
 // Lineup Modal Logic
 const lineupModal = ref(null)
 const fullWikiUrl = ref(null)
+
+watch(() => detailModal.value || lineupModal.value || fullWikiUrl.value, (newVal) => {
+  isLocked.value = !!newVal;
+})
 
 const knownLineups = {
   2022: [
