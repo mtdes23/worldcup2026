@@ -7,19 +7,26 @@ const error = ref(null)
 
 const fetchNews = async () => {
   try {
-    // Sử dụng rss2json proxy để lấy tin từ RSS VNExpress Thể Thao
     const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://vnexpress.net/rss/the-thao.rss')
     const data = await response.json()
     
     if (data.status === 'ok') {
-      // Lấy 9 bài báo mới nhất và xử lý description để bỏ thẻ HTML nếu cần
       articles.value = data.items.slice(0, 9).map(item => {
-        // Tách link ảnh từ thẻ img trong description nếu có (VNExpress thường nhúng ảnh vào description)
-        const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
-        const imageUrl = imgMatch ? imgMatch[1] : null;
+        // Cố gắng lấy ảnh từ nhiều nguồn khác nhau do RSS không đồng nhất
+        let imageUrl = item.thumbnail || null;
+        
+        if (!imageUrl && item.enclosure && item.enclosure.link) {
+          imageUrl = item.enclosure.link;
+        }
+        
+        if (!imageUrl) {
+          const htmlContent = (item.description || '') + (item.content || '');
+          const imgMatch = htmlContent.match(/<img[^>]+src=["']([^"']+)["']/i);
+          imageUrl = imgMatch ? imgMatch[1] : null;
+        }
         
         // Loại bỏ HTML tags khỏi description để lấy text thuần
-        let cleanDesc = item.description.replace(/<[^>]*>?/gm, '');
+        let cleanDesc = item.description ? item.description.replace(/<[^>]*>?/gm, '') : '';
         if (cleanDesc.length > 120) cleanDesc = cleanDesc.substring(0, 120) + '...';
 
         return {
@@ -40,6 +47,7 @@ const fetchNews = async () => {
 }
 
 const formatDate = (dateString) => {
+  if (!dateString) return ''
   const date = new Date(dateString)
   return new Intl.DateTimeFormat('vi-VN', { 
     day: '2-digit', month: '2-digit', year: 'numeric',
