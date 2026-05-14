@@ -110,7 +110,7 @@
     </div>
 
     <!-- Specific Detail Modal -->
-    <div v-if="detailModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-[#13072e]/90 backdrop-blur-md" @click.self="detailModal = null">
+    <div v-if="detailModal" class="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-[#13072e]/90 backdrop-blur-md" @click.self="detailModal = null">
       <div class="bg-[#24124a] rounded-[2rem] w-full max-w-md overflow-hidden flex flex-col shadow-2xl border border-white/20 animate-slide-up relative">
         <button @click="detailModal = null" class="absolute top-4 right-4 w-8 h-8 bg-white/10 hover:bg-fuchsia-500 rounded-full flex items-center justify-center text-white z-20 transition-colors">
           ✕
@@ -159,7 +159,7 @@
             <div class="relative z-10 w-full h-[500px] sm:h-[600px] flex flex-col justify-between py-4">
               <!-- FW -->
               <div class="flex justify-around px-2">
-                <div v-for="player in getPlayersByPos(lineupModal.players, 'FW')" :key="player.name" class="text-center w-20 group">
+                <div v-for="player in getPlayersByPos(lineupModal.players, 'FW')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-fuchsia-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-fuchsia-500/30 transition-all shadow-lg text-white font-bold">FW</div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
                   <div class="text-fuchsia-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
@@ -168,7 +168,7 @@
               
               <!-- MID -->
               <div class="flex justify-around px-6 sm:px-16">
-                <div v-for="player in getPlayersByPos(lineupModal.players, 'MID')" :key="player.name" class="text-center w-20 group">
+                <div v-for="player in getPlayersByPos(lineupModal.players, 'MID')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-cyan-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-cyan-500/30 transition-all shadow-lg text-white font-bold">MD</div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
                   <div class="text-cyan-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
@@ -177,7 +177,7 @@
               
               <!-- DEF -->
               <div class="flex justify-between px-0 sm:px-4">
-                <div v-for="player in getPlayersByPos(lineupModal.players, 'DEF')" :key="player.name" class="text-center w-20 group">
+                <div v-for="player in getPlayersByPos(lineupModal.players, 'DEF')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-yellow-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-yellow-400/30 transition-all shadow-lg text-white font-bold">DF</div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
                   <div class="text-yellow-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
@@ -186,7 +186,7 @@
               
               <!-- GK -->
               <div class="flex justify-center mt-2">
-                <div v-for="player in getPlayersByPos(lineupModal.players, 'GK')" :key="player.name" class="text-center w-20 group">
+                <div v-for="player in getPlayersByPos(lineupModal.players, 'GK')" :key="player.name" class="text-center w-20 group cursor-pointer" @click.stop="showPlayerDetail(player, lineupModal.year)">
                   <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-white/60 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-white/30 transition-all shadow-lg text-white font-bold">GK</div>
                   <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
                   <div class="text-gray-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
@@ -262,6 +262,22 @@ const showDetail = (type, value, wc) => {
     name: value,
     content,
     year: wc.year
+  }
+}
+
+const showPlayerDetail = (player, year) => {
+  let posText = ''
+  if (player.pos === 'FW') posText = 'Tiền đạo'
+  else if (player.pos === 'MID') posText = 'Tiền vệ'
+  else if (player.pos === 'DEF') posText = 'Hậu vệ'
+  else if (player.pos === 'GK') posText = 'Thủ môn'
+
+  detailModal.value = {
+    title: 'Ngôi Sao Đội Hình Tiêu Biểu',
+    icon: '⭐',
+    name: player.name,
+    content: `Cầu thủ ${player.name} mang quốc tịch ${player.team} thi đấu ở vị trí ${posText} đã lọt vào đội hình tiêu biểu xuất sắc nhất của kỳ World Cup ${year}.`,
+    year: year
   }
 }
 
