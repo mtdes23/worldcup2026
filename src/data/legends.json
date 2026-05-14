@@ -10,42 +10,6 @@
   },
   {
     "id": 2,
-    "name": "Diego Maradona",
-    "nation": "Argentina",
-    "rating": 98,
-    "position": "CAM",
-    "icon": "🔟",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Maradona_-_Szene1.jpg"
-  },
-  {
-    "id": 3,
-    "name": "Lionel Messi",
-    "nation": "Argentina",
-    "rating": 99,
-    "position": "RW",
-    "icon": "🐐",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"
-  },
-  {
-    "id": 4,
-    "name": "Cristiano Ronaldo",
-    "nation": "Portugal",
-    "rating": 98,
-    "position": "ST",
-    "icon": "🚀",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg"
-  },
-  {
-    "id": 5,
-    "name": "Zinedine Zidane",
-    "nation": "France",
-    "rating": 96,
-    "position": "CAM",
-    "icon": "✨",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Zinedine_Zidane_by_Tasnim_03.jpg"
-  },
-  {
-    "id": 6,
     "name": "Ronaldo Nazário",
     "nation": "Brazil",
     "rating": 97,
@@ -54,25 +18,7 @@
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Ronaldo_-_2002_FIFA_World_Cup_%28cropped%29.jpg"
   },
   {
-    "id": 7,
-    "name": "Franz Beckenbauer",
-    "nation": "Germany",
-    "rating": 96,
-    "position": "CB",
-    "icon": "🛡️",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Franz_Beckenbauer_1973.jpg"
-  },
-  {
-    "id": 8,
-    "name": "Johan Cruyff",
-    "nation": "Netherlands",
-    "rating": 97,
-    "position": "CF",
-    "icon": "🎨",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Johan_Cruyff_1974c.jpg"
-  },
-  {
-    "id": 9,
+    "id": 3,
     "name": "Ronaldinho",
     "nation": "Brazil",
     "rating": 95,
@@ -81,43 +27,7 @@
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Ronaldinho_in_2019.jpg"
   },
   {
-    "id": 10,
-    "name": "Paolo Maldini",
-    "nation": "Italy",
-    "rating": 96,
-    "position": "CB",
-    "icon": "🧱",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Paolo_Maldini_Milan.jpg"
-  },
-  {
-    "id": 11,
-    "name": "Andrés Iniesta",
-    "nation": "Spain",
-    "rating": 94,
-    "position": "CM",
-    "icon": "🪄",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/67/Andr%C3%A9s_Iniesta_2018.jpg"
-  },
-  {
-    "id": 12,
-    "name": "Xavi",
-    "nation": "Spain",
-    "rating": 94,
-    "position": "CM",
-    "icon": "🧠",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Xavi_Hernandez_2021.jpg"
-  },
-  {
-    "id": 13,
-    "name": "Lothar Matthäus",
-    "nation": "Germany",
-    "rating": 95,
-    "position": "CDM",
-    "icon": "🦾",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Lothar_Matth%C3%A4us_%281993%29.jpg"
-  },
-  {
-    "id": 14,
+    "id": 4,
     "name": "Cafu",
     "nation": "Brazil",
     "rating": 93,
@@ -126,7 +36,7 @@
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Cafu_2015.jpg"
   },
   {
-    "id": 15,
+    "id": 5,
     "name": "Roberto Carlos",
     "nation": "Brazil",
     "rating": 93,
@@ -135,12 +45,1002 @@
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Roberto_Carlos_2011.jpg"
   },
   {
+    "id": 6,
+    "name": "Garrincha",
+    "nation": "Brazil",
+    "rating": 96,
+    "position": "RW",
+    "icon": "🕊️",
+    "imageUrl": ""
+  },
+  {
+    "id": 7,
+    "name": "Zico",
+    "nation": "Brazil",
+    "rating": 95,
+    "position": "CAM",
+    "icon": "🎯",
+    "imageUrl": ""
+  },
+  {
+    "id": 8,
+    "name": "Romário",
+    "nation": "Brazil",
+    "rating": 96,
+    "position": "ST",
+    "icon": "⚽",
+    "imageUrl": ""
+  },
+  {
+    "id": 9,
+    "name": "Rivaldo",
+    "nation": "Brazil",
+    "rating": 95,
+    "position": "CAM",
+    "icon": "🌟",
+    "imageUrl": ""
+  },
+  {
+    "id": 10,
+    "name": "Jairzinho",
+    "nation": "Brazil",
+    "rating": 94,
+    "position": "RW",
+    "icon": "🌪️",
+    "imageUrl": ""
+  },
+  {
+    "id": 11,
+    "name": "Carlos Alberto",
+    "nation": "Brazil",
+    "rating": 93,
+    "position": "RB",
+    "icon": "🛡️",
+    "imageUrl": ""
+  },
+  {
+    "id": 12,
+    "name": "Sócrates",
+    "nation": "Brazil",
+    "rating": 94,
+    "position": "CM",
+    "icon": "🩺",
+    "imageUrl": ""
+  },
+  {
+    "id": 13,
+    "name": "Didi",
+    "nation": "Brazil",
+    "rating": 94,
+    "position": "CM",
+    "icon": "🧠",
+    "imageUrl": ""
+  },
+  {
+    "id": 14,
+    "name": "Kaká",
+    "nation": "Brazil",
+    "rating": 94,
+    "position": "CAM",
+    "icon": "⛪",
+    "imageUrl": ""
+  },
+  {
+    "id": 15,
+    "name": "Neymar",
+    "nation": "Brazil",
+    "rating": 95,
+    "position": "LW",
+    "icon": "🕺",
+    "imageUrl": ""
+  },
+  {
     "id": 16,
+    "name": "Diego Maradona",
+    "nation": "Argentina",
+    "rating": 98,
+    "position": "CAM",
+    "icon": "🔟",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Maradona_-_Szene1.jpg"
+  },
+  {
+    "id": 17,
+    "name": "Lionel Messi",
+    "nation": "Argentina",
+    "rating": 99,
+    "position": "RW",
+    "icon": "🐐",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg"
+  },
+  {
+    "id": 18,
+    "name": "Mario Kempes",
+    "nation": "Argentina",
+    "rating": 93,
+    "position": "ST",
+    "icon": "🏹",
+    "imageUrl": ""
+  },
+  {
+    "id": 19,
+    "name": "Gabriel Batistuta",
+    "nation": "Argentina",
+    "rating": 94,
+    "position": "ST",
+    "icon": "🦁",
+    "imageUrl": ""
+  },
+  {
+    "id": 20,
+    "name": "Javier Zanetti",
+    "nation": "Argentina",
+    "rating": 92,
+    "position": "RB",
+    "icon": "🚜",
+    "imageUrl": ""
+  },
+  {
+    "id": 21,
+    "name": "Javier Mascherano",
+    "nation": "Argentina",
+    "rating": 90,
+    "position": "CDM",
+    "icon": "🛡️",
+    "imageUrl": ""
+  },
+  {
+    "id": 22,
+    "name": "Ángel Di María",
+    "nation": "Argentina",
+    "rating": 92,
+    "position": "RW",
+    "icon": "🫶",
+    "imageUrl": ""
+  },
+  {
+    "id": 23,
+    "name": "Daniel Passarella",
+    "nation": "Argentina",
+    "rating": 93,
+    "position": "CB",
+    "icon": "🧱",
+    "imageUrl": ""
+  },
+  {
+    "id": 24,
+    "name": "Juan Román Riquelme",
+    "nation": "Argentina",
+    "rating": 92,
+    "position": "CAM",
+    "icon": "🎩",
+    "imageUrl": ""
+  },
+  {
+    "id": 25,
+    "name": "Franz Beckenbauer",
+    "nation": "Germany",
+    "rating": 96,
+    "position": "CB",
+    "icon": "👑",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Franz_Beckenbauer_1973.jpg"
+  },
+  {
+    "id": 26,
+    "name": "Lothar Matthäus",
+    "nation": "Germany",
+    "rating": 95,
+    "position": "CDM",
+    "icon": "🦾",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Lothar_Matth%C3%A4us_%281993%29.jpg"
+  },
+  {
+    "id": 27,
+    "name": "Gerd Müller",
+    "nation": "Germany",
+    "rating": 96,
+    "position": "ST",
+    "icon": "💣",
+    "imageUrl": ""
+  },
+  {
+    "id": 28,
+    "name": "Miroslav Klose",
+    "nation": "Germany",
+    "rating": 94,
+    "position": "ST",
+    "icon": "🤸",
+    "imageUrl": ""
+  },
+  {
+    "id": 29,
+    "name": "Oliver Kahn",
+    "nation": "Germany",
+    "rating": 94,
+    "position": "GK",
+    "icon": "🦍",
+    "imageUrl": ""
+  },
+  {
+    "id": 30,
+    "name": "Philipp Lahm",
+    "nation": "Germany",
+    "rating": 93,
+    "position": "RB",
+    "icon": "🧠",
+    "imageUrl": ""
+  },
+  {
+    "id": 31,
+    "name": "Thomas Müller",
+    "nation": "Germany",
+    "rating": 92,
+    "position": "CAM",
+    "icon": "🕵️",
+    "imageUrl": ""
+  },
+  {
+    "id": 32,
+    "name": "Karl-Heinz Rummenigge",
+    "nation": "Germany",
+    "rating": 94,
+    "position": "ST",
+    "icon": "🔥",
+    "imageUrl": ""
+  },
+  {
+    "id": 33,
+    "name": "Jürgen Klinsmann",
+    "nation": "Germany",
+    "rating": 92,
+    "position": "ST",
+    "icon": "🌪️",
+    "imageUrl": ""
+  },
+  {
+    "id": 34,
+    "name": "Manuel Neuer",
+    "nation": "Germany",
+    "rating": 95,
+    "position": "GK",
+    "icon": "🧱",
+    "imageUrl": ""
+  },
+  {
+    "id": 35,
+    "name": "Toni Kroos",
+    "nation": "Germany",
+    "rating": 93,
+    "position": "CM",
+    "icon": "🎯",
+    "imageUrl": ""
+  },
+  {
+    "id": 36,
+    "name": "Bastian Schweinsteiger",
+    "nation": "Germany",
+    "rating": 92,
+    "position": "CM",
+    "icon": "🛡️",
+    "imageUrl": ""
+  },
+  {
+    "id": 37,
+    "name": "Paolo Maldini",
+    "nation": "Italy",
+    "rating": 96,
+    "position": "CB",
+    "icon": "🧱",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Paolo_Maldini_Milan.jpg"
+  },
+  {
+    "id": 38,
     "name": "Gianluigi Buffon",
     "nation": "Italy",
     "rating": 95,
     "position": "GK",
     "icon": "🧤",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Gianluigi_Buffon_-_2018_%28cropped%29.jpg"
+  },
+  {
+    "id": 39,
+    "name": "Roberto Baggio",
+    "nation": "Italy",
+    "rating": 95,
+    "position": "CAM",
+    "icon": "🧘",
+    "imageUrl": ""
+  },
+  {
+    "id": 40,
+    "name": "Fabio Cannavaro",
+    "nation": "Italy",
+    "rating": 94,
+    "position": "CB",
+    "icon": "🏆",
+    "imageUrl": ""
+  },
+  {
+    "id": 41,
+    "name": "Franco Baresi",
+    "nation": "Italy",
+    "rating": 95,
+    "position": "CB",
+    "icon": "🛡️",
+    "imageUrl": ""
+  },
+  {
+    "id": 42,
+    "name": "Andrea Pirlo",
+    "nation": "Italy",
+    "rating": 94,
+    "position": "CM",
+    "icon": "🍷",
+    "imageUrl": ""
+  },
+  {
+    "id": 43,
+    "name": "Alessandro Del Piero",
+    "nation": "Italy",
+    "rating": 93,
+    "position": "CF",
+    "icon": "🎨",
+    "imageUrl": ""
+  },
+  {
+    "id": 44,
+    "name": "Francesco Totti",
+    "nation": "Italy",
+    "rating": 93,
+    "position": "CAM",
+    "icon": "👑",
+    "imageUrl": ""
+  },
+  {
+    "id": 45,
+    "name": "Dino Zoff",
+    "nation": "Italy",
+    "rating": 94,
+    "position": "GK",
+    "icon": "🧤",
+    "imageUrl": ""
+  },
+  {
+    "id": 46,
+    "name": "Paolo Rossi",
+    "nation": "Italy",
+    "rating": 92,
+    "position": "ST",
+    "icon": "⚽",
+    "imageUrl": ""
+  },
+  {
+    "id": 47,
+    "name": "Giuseppe Meazza",
+    "nation": "Italy",
+    "rating": 94,
+    "position": "CF",
+    "icon": "🎩",
+    "imageUrl": ""
+  },
+  {
+    "id": 48,
+    "name": "Zinedine Zidane",
+    "nation": "France",
+    "rating": 96,
+    "position": "CAM",
+    "icon": "✨",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Zinedine_Zidane_by_Tasnim_03.jpg"
+  },
+  {
+    "id": 49,
+    "name": "Michel Platini",
+    "nation": "France",
+    "rating": 95,
+    "position": "CAM",
+    "icon": "👑",
+    "imageUrl": ""
+  },
+  {
+    "id": 50,
+    "name": "Thierry Henry",
+    "nation": "France",
+    "rating": 95,
+    "position": "ST",
+    "icon": "👑",
+    "imageUrl": ""
+  },
+  {
+    "id": 51,
+    "name": "Kylian Mbappé",
+    "nation": "France",
+    "rating": 96,
+    "position": "LW",
+    "icon": "⚡",
+    "imageUrl": ""
+  },
+  {
+    "id": 52,
+    "name": "Patrick Vieira",
+    "nation": "France",
+    "rating": 93,
+    "position": "CDM",
+    "icon": "🧱",
+    "imageUrl": ""
+  },
+  {
+    "id": 53,
+    "name": "Lilian Thuram",
+    "nation": "France",
+    "rating": 93,
+    "position": "RB",
+    "icon": "🛡️",
+    "imageUrl": ""
+  },
+  {
+    "id": 54,
+    "name": "Marcel Desailly",
+    "nation": "France",
+    "rating": 92,
+    "position": "CB",
+    "icon": "🪨",
+    "imageUrl": ""
+  },
+  {
+    "id": 55,
+    "name": "Just Fontaine",
+    "nation": "France",
+    "rating": 93,
+    "position": "ST",
+    "icon": "⚽",
+    "imageUrl": ""
+  },
+  {
+    "id": 56,
+    "name": "Antoine Griezmann",
+    "nation": "France",
+    "rating": 92,
+    "position": "CAM",
+    "icon": "🤴",
+    "imageUrl": ""
+  },
+  {
+    "id": 57,
+    "name": "N'Golo Kanté",
+    "nation": "France",
+    "rating": 91,
+    "position": "CDM",
+    "icon": "🏃",
+    "imageUrl": ""
+  },
+  {
+    "id": 58,
+    "name": "Franck Ribéry",
+    "nation": "France",
+    "rating": 92,
+    "position": "LM",
+    "icon": "🏎️",
+    "imageUrl": ""
+  },
+  {
+    "id": 59,
+    "name": "Andrés Iniesta",
+    "nation": "Spain",
+    "rating": 94,
+    "position": "CM",
+    "icon": "🪄",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/67/Andr%C3%A9s_Iniesta_2018.jpg"
+  },
+  {
+    "id": 60,
+    "name": "Xavi",
+    "nation": "Spain",
+    "rating": 94,
+    "position": "CM",
+    "icon": "🧠",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Xavi_Hernandez_2021.jpg"
+  },
+  {
+    "id": 61,
+    "name": "Iker Casillas",
+    "nation": "Spain",
+    "rating": 94,
+    "position": "GK",
+    "icon": "😇",
+    "imageUrl": ""
+  },
+  {
+    "id": 62,
+    "name": "Sergio Ramos",
+    "nation": "Spain",
+    "rating": 94,
+    "position": "CB",
+    "icon": "🐂",
+    "imageUrl": ""
+  },
+  {
+    "id": 63,
+    "name": "Carles Puyol",
+    "nation": "Spain",
+    "rating": 93,
+    "position": "CB",
+    "icon": "🦁",
+    "imageUrl": ""
+  },
+  {
+    "id": 64,
+    "name": "David Villa",
+    "nation": "Spain",
+    "rating": 92,
+    "position": "ST",
+    "icon": "🎯",
+    "imageUrl": ""
+  },
+  {
+    "id": 65,
+    "name": "Fernando Torres",
+    "nation": "Spain",
+    "rating": 91,
+    "position": "ST",
+    "icon": "👦",
+    "imageUrl": ""
+  },
+  {
+    "id": 66,
+    "name": "Xabi Alonso",
+    "nation": "Spain",
+    "rating": 92,
+    "position": "CDM",
+    "icon": "🎯",
+    "imageUrl": ""
+  },
+  {
+    "id": 67,
+    "name": "Sergio Busquets",
+    "nation": "Spain",
+    "rating": 92,
+    "position": "CDM",
+    "icon": "🐙",
+    "imageUrl": ""
+  },
+  {
+    "id": 68,
+    "name": "Raúl",
+    "nation": "Spain",
+    "rating": 93,
+    "position": "CF",
+    "icon": "👑",
+    "imageUrl": ""
+  },
+  {
+    "id": 69,
+    "name": "Johan Cruyff",
+    "nation": "Netherlands",
+    "rating": 97,
+    "position": "CF",
+    "icon": "🎨",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Johan_Cruyff_1974c.jpg"
+  },
+  {
+    "id": 70,
+    "name": "Marco van Basten",
+    "nation": "Netherlands",
+    "rating": 95,
+    "position": "ST",
+    "icon": "🦢",
+    "imageUrl": ""
+  },
+  {
+    "id": 71,
+    "name": "Ruud Gullit",
+    "nation": "Netherlands",
+    "rating": 94,
+    "position": "CAM",
+    "icon": "🦁",
+    "imageUrl": ""
+  },
+  {
+    "id": 72,
+    "name": "Dennis Bergkamp",
+    "nation": "Netherlands",
+    "rating": 93,
+    "position": "CF",
+    "icon": "🧊",
+    "imageUrl": ""
+  },
+  {
+    "id": 73,
+    "name": "Arjen Robben",
+    "nation": "Netherlands",
+    "rating": 92,
+    "position": "RW",
+    "icon": "🏎️",
+    "imageUrl": ""
+  },
+  {
+    "id": 74,
+    "name": "Wesley Sneijder",
+    "nation": "Netherlands",
+    "rating": 92,
+    "position": "CAM",
+    "icon": "🎯",
+    "imageUrl": ""
+  },
+  {
+    "id": 75,
+    "name": "Robin van Persie",
+    "nation": "Netherlands",
+    "rating": 91,
+    "position": "ST",
+    "icon": "🕊️",
+    "imageUrl": ""
+  },
+  {
+    "id": 76,
+    "name": "Frank Rijkaard",
+    "nation": "Netherlands",
+    "rating": 93,
+    "position": "CDM",
+    "icon": "🛡️",
+    "imageUrl": ""
+  },
+  {
+    "id": 77,
+    "name": "Edwin van der Sar",
+    "nation": "Netherlands",
+    "rating": 92,
+    "position": "GK",
+    "icon": "🧤",
+    "imageUrl": ""
+  },
+  {
+    "id": 78,
+    "name": "Bobby Charlton",
+    "nation": "England",
+    "rating": 95,
+    "position": "CAM",
+    "icon": "🎩",
+    "imageUrl": ""
+  },
+  {
+    "id": 79,
+    "name": "Bobby Moore",
+    "nation": "England",
+    "rating": 94,
+    "position": "CB",
+    "icon": "🛡️",
+    "imageUrl": ""
+  },
+  {
+    "id": 80,
+    "name": "Gary Lineker",
+    "nation": "England",
+    "rating": 92,
+    "position": "ST",
+    "icon": "🦊",
+    "imageUrl": ""
+  },
+  {
+    "id": 81,
+    "name": "Wayne Rooney",
+    "nation": "England",
+    "rating": 93,
+    "position": "CF",
+    "icon": "🥊",
+    "imageUrl": ""
+  },
+  {
+    "id": 82,
+    "name": "David Beckham",
+    "nation": "England",
+    "rating": 92,
+    "position": "RM",
+    "icon": "🎯",
+    "imageUrl": ""
+  },
+  {
+    "id": 83,
+    "name": "Steven Gerrard",
+    "nation": "England",
+    "rating": 92,
+    "position": "CM",
+    "icon": "🚀",
+    "imageUrl": ""
+  },
+  {
+    "id": 84,
+    "name": "Frank Lampard",
+    "nation": "England",
+    "rating": 92,
+    "position": "CM",
+    "icon": "🧠",
+    "imageUrl": ""
+  },
+  {
+    "id": 85,
+    "name": "Harry Kane",
+    "nation": "England",
+    "rating": 92,
+    "position": "ST",
+    "icon": "🌪️",
+    "imageUrl": ""
+  },
+  {
+    "id": 86,
+    "name": "Gordon Banks",
+    "nation": "England",
+    "rating": 92,
+    "position": "GK",
+    "icon": "🧱",
+    "imageUrl": ""
+  },
+  {
+    "id": 87,
+    "name": "Cristiano Ronaldo",
+    "nation": "Portugal",
+    "rating": 98,
+    "position": "ST",
+    "icon": "🚀",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg"
+  },
+  {
+    "id": 88,
+    "name": "Eusébio",
+    "nation": "Portugal",
+    "rating": 95,
+    "position": "ST",
+    "icon": "🐆",
+    "imageUrl": ""
+  },
+  {
+    "id": 89,
+    "name": "Luís Figo",
+    "nation": "Portugal",
+    "rating": 94,
+    "position": "RW",
+    "icon": "🎭",
+    "imageUrl": ""
+  },
+  {
+    "id": 90,
+    "name": "Rui Costa",
+    "nation": "Portugal",
+    "rating": 92,
+    "position": "CAM",
+    "icon": "🎩",
+    "imageUrl": ""
+  },
+  {
+    "id": 91,
+    "name": "Pepe",
+    "nation": "Portugal",
+    "rating": 91,
+    "position": "CB",
+    "icon": "👹",
+    "imageUrl": ""
+  },
+  {
+    "id": 92,
+    "name": "Diego Forlán",
+    "nation": "Uruguay",
+    "rating": 92,
+    "position": "CF",
+    "icon": "🎯",
+    "imageUrl": ""
+  },
+  {
+    "id": 93,
+    "name": "Luis Suárez",
+    "nation": "Uruguay",
+    "rating": 94,
+    "position": "ST",
+    "icon": "🔫",
+    "imageUrl": ""
+  },
+  {
+    "id": 94,
+    "name": "Edinson Cavani",
+    "nation": "Uruguay",
+    "rating": 91,
+    "position": "ST",
+    "icon": "🏹",
+    "imageUrl": ""
+  },
+  {
+    "id": 95,
+    "name": "Enzo Francescoli",
+    "nation": "Uruguay",
+    "rating": 92,
+    "position": "CAM",
+    "icon": "👑",
+    "imageUrl": ""
+  },
+  {
+    "id": 96,
+    "name": "Juan Alberto Schiaffino",
+    "nation": "Uruguay",
+    "rating": 93,
+    "position": "CAM",
+    "icon": "🎩",
+    "imageUrl": ""
+  },
+  {
+    "id": 97,
+    "name": "Obdulio Varela",
+    "nation": "Uruguay",
+    "rating": 92,
+    "position": "CDM",
+    "icon": "🛡️",
+    "imageUrl": ""
+  },
+  {
+    "id": 98,
+    "name": "Luka Modrić",
+    "nation": "Croatia",
+    "rating": 94,
+    "position": "CM",
+    "icon": "🪄",
+    "imageUrl": ""
+  },
+  {
+    "id": 99,
+    "name": "Davor Šuker",
+    "nation": "Croatia",
+    "rating": 92,
+    "position": "ST",
+    "icon": "🎯",
+    "imageUrl": ""
+  },
+  {
+    "id": 100,
+    "name": "Ivan Rakitić",
+    "nation": "Croatia",
+    "rating": 90,
+    "position": "CM",
+    "icon": "🚀",
+    "imageUrl": ""
+  },
+  {
+    "id": 101,
+    "name": "Kevin De Bruyne",
+    "nation": "Belgium",
+    "rating": 94,
+    "position": "CM",
+    "icon": "🧠",
+    "imageUrl": ""
+  },
+  {
+    "id": 102,
+    "name": "Eden Hazard",
+    "nation": "Belgium",
+    "rating": 93,
+    "position": "LW",
+    "icon": "⚡",
+    "imageUrl": ""
+  },
+  {
+    "id": 103,
+    "name": "Thibaut Courtois",
+    "nation": "Belgium",
+    "rating": 92,
+    "position": "GK",
+    "icon": "🧱",
+    "imageUrl": ""
+  },
+  {
+    "id": 104,
+    "name": "Romelu Lukaku",
+    "nation": "Belgium",
+    "rating": 90,
+    "position": "ST",
+    "icon": "🦍",
+    "imageUrl": ""
+  },
+  {
+    "id": 105,
+    "name": "Hristo Stoichkov",
+    "nation": "Bulgaria",
+    "rating": 93,
+    "position": "ST",
+    "icon": "🗡️",
+    "imageUrl": ""
+  },
+  {
+    "id": 106,
+    "name": "George Weah",
+    "nation": "Liberia",
+    "rating": 93,
+    "position": "ST",
+    "icon": "👑",
+    "imageUrl": ""
+  },
+  {
+    "id": 107,
+    "name": "Andriy Shevchenko",
+    "nation": "Ukraine",
+    "rating": 93,
+    "position": "ST",
+    "icon": "🚀",
+    "imageUrl": ""
+  },
+  {
+    "id": 108,
+    "name": "Gheorghe Hagi",
+    "nation": "Romania",
+    "rating": 92,
+    "position": "CAM",
+    "icon": "👑",
+    "imageUrl": ""
+  },
+  {
+    "id": 109,
+    "name": "Hugo Sánchez",
+    "nation": "Mexico",
+    "rating": 92,
+    "position": "ST",
+    "icon": "🤸",
+    "imageUrl": ""
+  },
+  {
+    "id": 110,
+    "name": "Robert Lewandowski",
+    "nation": "Poland",
+    "rating": 95,
+    "position": "ST",
+    "icon": "🤖",
+    "imageUrl": ""
+  },
+  {
+    "id": 111,
+    "name": "Zlatan Ibrahimović",
+    "nation": "Sweden",
+    "rating": 93,
+    "position": "ST",
+    "icon": "🦁",
+    "imageUrl": ""
+  },
+  {
+    "id": 112,
+    "name": "Samuel Eto'o",
+    "nation": "Cameroon",
+    "rating": 93,
+    "position": "ST",
+    "icon": "🐆",
+    "imageUrl": ""
+  },
+  {
+    "id": 113,
+    "name": "Didier Drogba",
+    "nation": "Ivory Coast",
+    "rating": 92,
+    "position": "ST",
+    "icon": "🐘",
+    "imageUrl": ""
+  },
+  {
+    "id": 114,
+    "name": "Roger Milla",
+    "nation": "Cameroon",
+    "rating": 91,
+    "position": "ST",
+    "icon": "🕺",
+    "imageUrl": ""
+  },
+  {
+    "id": 115,
+    "name": "Lev Yashin",
+    "nation": "Soviet Union",
+    "rating": 95,
+    "position": "GK",
+    "icon": "🕷️",
+    "imageUrl": ""
+  },
+  {
+    "id": 116,
+    "name": "Ferenc Puskás",
+    "nation": "Hungary",
+    "rating": 96,
+    "position": "CF",
+    "icon": "☄️",
+    "imageUrl": ""
   }
 ]
