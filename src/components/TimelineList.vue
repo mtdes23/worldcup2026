@@ -95,6 +95,13 @@
                 </div>
               </div>
 
+              <!-- Lineup Button -->
+              <div class="mt-8 border-t border-white/10 pt-4 flex justify-end">
+                <button @click.stop="showLineup(item)" class="bg-cyan-500/20 hover:bg-cyan-500 text-cyan-300 hover:text-[#13072e] font-bold py-2 px-5 rounded-full transition-all flex items-center gap-2 border border-cyan-500/50 hover:border-cyan-500 text-sm">
+                  ⚽ Xem Đội Hình Tiêu Biểu
+                </button>
+              </div>
+
             </div>
           </div>
         </div>
@@ -125,6 +132,72 @@
         </div>
       </div>
     </div>
+
+    <!-- Dream Team Lineup Modal -->
+    <div v-if="lineupModal" class="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-6 bg-[#13072e]/95 backdrop-blur-md" @click.self="closeLineupModal">
+      <div class="bg-[#24124a] rounded-[2rem] w-full max-w-3xl overflow-hidden flex flex-col shadow-2xl border border-white/20 animate-slide-up relative">
+        <button @click="closeLineupModal" class="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-fuchsia-500 rounded-full flex items-center justify-center text-white z-20 transition-colors">
+          ✕
+        </button>
+        
+        <div class="p-4 sm:p-8">
+          <div class="text-center mb-6">
+            <h2 class="text-2xl sm:text-3xl font-black text-white mb-1">Đội Hình Tiêu Biểu</h2>
+            <p class="text-cyan-400 font-bold uppercase tracking-widest text-sm">World Cup {{ lineupModal.year }}</p>
+          </div>
+          
+          <!-- Pitch Area -->
+          <div class="bg-[#0c1f10] border-2 border-white/10 rounded-[2rem] p-4 sm:p-6 relative overflow-hidden shadow-inner max-h-[70vh] overflow-y-auto custom-scrollbar">
+            <!-- Pitch Lines -->
+            <div class="absolute inset-2 sm:inset-4 border-2 border-white/20 rounded-xl pointer-events-none"></div>
+            <div class="absolute top-1/2 left-2 sm:left-4 right-2 sm:right-4 h-0 border-t-2 border-white/20 pointer-events-none"></div>
+            <div class="absolute top-1/2 left-1/2 w-20 h-20 sm:w-24 sm:h-24 border-2 border-white/20 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+            <div class="absolute top-2 sm:top-4 left-1/2 w-32 sm:w-48 h-12 sm:h-20 border-2 border-t-0 border-white/20 -translate-x-1/2 pointer-events-none"></div>
+            <div class="absolute bottom-2 sm:bottom-4 left-1/2 w-32 sm:w-48 h-12 sm:h-20 border-2 border-b-0 border-white/20 -translate-x-1/2 pointer-events-none"></div>
+
+            <!-- Players Container (4-3-3 Format) -->
+            <div class="relative z-10 w-full h-[500px] sm:h-[600px] flex flex-col justify-between py-4">
+              <!-- FW -->
+              <div class="flex justify-around px-2">
+                <div v-for="player in getPlayersByPos(lineupModal.players, 'FW')" :key="player.name" class="text-center w-20 group">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-fuchsia-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-fuchsia-500/30 transition-all shadow-lg text-white font-bold">FW</div>
+                  <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
+                  <div class="text-fuchsia-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
+                </div>
+              </div>
+              
+              <!-- MID -->
+              <div class="flex justify-around px-6 sm:px-16">
+                <div v-for="player in getPlayersByPos(lineupModal.players, 'MID')" :key="player.name" class="text-center w-20 group">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-cyan-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-cyan-500/30 transition-all shadow-lg text-white font-bold">MD</div>
+                  <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
+                  <div class="text-cyan-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
+                </div>
+              </div>
+              
+              <!-- DEF -->
+              <div class="flex justify-between px-0 sm:px-4">
+                <div v-for="player in getPlayersByPos(lineupModal.players, 'DEF')" :key="player.name" class="text-center w-20 group">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-yellow-400 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-yellow-400/30 transition-all shadow-lg text-white font-bold">DF</div>
+                  <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
+                  <div class="text-yellow-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
+                </div>
+              </div>
+              
+              <!-- GK -->
+              <div class="flex justify-center mt-2">
+                <div v-for="player in getPlayersByPos(lineupModal.players, 'GK')" :key="player.name" class="text-center w-20 group">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 border-2 border-white/60 rounded-full flex items-center justify-center text-sm sm:text-base mx-auto mb-1 group-hover:scale-110 group-hover:bg-white/30 transition-all shadow-lg text-white font-bold">GK</div>
+                  <div class="bg-black/80 text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded truncate border border-white/10">{{ player.name }}</div>
+                  <div class="text-gray-300 text-[8px] sm:text-[9px] uppercase font-bold mt-0.5 truncate">{{ player.team }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -190,6 +263,85 @@ const showDetail = (type, value, wc) => {
     content,
     year: wc.year
   }
+}
+
+// Lineup Modal Logic
+const lineupModal = ref(null)
+
+const knownLineups = {
+  2022: [
+    { name: "E. Martínez", pos: "GK", team: "Argentina" },
+    { name: "A. Hakimi", pos: "DEF", team: "Maroc" },
+    { name: "C. Romero", pos: "DEF", team: "Argentina" },
+    { name: "J. Gvardiol", pos: "DEF", team: "Croatia" },
+    { name: "T. Hernandez", pos: "DEF", team: "Pháp" },
+    { name: "S. Amrabat", pos: "MID", team: "Maroc" },
+    { name: "E. Fernández", pos: "MID", team: "Argentina" },
+    { name: "A. Griezmann", pos: "MID", team: "Pháp" },
+    { name: "L. Messi", pos: "FW", team: "Argentina" },
+    { name: "K. Mbappé", pos: "FW", team: "Pháp" },
+    { name: "J. Álvarez", pos: "FW", team: "Argentina" }
+  ],
+  2018: [
+    { name: "T. Courtois", pos: "GK", team: "Bỉ" },
+    { name: "K. Trippier", pos: "DEF", team: "Anh" },
+    { name: "R. Varane", pos: "DEF", team: "Pháp" },
+    { name: "Y. Mina", pos: "DEF", team: "Colombia" },
+    { name: "L. Hernandez", pos: "DEF", team: "Pháp" },
+    { name: "L. Modrić", pos: "MID", team: "Croatia" },
+    { name: "N. Kanté", pos: "MID", team: "Pháp" },
+    { name: "K. De Bruyne", pos: "MID", team: "Bỉ" },
+    { name: "K. Mbappé", pos: "FW", team: "Pháp" },
+    { name: "H. Kane", pos: "FW", team: "Anh" },
+    { name: "E. Hazard", pos: "FW", team: "Bỉ" }
+  ],
+  2014: [
+    { name: "M. Neuer", pos: "GK", team: "Đức" },
+    { name: "P. Lahm", pos: "DEF", team: "Đức" },
+    { name: "M. Hummels", pos: "DEF", team: "Đức" },
+    { name: "T. Silva", pos: "DEF", team: "Brazil" },
+    { name: "M. Rojo", pos: "DEF", team: "Argentina" },
+    { name: "T. Kroos", pos: "MID", team: "Đức" },
+    { name: "J. Mascherano", pos: "MID", team: "Argentina" },
+    { name: "J. Rodríguez", pos: "MID", team: "Colombia" },
+    { name: "A. Robben", pos: "FW", team: "Hà Lan" },
+    { name: "T. Müller", pos: "FW", team: "Đức" },
+    { name: "L. Messi", pos: "FW", team: "Argentina" }
+  ]
+}
+
+const generateGenericLineup = (champ, runnerUp) => {
+  return [
+    { name: "Thủ môn xuất sắc", pos: "GK", team: champ },
+    { name: "Hậu vệ phải", pos: "DEF", team: champ },
+    { name: "Trung vệ thép", pos: "DEF", team: runnerUp },
+    { name: "Trung vệ thạo", pos: "DEF", team: champ },
+    { name: "Hậu vệ trái", pos: "DEF", team: runnerUp },
+    { name: "Tiền vệ phòng ngự", pos: "MID", team: champ },
+    { name: "Tiền vệ kiến thiết", pos: "MID", team: runnerUp },
+    { name: "Tiền vệ công", pos: "MID", team: champ },
+    { name: "Tiền đạo cánh", pos: "FW", team: champ },
+    { name: "Trung phong cắm", pos: "FW", team: runnerUp },
+    { name: "Tiền đạo lùi", pos: "FW", team: champ }
+  ]
+}
+
+const showLineup = (wc) => {
+  const players = knownLineups[wc.year] || generateGenericLineup(wc.champion, wc.runnerUp)
+  lineupModal.value = {
+    year: wc.year,
+    players: players
+  }
+  document.body.style.overflow = 'hidden'
+}
+
+const closeLineupModal = () => {
+  lineupModal.value = null
+  document.body.style.overflow = ''
+}
+
+const getPlayersByPos = (players, pos) => {
+  return players.filter(p => p.pos === pos)
 }
 
 onMounted(() => {
