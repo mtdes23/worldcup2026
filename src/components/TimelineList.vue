@@ -126,9 +126,33 @@
           <h2 class="text-2xl font-black text-white mb-2">{{ detailModal.name }}</h2>
           <div class="text-fuchsia-400 text-xs uppercase font-bold mb-6 tracking-widest">{{ detailModal.title }}</div>
           
-          <p class="text-gray-300 leading-relaxed bg-black/20 p-5 rounded-2xl text-sm font-medium border border-white/5">
+          <p class="text-gray-300 leading-relaxed bg-black/20 p-5 rounded-2xl text-sm font-medium border border-white/5 mb-4">
             {{ detailModal.content }}
           </p>
+
+          <!-- Wiki History Box (Only for Players) -->
+          <div v-if="detailModal.wikiLoading !== undefined" class="bg-black/30 border border-fuchsia-500/20 rounded-2xl p-5 text-left relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-fuchsia-500 to-cyan-500"></div>
+            <h4 class="text-fuchsia-400 font-bold text-xs uppercase mb-2 flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              Tóm tắt sự nghiệp (Wikipedia)
+            </h4>
+            
+            <div v-if="detailModal.wikiLoading" class="flex flex-col items-center justify-center py-4 space-y-3">
+              <div class="w-5 h-5 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+              <span class="text-cyan-300/50 text-xs animate-pulse">Đang trích xuất kho lưu trữ...</span>
+            </div>
+            
+            <div v-else class="text-gray-300 text-[13px] leading-relaxed">
+              {{ detailModal.wikiBio }}
+              <a v-if="detailModal.wikiBio && !detailModal.wikiBio.includes('Chưa tìm thấy')" 
+                 :href="'https://vi.wikipedia.org/wiki/Special:Search?search=' + encodeURIComponent(detailModal.name)" 
+                 target="_blank" 
+                 class="text-cyan-400 hover:text-cyan-300 font-bold block mt-2 text-xs">
+                Xem toàn bộ trên Wikipedia ↗
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -265,19 +289,41 @@ const showDetail = (type, value, wc) => {
   }
 }
 
-const showPlayerDetail = (player, year) => {
+const showPlayerDetail = async (player, year) => {
   let posText = ''
   if (player.pos === 'FW') posText = 'Tiền đạo'
   else if (player.pos === 'MID') posText = 'Tiền vệ'
   else if (player.pos === 'DEF') posText = 'Hậu vệ'
   else if (player.pos === 'GK') posText = 'Thủ môn'
 
+  // Set initial modal with loading state for history
   detailModal.value = {
     title: 'Ngôi Sao Đội Hình Tiêu Biểu',
     icon: '⭐',
     name: player.name,
     content: `Cầu thủ ${player.name} mang quốc tịch ${player.team} thi đấu ở vị trí ${posText} đã lọt vào đội hình tiêu biểu xuất sắc nhất của kỳ World Cup ${year}.`,
-    year: year
+    year: year,
+    wikiLoading: true,
+    wikiBio: ''
+  }
+
+  try {
+    // Search Wikipedia VI for the player
+    const searchTerm = encodeURIComponent(`${player.name} ${player.team} bóng đá`)
+    const res = await fetch(`https://vi.wikipedia.org/w/api.php?action=query&list=search&srsearch=${searchTerm}&utf8=&format=json&origin=*`)
+    const data = await res.json()
+    
+    if (data.query && data.query.search && data.query.search.length > 0) {
+      // Get the snippet and remove HTML tags
+      let snippet = data.query.search[0].snippet.replace(/<\/?[^>]+(>|$)/g, "")
+      detailModal.value.wikiBio = snippet + '...'
+    } else {
+      detailModal.value.wikiBio = 'Chưa tìm thấy thông tin lịch sử chi tiết trên Wikipedia cho cầu thủ này.'
+    }
+  } catch (error) {
+    detailModal.value.wikiBio = 'Không thể tải lịch sử cầu thủ lúc này.'
+  } finally {
+    if (detailModal.value) detailModal.value.wikiLoading = false
   }
 }
 
