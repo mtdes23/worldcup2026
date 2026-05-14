@@ -9,6 +9,21 @@ import StatsCompareView from './components/StatsCompareView.vue'
 
 const history = ref(historyData)
 const currentTab = ref('timeline')
+
+// Stadium Audio Logic
+const isAudioPlaying = ref(false)
+const audioRef = ref(null)
+
+const toggleAudio = () => {
+  if (!audioRef.value) return;
+  if (isAudioPlaying.value) {
+    audioRef.value.pause();
+    isAudioPlaying.value = false;
+  } else {
+    audioRef.value.play().catch(e => console.log('Audio play failed:', e));
+    isAudioPlaying.value = true;
+  }
+}
 </script>
 
 <template>
@@ -94,6 +109,18 @@ const currentTab = ref('timeline')
     <footer class="py-8 text-center text-white/50 text-xs font-medium relative z-10">
       Thiết kế tràn đầy năng lượng bởi <a href="https://www.mtdes23.id.vn" target="_blank" class="text-cyan-400 font-bold hover:text-fuchsia-400 transition-colors">mtdes23</a>
     </footer>
+
+    <!-- Floating Audio Toggle Button -->
+    <button @click="toggleAudio" class="fixed bottom-6 right-6 z-[100] w-12 h-12 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(217,70,239,0.3)] transition-all duration-300" :class="isAudioPlaying ? 'bg-fuchsia-500 text-white animate-pulse' : 'bg-[#24124a] text-gray-400 border border-white/10'">
+      <svg v-if="!isAudioPlaying" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>
+      <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+    </button>
+
+    <!-- Background Stadium Audio -->
+    <audio ref="audioRef" loop>
+      <source src="https://assets.mixkit.co/active_storage/sfx/2006/2006-preview.mp3" type="audio/mpeg">
+    </audio>
+
   </div>
 </template>
 
