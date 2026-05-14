@@ -7,7 +7,13 @@
     "score": "4-2",
     "topScorer": "Guillermo Stábile (8 bàn)",
     "description": "Kỳ World Cup đầu tiên trong lịch sử với sự tham gia của 13 đội tuyển. Không có vòng loại, tất cả các đội đều được mời tham dự.",
-    "color": "from-sky-400 to-yellow-400"
+    "color": "from-sky-400 to-yellow-400",
+    "notablePlayers": ["Guillermo Stábile (Uruguay)", "José Nasazzi (Uruguay)"],
+    "achievements": [
+      "Kỳ WC duy nhất không có vòng loại.",
+      "Pháp ghi bàn thắng đầu tiên trong lịch sử WC.",
+      "Cầu thủ Héctor Castro (Uruguay) ghi bàn dù chỉ có một tay."
+    ]
   },
   {
     "year": 1934,
@@ -17,7 +23,13 @@
     "score": "2-1 (Hiệp phụ)",
     "topScorer": "Oldřich Nejedlý (5 bàn)",
     "description": "Giải đấu đầu tiên có vòng loại. Đội chủ nhà Ý đã giành chức vô địch dưới sự dẫn dắt của HLV huyền thoại Vittorio Pozzo.",
-    "color": "from-blue-600 to-blue-400"
+    "color": "from-blue-600 to-blue-400",
+    "notablePlayers": ["Giuseppe Meazza (Ý)", "Oldřich Nejedlý (Tiệp Khắc)"],
+    "achievements": [
+      "Lần đầu tiên giải đấu được tổ chức tại Châu Âu.",
+      "Nhà vô địch World Cup 1930 (Uruguay) tẩy chay không tham dự.",
+      "Đội tuyển Ai Cập trở thành đại diện Châu Phi đầu tiên tham dự."
+    ]
   },
   {
     "year": 1938,
@@ -27,7 +39,13 @@
     "score": "4-2",
     "topScorer": "Leônidas (7 bàn)",
     "description": "Kỳ World Cup cuối cùng trước Chiến tranh Thế giới thứ hai. Ý trở thành đội đầu tiên bảo vệ thành công chức vô địch.",
-    "color": "from-blue-600 to-blue-400"
+    "color": "from-blue-600 to-blue-400",
+    "notablePlayers": ["Leônidas (Brazil)", "Silvio Piola (Ý)"],
+    "achievements": [
+      "Ý là đội duy nhất vô địch 2 lần liên tiếp dưới cùng 1 HLV (Vittorio Pozzo).",
+      "Tiền đạo Leônidas (Brazil) được ghi nhận với cú 'xe đạp chổng ngược' (Bicycle kick).",
+      "Kỳ WC đầu tiên đội chủ nhà và đội vô địch kỳ trước được đặc cách vào thẳng."
+    ]
   },
   {
     "year": 1950,
@@ -37,7 +55,13 @@
     "score": "2-1",
     "topScorer": "Ademir (8 bàn)",
     "description": "Nổi tiếng với thảm họa 'Maracanazo', nơi Uruguay bất ngờ đánh bại chủ nhà Brazil trước sức ép của gần 200,000 khán giả.",
-    "color": "from-sky-400 to-yellow-400"
+    "color": "from-sky-400 to-yellow-400",
+    "notablePlayers": ["Juan A. Schiaffino (Uruguay)", "Obdulio Varela (Uruguay)", "Ademir (Brazil)"],
+    "achievements": [
+      "Kỳ WC duy nhất không có trận chung kết thực sự (đá vòng tròn tính điểm vòng cuối).",
+      "Kỷ lục lượng khán giả dự xem trận đấu lớn nhất lịch sử (khoảng 199,854 người).",
+      "Ấn Độ rút lui vì FIFA cấm các cầu thủ thi đấu bằng chân đất."
+    ]
   },
   {
     "year": 1954,
@@ -47,7 +71,13 @@
     "score": "3-2",
     "topScorer": "Sándor Kocsis (11 bàn)",
     "description": "'Phép màu Bern' - Tây Đức đánh bại 'Đội bóng vàng' Hungary không thể bị đánh bại trước đó, tạo nên cú lội ngược dòng vĩ đại.",
-    "color": "from-zinc-700 to-zinc-400"
+    "color": "from-zinc-700 to-zinc-400",
+    "notablePlayers": ["Ferenc Puskás (Hungary)", "Fritz Walter (Tây Đức)", "Sándor Kocsis (Hungary)"],
+    "achievements": [
+      "Kỳ WC có tỉ lệ bàn thắng cao nhất lịch sử (5.38 bàn/trận, tổng 140 bàn).",
+      "Trận cầu nhiều bàn thắng nhất lịch sử WC: Áo 7-5 Thụy Sĩ.",
+      "Lần đầu tiên giải đấu được phát sóng trên truyền hình."
+    ]
   },
   {
     "year": 1958,
@@ -57,7 +87,13 @@
     "score": "5-2",
     "topScorer": "Just Fontaine (13 bàn)",
     "description": "Sự xuất hiện của cậu bé 17 tuổi tên là Pelé, lập cú đúp trong trận chung kết để mang về cúp vô địch đầu tiên cho Brazil.",
-    "color": "from-yellow-400 to-green-500"
+    "color": "from-yellow-400 to-green-500",
+    "notablePlayers": ["Pelé (Brazil)", "Just Fontaine (Pháp)", "Garrincha (Brazil)"],
+    "achievements": [
+      "Kỷ lục 13 bàn thắng/giải của Just Fontaine (Pháp) đến nay vẫn chưa bị phá.",
+      "Pelé trở thành cầu thủ trẻ nhất ghi bàn ở chung kết WC (17 tuổi 249 ngày).",
+      "Lần đầu tiên một đội bóng Nam Mỹ vô địch tại một giải đấu tổ chức ở Châu Âu."
+    ]
   },
   {
     "year": 1962,
@@ -66,8 +102,14 @@
     "runnerUp": "Tiệp Khắc",
     "score": "3-1",
     "topScorer": "Garrincha & 5 người khác (4 bàn)",
-    "description": "Garrincha thay thế xuất sắc Pelé bị chấn thương để dẫn dắt Brazil bảo vệ ngôi vương thế giới.",
-    "color": "from-yellow-400 to-green-500"
+    "description": "Garrincha thay thế xuất sắc Pelé bị chấn thương ở vòng bảng để dẫn dắt Brazil bảo vệ ngôi vương thế giới.",
+    "color": "from-yellow-400 to-green-500",
+    "notablePlayers": ["Garrincha (Brazil)", "Vavá (Brazil)", "Josef Masopust (Tiệp Khắc)"],
+    "achievements": [
+      "Garrincha đạt phong độ không thể ngăn cản, cõng cả hàng công Brazil.",
+      "Trận 'Chiến dịch Santiago' giữa Chile và Ý đi vào lịch sử vì sự bạo lực tàn nhẫn.",
+      "Lần đầu tiên và duy nhất có 6 cầu thủ chia sẻ giải Vua phá lưới."
+    ]
   },
   {
     "year": 1966,
@@ -77,7 +119,13 @@
     "score": "4-2 (Hiệp phụ)",
     "topScorer": "Eusébio (9 bàn)",
     "description": "'Bóng đá đã trở về nhà'. Chức vô địch duy nhất của tuyển Anh với cú hat-trick lịch sử của Geoff Hurst.",
-    "color": "from-red-600 to-red-400"
+    "color": "from-red-600 to-red-400",
+    "notablePlayers": ["Eusébio (Bồ Đào Nha)", "Bobby Charlton (Anh)", "Franz Beckenbauer (Tây Đức)"],
+    "achievements": [
+      "Bàn thắng 'bóng ma' (Ghost goal) gây tranh cãi của Geoff Hurst trong trận chung kết.",
+      "Chiếc cúp Jules Rimet bị đánh cắp trước giải và được tìm thấy bởi chú chó Pickles.",
+      "Kỳ WC đầu tiên có linh vật chính thức (Sư tử Willie)."
+    ]
   },
   {
     "year": 1970,
@@ -86,8 +134,14 @@
     "runnerUp": "Ý",
     "score": "4-1",
     "topScorer": "Gerd Müller (10 bàn)",
-    "description": "Tuyển Brazil năm 1970 được coi là đội hình vĩ đại nhất mọi thời đại, trình diễn thứ bóng đá Jogo Bonito tấn công cống hiến.",
-    "color": "from-yellow-400 to-green-500"
+    "description": "Tuyển Brazil 1970 được coi là đội hình vĩ đại nhất mọi thời đại, trình diễn thứ bóng đá Jogo Bonito tấn công cống hiến.",
+    "color": "from-yellow-400 to-green-500",
+    "notablePlayers": ["Pelé (Brazil)", "Gerd Müller (Tây Đức)", "Jairzinho (Brazil)"],
+    "achievements": [
+      "Brazil vô địch lần thứ 3, được phép giữ vĩnh viễn chiếc cúp Jules Rimet.",
+      "Jairzinho (Brazil) ghi bàn trong tất cả các trận đấu từ vòng bảng đến chung kết.",
+      "Lần đầu tiên Thẻ Vàng, Thẻ Đỏ và luật Thay người được áp dụng."
+    ]
   },
   {
     "year": 1974,
@@ -97,7 +151,13 @@
     "score": "2-1",
     "topScorer": "Grzegorz Lato (7 bàn)",
     "description": "Sự ra đời của 'Bóng đá Tổng lực' (Total Football) của Hà Lan nhưng bị khuất phục bởi tính kỷ luật thép của Tây Đức.",
-    "color": "from-zinc-700 to-zinc-400"
+    "color": "from-zinc-700 to-zinc-400",
+    "notablePlayers": ["Johan Cruyff (Hà Lan)", "Franz Beckenbauer (Tây Đức)", "Grzegorz Lato (Ba Lan)"],
+    "achievements": [
+      "Sự ra mắt của chiếc cúp FIFA World Cup hiện tại (do điêu khắc gia người Ý thiết kế).",
+      "Hà Lan mở tỷ số ngay phút thứ 2 trong trận chung kết mà Tây Đức chưa kịp chạm bóng.",
+      "Lần đầu tiên đội bóng Zaire (nay là CHDC Congo) tham dự WC đại diện khu vực châu Phi cận Sahara."
+    ]
   },
   {
     "year": 1978,
@@ -107,7 +167,13 @@
     "score": "3-1 (Hiệp phụ)",
     "topScorer": "Mario Kempes (6 bàn)",
     "description": "Mario Kempes tỏa sáng rực rỡ giúp Argentina giữ chiếc cúp vô địch ở lại sân nhà dưới cơn mưa hoa giấy nổi tiếng.",
-    "color": "from-sky-400 to-sky-200"
+    "color": "from-sky-400 to-sky-200",
+    "notablePlayers": ["Mario Kempes (Argentina)", "Rob Rensenbrink (Hà Lan)", "Teófilo Cubillas (Peru)"],
+    "achievements": [
+      "Trận thắng 6-0 đầy tranh cãi của Argentina trước Peru để lọt vào chung kết.",
+      "Hà Lan lập kỷ lục buồn khi thua trận chung kết WC thứ 2 liên tiếp.",
+      "Johan Cruyff từ chối tham dự giải đấu (sau này tiết lộ do vấn đề an ninh gia đình)."
+    ]
   },
   {
     "year": 1982,
@@ -117,7 +183,13 @@
     "score": "3-1",
     "topScorer": "Paolo Rossi (6 bàn)",
     "description": "Màn trình diễn bùng nổ của Paolo Rossi đã mang về chức vô địch thế giới thứ 3 cho đội tuyển Ý sau khởi đầu rất chật vật.",
-    "color": "from-blue-600 to-blue-400"
+    "color": "from-blue-600 to-blue-400",
+    "notablePlayers": ["Paolo Rossi (Ý)", "Zico (Brazil)", "Karl-Heinz Rummenigge (Tây Đức)"],
+    "achievements": [
+      "Trận 'Kịch chiến Seville' ở Bán kết giữa Pháp và Tây Đức (có màn sút luân lưu đầu tiên lịch sử WC).",
+      "Tuyển Brazil 1982 được bình chọn là 'Đội bóng không vô địch hay nhất lịch sử'.",
+      "Lần đầu tiên số đội tham dự được mở rộng từ 16 lên 24."
+    ]
   },
   {
     "year": 1986,
@@ -127,7 +199,13 @@
     "score": "3-2",
     "topScorer": "Gary Lineker (6 bàn)",
     "description": "Kỳ World Cup của Diego Maradona. Màn trình diễn siêu phàm cùng 'Bàn tay của Chúa' và 'Bàn thắng của thế kỷ'.",
-    "color": "from-sky-400 to-sky-200"
+    "color": "from-sky-400 to-sky-200",
+    "notablePlayers": ["Diego Maradona (Argentina)", "Gary Lineker (Anh)", "Michel Platini (Pháp)"],
+    "achievements": [
+      "Cú đúp kinh điển của Maradona vào lưới tuyển Anh tại Tứ kết.",
+      "Sự ra đời của kiểu ăn mừng 'Sóng người' (Mexican Wave) trên khán đài.",
+      "Tuyển Đan Mạch ra mắt WC ấn tượng với lối đá bùng nổ mang tên 'Danish Dynamite'."
+    ]
   },
   {
     "year": 1990,
@@ -137,7 +215,13 @@
     "score": "1-0",
     "topScorer": "Salvatore Schillaci (6 bàn)",
     "description": "Một giải đấu nghèo nàn bàn thắng nhưng đậm tính chiến thuật. Tây Đức trả món nợ trước Argentina nhờ quả phạt đền của Brehme.",
-    "color": "from-zinc-700 to-zinc-400"
+    "color": "from-zinc-700 to-zinc-400",
+    "notablePlayers": ["Lothar Matthäus (Tây Đức)", "Salvatore Schillaci (Ý)", "Paul Gascoigne (Anh)"],
+    "achievements": [
+      "Kỳ WC có tỷ lệ bàn thắng thấp nhất lịch sử (chỉ 2.21 bàn/trận).",
+      "Cameroon với 'Sư tử già' Roger Milla trở thành đội bóng Châu Phi đầu tiên lọt vào Tứ kết.",
+      "Hệ quả từ sự tiêu cực đã khiến FIFA đổi luật: Tính 3 điểm cho 1 trận thắng và cấm thủ môn bắt bóng từ đường chuyền về."
+    ]
   },
   {
     "year": 1994,
@@ -147,7 +231,13 @@
     "score": "0-0 (Pen 3-2)",
     "topScorer": "H. Stoichkov, O. Salenko (6 bàn)",
     "description": "Chung kết World Cup đầu tiên được giải quyết trên chấm luân lưu. Cú đá hỏng ăn nghiệt ngã của Roberto Baggio.",
-    "color": "from-yellow-400 to-green-500"
+    "color": "from-yellow-400 to-green-500",
+    "notablePlayers": ["Romário (Brazil)", "Roberto Baggio (Ý)", "Hristo Stoichkov (Bulgaria)"],
+    "achievements": [
+      "Trận chung kết đầu tiên (và duy nhất) không có bàn thắng trong 120 phút.",
+      "Oleg Salenko (Nga) lập kỷ lục ghi 5 bàn trong một trận đấu (gặp Cameroon).",
+      "Bi kịch của Andrés Escobar (Colombia) bị bắn chết ở quê nhà vì phản lưới nhà."
+    ]
   },
   {
     "year": 1998,
@@ -157,7 +247,13 @@
     "score": "3-0",
     "topScorer": "Davor Šuker (6 bàn)",
     "description": "Zinedine Zidane lập cú đúp đánh đầu cháy lưới Brazil, mang về chức vô địch đầu tiên cho Gà trống Gaulois.",
-    "color": "from-blue-700 to-red-600"
+    "color": "from-blue-700 to-red-600",
+    "notablePlayers": ["Zinedine Zidane (Pháp)", "Ronaldo (Brazil)", "Davor Šuker (Croatia)"],
+    "achievements": [
+      "Lần đầu tiên quy mô giải đấu mở rộng lên 32 đội tham dự.",
+      "Cơn động kinh bí ẩn của 'Người ngoài hành tinh' Ronaldo ngay trước thềm trận chung kết.",
+      "Pháp lần đầu tiên trong lịch sử bước lên đỉnh thế giới."
+    ]
   },
   {
     "year": 2002,
@@ -167,7 +263,13 @@
     "score": "2-0",
     "topScorer": "Ronaldo (8 bàn)",
     "description": "Kỳ World Cup đầu tiên diễn ra tại châu Á. Sự hồi sinh kỳ diệu của 'Người ngoài hành tinh' Ronaldo với cú đúp ở chung kết.",
-    "color": "from-yellow-400 to-green-500"
+    "color": "from-yellow-400 to-green-500",
+    "notablePlayers": ["Ronaldo (Brazil)", "Oliver Kahn (Đức)", "Rivaldo (Brazil)"],
+    "achievements": [
+      "Kỳ WC đầu tiên trong lịch sử do hai quốc gia đồng đăng cai.",
+      "Hàn Quốc và Thổ Nhĩ Kỳ tạo nên cơn địa chấn khi lọt vào tới tận Bán kết.",
+      "Oliver Kahn trở thành thủ môn đầu tiên (và duy nhất đến nay) giành Quả bóng vàng WC."
+    ]
   },
   {
     "year": 2006,
@@ -177,7 +279,13 @@
     "score": "1-1 (Pen 5-3)",
     "topScorer": "Miroslav Klose (5 bàn)",
     "description": "Cú húc đầu chấn động của Zidane và khoảnh khắc Fabio Grosso ghi bàn định mệnh đưa đội tuyển Ý lên đỉnh thế giới.",
-    "color": "from-blue-600 to-blue-400"
+    "color": "from-blue-600 to-blue-400",
+    "notablePlayers": ["Zinedine Zidane (Pháp)", "Fabio Cannavaro (Ý)", "Gianluigi Buffon (Ý)"],
+    "achievements": [
+      "Cú 'Thiết đầu công' của Zidane vào ngực Materazzi khép lại sự nghiệp vĩ đại bằng chiếc thẻ đỏ.",
+      "Hàng thủ thép của Ý vô địch mà không để cầu thủ đối phương nào ghi bàn trong các tình huống bóng sống.",
+      "Trận Hà Lan - Bồ Đào Nha ('Trận chiến Nuremberg') lập kỷ lục 16 thẻ vàng, 4 thẻ đỏ."
+    ]
   },
   {
     "year": 2010,
@@ -187,7 +295,13 @@
     "score": "1-0 (Hiệp phụ)",
     "topScorer": "Müller, Villa, Sneijder, Forlán (5 bàn)",
     "description": "Bóng đá Tiqui-taca lên ngôi. Cú vô lê quyết đoán của Andres Iniesta ở phút 116 đã mang về cúp vàng cho Tây Ban Nha.",
-    "color": "from-red-600 to-yellow-500"
+    "color": "from-red-600 to-yellow-500",
+    "notablePlayers": ["Andrés Iniesta (Tây Ban Nha)", "Diego Forlán (Uruguay)", "Wesley Sneijder (Hà Lan)"],
+    "achievements": [
+      "Lần đầu tiên giải đấu được tổ chức tại lục địa Châu Phi.",
+      "Tây Ban Nha trở thành nhà vô địch ghi được ít bàn thắng nhất lịch sử (8 bàn).",
+      "Tiếng kèn Vuvuzela ồn ào và Bạch tuộc Paul tiên tri trở thành biểu tượng văn hóa."
+    ]
   },
   {
     "year": 2014,
@@ -197,7 +311,13 @@
     "score": "1-0 (Hiệp phụ)",
     "topScorer": "James Rodríguez (6 bàn)",
     "description": "Thảm họa Mineirazo (Đức 7-1 Brazil) và khoảnh khắc chói sáng của Mario Götze ở phút 113 đánh chìm giấc mơ của Messi.",
-    "color": "from-zinc-700 to-zinc-400"
+    "color": "from-zinc-700 to-zinc-400",
+    "notablePlayers": ["Lionel Messi (Argentina)", "Thomas Müller (Đức)", "James Rodríguez (Colombia)"],
+    "achievements": [
+      "Thảm bại kinh hoàng nhất của đội tuyển Brazil: Thua Đức 1-7 ở Bán kết.",
+      "Miroslav Klose (Đức) phá kỷ lục của Ronaldo để trở thành Cầu thủ ghi nhiều bàn nhất lịch sử WC (16 bàn).",
+      "Lần đầu tiên áp dụng bọt xịt vạch kẻ và Công nghệ Goal-line."
+    ]
   },
   {
     "year": 2018,
@@ -207,7 +327,13 @@
     "score": "4-2",
     "topScorer": "Harry Kane (6 bàn)",
     "description": "Thế hệ vàng thứ hai của tuyển Pháp với Mbappe rực sáng, cùng hành trình quả cảm của hiện tượng Croatia đi đến chung kết.",
-    "color": "from-blue-700 to-red-600"
+    "color": "from-blue-700 to-red-600",
+    "notablePlayers": ["Kylian Mbappé (Pháp)", "Luka Modrić (Croatia)", "Eden Hazard (Bỉ)"],
+    "achievements": [
+      "Lần đầu tiên áp dụng Công nghệ Video Hỗ trợ Trọng tài (VAR).",
+      "Kylian Mbappé trở thành cầu thủ tuổi teen thứ 2 sau Pelé ghi bàn ở một trận chung kết.",
+      "Pháp vô địch với lối đá thực dụng phản công cực kỳ khoa học và hiệu quả."
+    ]
   },
   {
     "year": 2022,
@@ -217,6 +343,12 @@
     "score": "3-3 (Pen 4-2)",
     "topScorer": "Kylian Mbappe (8 bàn)",
     "description": "Trận chung kết hay nhất lịch sử. Lionel Messi cuối cùng cũng chạm tay vào Cúp vàng, hoàn tất bộ sưu tập vĩ đại.",
-    "color": "from-sky-400 to-sky-200"
+    "color": "from-sky-400 to-sky-200",
+    "notablePlayers": ["Lionel Messi (Argentina)", "Kylian Mbappé (Pháp)", "Emiliano Martínez (Argentina)"],
+    "achievements": [
+      "Kỳ WC đầu tiên tổ chức vào mùa đông và tại khu vực Trung Đông.",
+      "Maroc tạo ra cơn địa chấn lớn khi trở thành đội bóng Châu Phi đầu tiên lọt vào Bán kết.",
+      "Trận chung kết điên rồ với cú hat-trick của Mbappé và sự xuất thần của Messi."
+    ]
   }
 ]
