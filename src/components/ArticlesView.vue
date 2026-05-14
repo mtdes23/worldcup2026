@@ -4,7 +4,8 @@ import { ref, onMounted } from 'vue'
 const articles = ref([])
 const loading = ref(true)
 const error = ref(null)
-const selectedArticle = ref(null) // Added for Modal
+const selectedArticle = ref(null)
+const iframeLoading = ref(false)
 
 const fetchNews = async () => {
   try {
@@ -56,12 +57,14 @@ const formatDate = (dateString) => {
 
 const openArticle = (article) => {
   selectedArticle.value = article
+  iframeLoading.value = true
   // Prevent background scrolling
   document.body.style.overflow = 'hidden'
 }
 
 const closeArticle = () => {
   selectedArticle.value = null
+  iframeLoading.value = false
   // Restore scrolling
   document.body.style.overflow = 'auto'
 }
@@ -109,41 +112,42 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- Article Modal Overlay -->
-    <div v-if="selectedArticle" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-[#13072e]/90 backdrop-blur-md" @click.self="closeArticle">
-      <div class="bg-[#24124a] rounded-[2rem] w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-white/10 relative animate-slide-up">
+    <!-- In-App Browser Modal (Iframe) -->
+    <div v-if="selectedArticle" class="fixed inset-0 z-[100] flex items-center justify-center sm:p-6 bg-[#13072e]/90 backdrop-blur-md" @click.self="closeArticle">
+      <div class="bg-white w-full h-full sm:h-[90vh] sm:rounded-[2rem] sm:max-w-5xl overflow-hidden flex flex-col shadow-2xl relative animate-slide-up">
         
-        <!-- Close Button -->
-        <button @click="closeArticle" class="absolute top-4 right-4 w-10 h-10 bg-black/40 hover:bg-fuchsia-500 rounded-full flex items-center justify-center text-white z-20 transition-colors backdrop-blur-md">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-        </button>
-        
-        <!-- Header Image -->
-        <div class="h-48 sm:h-72 w-full relative flex-shrink-0 bg-black">
-          <img v-if="selectedArticle.imageUrl" :src="selectedArticle.imageUrl" class="w-full h-full object-cover opacity-60" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#24124a] via-[#24124a]/50 to-transparent"></div>
+        <!-- Browser Header (Fake Safari/Chrome top bar) -->
+        <div class="bg-gray-100 border-b border-gray-300 px-4 py-3 flex items-center justify-between relative flex-shrink-0">
+          <div class="flex items-center gap-2">
+             <div class="w-3.5 h-3.5 rounded-full bg-red-500 cursor-pointer hover:bg-red-600 shadow-inner" @click="closeArticle"></div>
+             <div class="w-3.5 h-3.5 rounded-full bg-yellow-400 shadow-inner hidden sm:block"></div>
+             <div class="w-3.5 h-3.5 rounded-full bg-green-500 shadow-inner hidden sm:block"></div>
+          </div>
+          <div class="absolute left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-500 bg-gray-200 px-4 py-1.5 rounded-md truncate max-w-[50%] flex items-center gap-2">
+             🔒 {{ selectedArticle.link }}
+          </div>
+          <button @click="closeArticle" class="text-gray-500 hover:text-gray-800 font-bold sm:hidden text-sm">Đóng</button>
         </div>
 
-        <!-- Scrollable Content -->
-        <div class="p-6 sm:p-10 overflow-y-auto custom-scrollbar flex-grow -mt-20 sm:-mt-24 relative z-10">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="px-3 py-1 bg-fuchsia-500 text-white text-[10px] font-bold uppercase rounded-full shadow-md">Tin Mới</span>
-            <span class="text-fuchsia-200 text-sm font-bold">{{ formatDate(selectedArticle.pubDate) }}</span>
-          </div>
-          
-          <h2 class="text-2xl sm:text-4xl font-black text-white mb-6 leading-tight drop-shadow-md">{{ selectedArticle.title }}</h2>
-          
-          <!-- Article HTML Body -->
-          <div class="article-content text-gray-300 text-base sm:text-lg leading-relaxed space-y-4" v-html="selectedArticle.content || selectedArticle.description"></div>
-          
-          <!-- Link to Original -->
-          <div class="mt-10 text-center border-t border-white/10 pt-8">
-             <a :href="selectedArticle.link" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-fuchsia-500 text-white font-bold rounded-full transition-colors text-sm group">
-                Đọc toàn bộ bản gốc trên VNExpress
-                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-             </a>
-          </div>
+        <!-- Iframe Content -->
+        <div class="w-full flex-grow relative bg-white">
+           <!-- Loading Spinner -->
+           <div v-if="iframeLoading" class="absolute inset-0 flex justify-center items-center bg-gray-50 z-0">
+              <div class="flex flex-col items-center">
+                <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-fuchsia-500 mb-4"></div>
+                <p class="text-gray-500 font-medium text-sm">Đang tải trang gốc...</p>
+              </div>
+           </div>
+           
+           <iframe 
+             :src="selectedArticle.link" 
+             @load="iframeLoading = false"
+             class="w-full h-full border-0 relative z-10 bg-white"
+             sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+             referrerpolicy="no-referrer"
+           ></iframe>
         </div>
+
       </div>
     </div>
 
@@ -151,28 +155,6 @@ onMounted(() => {
 </template>
 
 <style>
-/* Scoped styles for the injected HTML content from RSS */
-.article-content img {
-  border-radius: 1rem;
-  margin: 1.5rem auto;
-  max-width: 100%;
-  height: auto;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.article-content a {
-  color: #22d3ee; /* cyan-400 */
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-.article-content p {
-  margin-bottom: 1.25rem;
-}
-.article-content br {
-  display: block;
-  margin-top: 1rem;
-  content: "";
-}
-
 /* Custom scrollbar for modal */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
