@@ -7,8 +7,12 @@ import LegendsView from './components/LegendsView.vue'
 import WC2026View from './components/WC2026View.vue'
 import StatsCompareView from './components/StatsCompareView.vue'
 
+import { useMouse } from '@vueuse/core'
+
 const history = ref(historyData)
 const currentTab = ref('timeline')
+
+const { x, y } = useMouse()
 
 // Stadium Audio Logic
 const isAudioPlaying = ref(false)
@@ -29,6 +33,29 @@ const toggleAudio = () => {
 <template>
   <div class="min-h-screen bg-[#13072e] text-white font-sans selection:bg-fuchsia-500/30 overflow-x-hidden flex flex-col relative">
     
+    <!-- Cursor Spotlight Effect -->
+    <div 
+      class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
+      :style="{
+        background: `radial-gradient(600px circle at ${x}px ${y}px, rgba(217, 70, 239, 0.07), transparent 40%)`
+      }"
+    ></div>
+
+    <!-- Marquee Breaking News -->
+    <div class="w-full bg-gradient-to-r from-fuchsia-600 to-fuchsia-500 text-white font-black text-[10px] sm:text-xs uppercase tracking-[0.2em] py-2 overflow-hidden flex relative z-50 border-b border-fuchsia-400/50 shadow-md">
+      <div class="animate-marquee whitespace-nowrap flex gap-16">
+        <span>🔥 LIONEL MESSI DẪN DẮT ARGENTINA VÔ ĐỊCH 2022!</span>
+        <span>🏆 PELÉ - NHÀ VÔ ĐỊCH 3 LẦN DUY NHẤT TRONG LỊCH SỬ!</span>
+        <span>🔥 BREAKING: WORLD CUP 2026 WILL BE HOSTED IN USA, CANADA, MEXICO!</span>
+        <span>⚽ KLOSE LÀ CHÂN SÚT VĨ ĐẠI NHẤT VỚI 16 BÀN THẮNG!</span>
+        <!-- Duplicate for continuous scroll -->
+        <span>🔥 LIONEL MESSI DẪN DẮT ARGENTINA VÔ ĐỊCH 2022!</span>
+        <span>🏆 PELÉ - NHÀ VÔ ĐỊCH 3 LẦN DUY NHẤT TRONG LỊCH SỬ!</span>
+        <span>🔥 BREAKING: WORLD CUP 2026 WILL BE HOSTED IN USA, CANADA, MEXICO!</span>
+        <span>⚽ KLOSE LÀ CHÂN SÚT VĨ ĐẠI NHẤT VỚI 16 BÀN THẮNG!</span>
+      </div>
+    </div>
+
     <!-- Abstract Festive Background Blobs -->
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
       <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-fuchsia-600/20 blur-[120px]"></div>
@@ -135,5 +162,14 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Marquee Animation */
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 </style>
