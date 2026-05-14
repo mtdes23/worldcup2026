@@ -8,6 +8,8 @@ import WC2026View from './components/WC2026View.vue'
 import StatsCompareView from './components/StatsCompareView.vue'
 import DrawSimulatorView from './components/DrawSimulatorView.vue'
 import BracketView from './components/BracketView.vue'
+import TacticalBoardView from './components/TacticalBoardView.vue'
+import LiveScoreWidget from './components/LiveScoreWidget.vue'
 
 import { useMouse } from '@vueuse/core'
 
@@ -43,6 +45,9 @@ const toggleAudio = () => {
       }"
     ></div>
 
+    <!-- Live Score WebSocket Simulator -->
+    <LiveScoreWidget />
+
     <!-- Marquee Breaking News -->
     <div class="w-full bg-gradient-to-r from-fuchsia-600 to-fuchsia-500 text-white font-black text-[10px] sm:text-xs uppercase tracking-[0.2em] py-2 overflow-hidden flex relative z-50 border-b border-fuchsia-400/50 shadow-md">
       <div class="animate-marquee whitespace-nowrap flex gap-16">
@@ -66,7 +71,7 @@ const toggleAudio = () => {
     </div>
 
     <!-- Top Navigation -->
-    <nav class="sticky top-4 z-50 mx-4 sm:mx-auto max-w-5xl bg-[#1c0b43]/80 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full">
+    <nav class="sticky top-4 z-50 mx-4 sm:mx-auto max-w-[1200px] bg-[#1c0b43]/80 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full">
       <div class="px-4 sm:px-6">
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
@@ -82,6 +87,7 @@ const toggleAudio = () => {
             <button @click="currentTab = 'articles'" :class="currentTab === 'articles' ? 'bg-fuchsia-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Bài báo</button>
             <button @click="currentTab = 'legends'" :class="currentTab === 'legends' ? 'bg-cyan-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Cầu thủ</button>
             <button @click="currentTab = 'bracket'" :class="currentTab === 'bracket' ? 'bg-indigo-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Sơ đồ đấu</button>
+            <button @click="currentTab = 'tactics'" :class="currentTab === 'tactics' ? 'bg-orange-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Sa bàn</button>
             <button @click="currentTab = 'stats'" :class="currentTab === 'stats' ? 'bg-purple-500 text-white shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">Phân tích</button>
             <button @click="currentTab = 'wc2026'" :class="currentTab === 'wc2026' ? 'bg-yellow-400 text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300">WC 2026</button>
             <button @click="currentTab = 'draw'" :class="currentTab === 'draw' ? 'bg-emerald-400 text-[#13072e] shadow-md' : 'text-gray-300 hover:bg-white/10'" class="px-4 py-2 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-all duration-300 flex items-center gap-1">🎲 Bốc Thăm</button>
@@ -127,6 +133,11 @@ const toggleAudio = () => {
       <!-- BRACKET TAB -->
       <div v-if="currentTab === 'bracket'">
         <BracketView />
+      </div>
+
+      <!-- TACTICAL BOARD TAB -->
+      <div v-if="currentTab === 'tactics'">
+        <TacticalBoardView />
       </div>
 
       <!-- STATS/TACTICS TAB -->
