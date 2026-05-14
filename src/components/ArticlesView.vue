@@ -7,18 +7,24 @@ const error = ref(null)
 const selectedArticle = ref(null)
 const iframeLoading = ref(false)
 
+const rssSources = [
+  { name: 'VNExpress', url: 'https://vnexpress.net/rss/the-thao.rss' },
+  { name: 'Tuổi Trẻ', url: 'https://tuoitre.vn/rss/the-thao.rss' },
+  { name: 'Thanh Niên', url: 'https://thanhnien.vn/rss/the-thao.rss' }
+]
+
 const fetchNews = async () => {
   try {
-    // Thay thế rss2json (hay bị lỗi giới hạn/Rate Limit) bằng allorigins kết hợp DOMParser
-    const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://vnexpress.net/rss/the-thao.rss')}`)
-    const data = await response.json()
-    
-    if (data.contents) {
+    const promises = rssSources.map(async (source) => {
+      const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(source.url)}`)
+      const data = await response.json()
+      if (!data.contents) return []
+
       const parser = new DOMParser()
       const xmlDoc = parser.parseFromString(data.contents, "text/xml")
       const items = xmlDoc.querySelectorAll("item")
       
-      articles.value = Array.from(items).slice(0, 9).map(item => {
+      return Array.from(items).map(item => {
         const title = item.querySelector("title")?.textContent || ''
         const link = item.querySelector("link")?.textContent || ''
         const pubDate = item.querySelector("pubDate")?.textContent || ''
@@ -43,14 +49,30 @@ const fetchNews = async () => {
           title,
           link,
           pubDate,
+          timestamp: new Date(pubDate).getTime() || 0,
           imageUrl,
           cleanDesc,
-          description
+          description,
+          sourceName: source.name
         }
       })
-    } else {
-      throw new Error('Failed to fetch RSS data')
-    }
+    })
+
+    // Chờ tất cả RSS sources tải xong (kể cả lỗi)
+    const results = await Promise.allSettled(promises)
+    let allArticles = []
+    
+    results.forEach(result => {
+      if (result.status === 'fulfilled') {
+        allArticles = [...allArticles, ...result.value]
+      }
+    })
+
+    // Sắp xếp bài viết mới nhất lên đầu
+    allArticles = allArticles.filter(a => a.title && a.link).sort((a, b) => b.timestamp - a.timestamp)
+    
+    // Lấy 12 bài mới nhất hiển thị
+    articles.value = allArticles.slice(0, 12)
   } catch (err) {
     error.value = 'Hệ thống RSS đang bận hoặc bị lỗi. Vui lòng tải lại trang sau ít phút.'
     console.error('RSS Fetch Error:', err)
@@ -62,7 +84,7 @@ const fetchNews = async () => {
 const formatDate = (dateString) => {
   if (!dateString) return ''
   const date = new Date(dateString)
-  if (isNaN(date.getTime())) return dateString // fallback nếu parse lỗi
+  if (isNaN(date.getTime())) return dateString 
   return new Intl.DateTimeFormat('vi-VN', { 
     day: '2-digit', month: '2-digit', year: 'numeric',
     hour: '2-digit', minute: '2-digit'
@@ -95,12 +117,15 @@ onMounted(() => {
         Tin Mới Nhất
       </div>
       <h2 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 drop-shadow-md">Điểm Tin Thể Thao</h2>
-      <p class="text-white/70 max-w-2xl mx-auto font-medium">Cập nhật tin tức bóng đá và thể thao mới nhất từ RSS VNExpress.</p>
+      <p class="text-white/70 max-w-2xl mx-auto font-medium">Cập nhật tin tức bóng đá đa chiều mới nhất từ các trang báo mạng uy tín.</p>
     </div>
 
     <!-- Loading State -->
     <div v-if="loading" class="flex justify-center items-center py-20">
-      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-fuchsia-500"></div>
+      <div class="flex flex-col items-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-fuchsia-500 mb-4"></div>
+        <p class="text-gray-400 font-medium">Đang tổng hợp tin tức...</p>
+      </div>
     </div>
 
     <!-- Error State -->
@@ -113,11 +138,11 @@ onMounted(() => {
       <div v-for="article in articles" :key="article.guid" @click="openArticle(article)" class="bg-[#24124a] border border-white/5 rounded-[2rem] overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group flex flex-col cursor-pointer">
         <div class="h-56 bg-white/5 relative overflow-hidden flex-shrink-0">
           <img v-if="article.imageUrl" :src="article.imageUrl" :alt="article.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-          <div v-else class="w-full h-full flex items-center justify-center text-5xl group-hover:scale-110 transition-transform duration-500">📸</div>
+          <div v-else class="w-full h-full flex items-center justify-center text-5xl group-hover:scale-110 transition-transform duration-500">📰</div>
         </div>
         <div class="p-6 flex flex-col flex-grow">
           <div class="flex items-center gap-2 mb-3">
-            <span class="px-2.5 py-1 bg-fuchsia-500/20 text-fuchsia-400 text-[10px] font-bold uppercase rounded-full">Tin Nóng</span>
+            <span class="px-2.5 py-1 bg-fuchsia-500/20 text-fuchsia-400 text-[10px] font-bold uppercase rounded-full border border-fuchsia-500/30">{{ article.sourceName }}</span>
             <span class="text-gray-500 text-xs font-medium">{{ formatDate(article.pubDate) }}</span>
           </div>
           <h3 class="text-lg font-bold text-white mb-3 group-hover:text-fuchsia-400 transition-colors leading-snug line-clamp-3">{{ article.title }}</h3>
@@ -138,7 +163,7 @@ onMounted(() => {
              <div class="w-3.5 h-3.5 rounded-full bg-green-500 shadow-inner hidden sm:block"></div>
           </div>
           <div class="absolute left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-500 bg-gray-200 px-4 py-1.5 rounded-md truncate max-w-[50%] flex items-center gap-2">
-             🔒 {{ selectedArticle.link }}
+             <span class="font-bold text-fuchsia-600">{{ selectedArticle.sourceName }}</span> | 🔒 {{ selectedArticle.link }}
           </div>
           <button @click="closeArticle" class="text-gray-500 hover:text-gray-800 font-bold sm:hidden text-sm">Đóng</button>
         </div>
@@ -149,7 +174,7 @@ onMounted(() => {
            <div v-if="iframeLoading" class="absolute inset-0 flex justify-center items-center bg-gray-50 z-0">
               <div class="flex flex-col items-center">
                 <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-fuchsia-500 mb-4"></div>
-                <p class="text-gray-500 font-medium text-sm">Đang tải trang gốc...</p>
+                <p class="text-gray-500 font-medium text-sm">Đang tải trang gốc từ {{ selectedArticle.sourceName }}...</p>
               </div>
            </div>
            
