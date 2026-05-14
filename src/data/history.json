@@ -1,0 +1,222 @@
+[
+  {
+    "year": 1930,
+    "host": "Uruguay",
+    "champion": "Uruguay",
+    "runnerUp": "Argentina",
+    "score": "4-2",
+    "topScorer": "Guillermo Stábile (8 bàn)",
+    "description": "Kỳ World Cup đầu tiên trong lịch sử với sự tham gia của 13 đội tuyển. Không có vòng loại, tất cả các đội đều được mời tham dự.",
+    "color": "from-sky-400 to-yellow-400"
+  },
+  {
+    "year": 1934,
+    "host": "Ý",
+    "champion": "Ý",
+    "runnerUp": "Tiệp Khắc",
+    "score": "2-1 (Hiệp phụ)",
+    "topScorer": "Oldřich Nejedlý (5 bàn)",
+    "description": "Giải đấu đầu tiên có vòng loại. Đội chủ nhà Ý đã giành chức vô địch dưới sự dẫn dắt của HLV huyền thoại Vittorio Pozzo.",
+    "color": "from-blue-600 to-blue-400"
+  },
+  {
+    "year": 1938,
+    "host": "Pháp",
+    "champion": "Ý",
+    "runnerUp": "Hungary",
+    "score": "4-2",
+    "topScorer": "Leônidas (7 bàn)",
+    "description": "Kỳ World Cup cuối cùng trước Chiến tranh Thế giới thứ hai. Ý trở thành đội đầu tiên bảo vệ thành công chức vô địch.",
+    "color": "from-blue-600 to-blue-400"
+  },
+  {
+    "year": 1950,
+    "host": "Brazil",
+    "champion": "Uruguay",
+    "runnerUp": "Brazil",
+    "score": "2-1",
+    "topScorer": "Ademir (8 bàn)",
+    "description": "Nổi tiếng với thảm họa 'Maracanazo', nơi Uruguay bất ngờ đánh bại chủ nhà Brazil trước sức ép của gần 200,000 khán giả.",
+    "color": "from-sky-400 to-yellow-400"
+  },
+  {
+    "year": 1954,
+    "host": "Thụy Sĩ",
+    "champion": "Tây Đức",
+    "runnerUp": "Hungary",
+    "score": "3-2",
+    "topScorer": "Sándor Kocsis (11 bàn)",
+    "description": "'Phép màu Bern' - Tây Đức đánh bại 'Đội bóng vàng' Hungary không thể bị đánh bại trước đó, tạo nên cú lội ngược dòng vĩ đại.",
+    "color": "from-zinc-700 to-zinc-400"
+  },
+  {
+    "year": 1958,
+    "host": "Thụy Điển",
+    "champion": "Brazil",
+    "runnerUp": "Thụy Điển",
+    "score": "5-2",
+    "topScorer": "Just Fontaine (13 bàn)",
+    "description": "Sự xuất hiện của cậu bé 17 tuổi tên là Pelé, lập cú đúp trong trận chung kết để mang về cúp vô địch đầu tiên cho Brazil.",
+    "color": "from-yellow-400 to-green-500"
+  },
+  {
+    "year": 1962,
+    "host": "Chile",
+    "champion": "Brazil",
+    "runnerUp": "Tiệp Khắc",
+    "score": "3-1",
+    "topScorer": "Garrincha & 5 người khác (4 bàn)",
+    "description": "Garrincha thay thế xuất sắc Pelé bị chấn thương để dẫn dắt Brazil bảo vệ ngôi vương thế giới.",
+    "color": "from-yellow-400 to-green-500"
+  },
+  {
+    "year": 1966,
+    "host": "Anh",
+    "champion": "Anh",
+    "runnerUp": "Tây Đức",
+    "score": "4-2 (Hiệp phụ)",
+    "topScorer": "Eusébio (9 bàn)",
+    "description": "'Bóng đá đã trở về nhà'. Chức vô địch duy nhất của tuyển Anh với cú hat-trick lịch sử của Geoff Hurst.",
+    "color": "from-red-600 to-red-400"
+  },
+  {
+    "year": 1970,
+    "host": "Mexico",
+    "champion": "Brazil",
+    "runnerUp": "Ý",
+    "score": "4-1",
+    "topScorer": "Gerd Müller (10 bàn)",
+    "description": "Tuyển Brazil năm 1970 được coi là đội hình vĩ đại nhất mọi thời đại, trình diễn thứ bóng đá Jogo Bonito tấn công cống hiến.",
+    "color": "from-yellow-400 to-green-500"
+  },
+  {
+    "year": 1974,
+    "host": "Tây Đức",
+    "champion": "Tây Đức",
+    "runnerUp": "Hà Lan",
+    "score": "2-1",
+    "topScorer": "Grzegorz Lato (7 bàn)",
+    "description": "Sự ra đời của 'Bóng đá Tổng lực' (Total Football) của Hà Lan nhưng bị khuất phục bởi tính kỷ luật thép của Tây Đức.",
+    "color": "from-zinc-700 to-zinc-400"
+  },
+  {
+    "year": 1978,
+    "host": "Argentina",
+    "champion": "Argentina",
+    "runnerUp": "Hà Lan",
+    "score": "3-1 (Hiệp phụ)",
+    "topScorer": "Mario Kempes (6 bàn)",
+    "description": "Mario Kempes tỏa sáng rực rỡ giúp Argentina giữ chiếc cúp vô địch ở lại sân nhà dưới cơn mưa hoa giấy nổi tiếng.",
+    "color": "from-sky-400 to-sky-200"
+  },
+  {
+    "year": 1982,
+    "host": "Tây Ban Nha",
+    "champion": "Ý",
+    "runnerUp": "Tây Đức",
+    "score": "3-1",
+    "topScorer": "Paolo Rossi (6 bàn)",
+    "description": "Màn trình diễn bùng nổ của Paolo Rossi đã mang về chức vô địch thế giới thứ 3 cho đội tuyển Ý sau khởi đầu rất chật vật.",
+    "color": "from-blue-600 to-blue-400"
+  },
+  {
+    "year": 1986,
+    "host": "Mexico",
+    "champion": "Argentina",
+    "runnerUp": "Tây Đức",
+    "score": "3-2",
+    "topScorer": "Gary Lineker (6 bàn)",
+    "description": "Kỳ World Cup của Diego Maradona. Màn trình diễn siêu phàm cùng 'Bàn tay của Chúa' và 'Bàn thắng của thế kỷ'.",
+    "color": "from-sky-400 to-sky-200"
+  },
+  {
+    "year": 1990,
+    "host": "Ý",
+    "champion": "Tây Đức",
+    "runnerUp": "Argentina",
+    "score": "1-0",
+    "topScorer": "Salvatore Schillaci (6 bàn)",
+    "description": "Một giải đấu nghèo nàn bàn thắng nhưng đậm tính chiến thuật. Tây Đức trả món nợ trước Argentina nhờ quả phạt đền của Brehme.",
+    "color": "from-zinc-700 to-zinc-400"
+  },
+  {
+    "year": 1994,
+    "host": "Mỹ",
+    "champion": "Brazil",
+    "runnerUp": "Ý",
+    "score": "0-0 (Pen 3-2)",
+    "topScorer": "H. Stoichkov, O. Salenko (6 bàn)",
+    "description": "Chung kết World Cup đầu tiên được giải quyết trên chấm luân lưu. Cú đá hỏng ăn nghiệt ngã của Roberto Baggio.",
+    "color": "from-yellow-400 to-green-500"
+  },
+  {
+    "year": 1998,
+    "host": "Pháp",
+    "champion": "Pháp",
+    "runnerUp": "Brazil",
+    "score": "3-0",
+    "topScorer": "Davor Šuker (6 bàn)",
+    "description": "Zinedine Zidane lập cú đúp đánh đầu cháy lưới Brazil, mang về chức vô địch đầu tiên cho Gà trống Gaulois.",
+    "color": "from-blue-700 to-red-600"
+  },
+  {
+    "year": 2002,
+    "host": "Hàn Quốc & Nhật Bản",
+    "champion": "Brazil",
+    "runnerUp": "Đức",
+    "score": "2-0",
+    "topScorer": "Ronaldo (8 bàn)",
+    "description": "Kỳ World Cup đầu tiên diễn ra tại châu Á. Sự hồi sinh kỳ diệu của 'Người ngoài hành tinh' Ronaldo với cú đúp ở chung kết.",
+    "color": "from-yellow-400 to-green-500"
+  },
+  {
+    "year": 2006,
+    "host": "Đức",
+    "champion": "Ý",
+    "runnerUp": "Pháp",
+    "score": "1-1 (Pen 5-3)",
+    "topScorer": "Miroslav Klose (5 bàn)",
+    "description": "Cú húc đầu chấn động của Zidane và khoảnh khắc Fabio Grosso ghi bàn định mệnh đưa đội tuyển Ý lên đỉnh thế giới.",
+    "color": "from-blue-600 to-blue-400"
+  },
+  {
+    "year": 2010,
+    "host": "Nam Phi",
+    "champion": "Tây Ban Nha",
+    "runnerUp": "Hà Lan",
+    "score": "1-0 (Hiệp phụ)",
+    "topScorer": "Müller, Villa, Sneijder, Forlán (5 bàn)",
+    "description": "Bóng đá Tiqui-taca lên ngôi. Cú vô lê quyết đoán của Andres Iniesta ở phút 116 đã mang về cúp vàng cho Tây Ban Nha.",
+    "color": "from-red-600 to-yellow-500"
+  },
+  {
+    "year": 2014,
+    "host": "Brazil",
+    "champion": "Đức",
+    "runnerUp": "Argentina",
+    "score": "1-0 (Hiệp phụ)",
+    "topScorer": "James Rodríguez (6 bàn)",
+    "description": "Thảm họa Mineirazo (Đức 7-1 Brazil) và khoảnh khắc chói sáng của Mario Götze ở phút 113 đánh chìm giấc mơ của Messi.",
+    "color": "from-zinc-700 to-zinc-400"
+  },
+  {
+    "year": 2018,
+    "host": "Nga",
+    "champion": "Pháp",
+    "runnerUp": "Croatia",
+    "score": "4-2",
+    "topScorer": "Harry Kane (6 bàn)",
+    "description": "Thế hệ vàng thứ hai của tuyển Pháp với Mbappe rực sáng, cùng hành trình quả cảm của hiện tượng Croatia đi đến chung kết.",
+    "color": "from-blue-700 to-red-600"
+  },
+  {
+    "year": 2022,
+    "host": "Qatar",
+    "champion": "Argentina",
+    "runnerUp": "Pháp",
+    "score": "3-3 (Pen 4-2)",
+    "topScorer": "Kylian Mbappe (8 bàn)",
+    "description": "Trận chung kết hay nhất lịch sử. Lionel Messi cuối cùng cũng chạm tay vào Cúp vàng, hoàn tất bộ sưu tập vĩ đại.",
+    "color": "from-sky-400 to-sky-200"
+  }
+]
