@@ -9,38 +9,51 @@ const iframeLoading = ref(false)
 
 const fetchNews = async () => {
   try {
-    const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://vnexpress.net/rss/the-thao.rss')
+    // Thay thế rss2json (hay bị lỗi giới hạn/Rate Limit) bằng allorigins kết hợp DOMParser
+    const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://vnexpress.net/rss/the-thao.rss')}`)
     const data = await response.json()
     
-    if (data.status === 'ok') {
-      articles.value = data.items.slice(0, 9).map(item => {
-        let imageUrl = item.thumbnail || null;
+    if (data.contents) {
+      const parser = new DOMParser()
+      const xmlDoc = parser.parseFromString(data.contents, "text/xml")
+      const items = xmlDoc.querySelectorAll("item")
+      
+      articles.value = Array.from(items).slice(0, 9).map(item => {
+        const title = item.querySelector("title")?.textContent || ''
+        const link = item.querySelector("link")?.textContent || ''
+        const pubDate = item.querySelector("pubDate")?.textContent || ''
+        const description = item.querySelector("description")?.textContent || ''
         
-        if (!imageUrl && item.enclosure && item.enclosure.link) {
-          imageUrl = item.enclosure.link;
+        let imageUrl = null;
+        const enclosure = item.querySelector("enclosure")
+        if (enclosure) {
+          imageUrl = enclosure.getAttribute("url")
         }
         
         if (!imageUrl) {
-          const htmlContent = (item.description || '') + (item.content || '');
-          const imgMatch = htmlContent.match(/<img[^>]+src=["']([^"']+)["']/i);
-          imageUrl = imgMatch ? imgMatch[1] : null;
+          const imgMatch = description.match(/<img[^>]+src=["']([^"']+)["']/i)
+          imageUrl = imgMatch ? imgMatch[1] : null
         }
         
-        let cleanDesc = item.description ? item.description.replace(/<[^>]*>?/gm, '') : '';
-        if (cleanDesc.length > 120) cleanDesc = cleanDesc.substring(0, 120) + '...';
+        let cleanDesc = description.replace(/<[^>]*>?/gm, '')
+        if (cleanDesc.length > 120) cleanDesc = cleanDesc.substring(0, 120) + '...'
 
         return {
-          ...item,
+          guid: link || Math.random().toString(),
+          title,
+          link,
+          pubDate,
           imageUrl,
-          cleanDesc
+          cleanDesc,
+          description
         }
       })
     } else {
-      throw new Error('Failed to fetch RSS')
+      throw new Error('Failed to fetch RSS data')
     }
   } catch (err) {
-    error.value = 'Không thể tải tin tức lúc này. Vui lòng thử lại sau.'
-    console.error(err)
+    error.value = 'Hệ thống RSS đang bận hoặc bị lỗi. Vui lòng tải lại trang sau ít phút.'
+    console.error('RSS Fetch Error:', err)
   } finally {
     loading.value = false
   }
@@ -49,6 +62,7 @@ const fetchNews = async () => {
 const formatDate = (dateString) => {
   if (!dateString) return ''
   const date = new Date(dateString)
+  if (isNaN(date.getTime())) return dateString // fallback nếu parse lỗi
   return new Intl.DateTimeFormat('vi-VN', { 
     day: '2-digit', month: '2-digit', year: 'numeric',
     hour: '2-digit', minute: '2-digit'
@@ -140,7 +154,7 @@ onMounted(() => {
            </div>
            
            <iframe 
-             :src="selectedArticle.link" 
+             :src="`https://api.allorigins.win/raw?url=${encodeURIComponent(selectedArticle.link)}`" 
              @load="iframeLoading = false"
              class="w-full h-full border-0 relative z-10 bg-white"
              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
