@@ -74,7 +74,7 @@
                         class="text-[13px] font-medium text-white flex items-start gap-2 cursor-pointer hover:text-cyan-300 transition-colors p-1 -ml-1 rounded hover:bg-white/5"
                         @click="showDetail('Player', player, item)">
                       <span class="text-cyan-500/50 mt-0.5">•</span>
-                      <span class="leading-snug underline decoration-white/20 underline-offset-4">{{ player }}</span>
+                      <span class="leading-snug">{{ player }}</span>
                     </li>
                   </ul>
                 </div>
@@ -89,7 +89,7 @@
                         class="text-[13px] font-medium text-white flex items-start gap-2 cursor-pointer hover:text-fuchsia-300 transition-colors p-1 -ml-1 rounded hover:bg-white/5"
                         @click="showDetail('Achievement', achievement, item)">
                       <span class="text-fuchsia-500/50 mt-0.5">•</span>
-                      <span class="leading-snug underline decoration-white/20 underline-offset-4">{{ achievement }}</span>
+                      <span class="leading-snug">{{ achievement }}</span>
                     </li>
                   </ul>
                 </div>
